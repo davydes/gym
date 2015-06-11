@@ -23,5 +23,23 @@ module Gym
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.initialize_on_precompile = false
+
+    # todo: move to environments
+    # Email
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.default_url_options = {
+      from: 'loggergym@gmail.com',
+      host: 'localhost',
+      port: 3000
+    }
+    config.action_mailer.smtp_settings = {
+        address: 'smtp.gmail.com', 
+        port: '587',
+        enable_starttls_auto: true,
+        user_name: ENV['GMAIL_USER'],
+        password: ENV['GMAIL_PWD'],
+        authentication: :plain
+    }
   end
 end

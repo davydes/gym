@@ -7,6 +7,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-vkontakte'
 gem 'devise'
 
 # gem 'bcrypt', '~> 3.1.7'
