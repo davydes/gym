@@ -10,4 +10,8 @@
   %body
     = render partial: 'layouts/header'
     %div.container
+      - if notice
+        %div.alert.alert-info{:role => "alert"}= notice
+      - if alert
+        %div.alert.alert-danger{:role => "alert"}= alert
       = yield
