@@ -21,10 +21,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-    if resource.email_verified?
+    if false
       super resource
     else
-      finish_signup_path(resource)
+      edit_user_registration_path
     end
   end
 

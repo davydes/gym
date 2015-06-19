@@ -15,6 +15,7 @@ module Gym
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Europe/Moscow'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -22,24 +23,28 @@ module Gym
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
     config.assets.initialize_on_precompile = false
 
-    # todo: move to environments
-    # Email
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.default_url_options = {
-      from: 'loggergym@gmail.com',
-      host: 'localhost',
-      port: 3000
+    # Override action_view proc
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag
     }
-    config.action_mailer.smtp_settings = {
-        address: 'smtp.gmail.com', 
-        port: '587',
-        enable_starttls_auto: true,
-        user_name: ENV['GMAIL_USER'],
-        password: ENV['GMAIL_PWD'],
-        authentication: :plain
-    }
+
+    config.generators do |g|
+      g.test_framework  :rspec, :fixture => true
+      g.fixture_replacement :fabrication, :dir => 'spec/factories'
+      g.template_engine :haml
+      g.stylesheet_engine :less
+      g.javascript_engine :coffeescript
+    end
+
+    # Autoload lib
+    config.autoload_paths << Rails.root.join('lib')
+
+    # Mailer
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+    config.action_mailer.delivery_method = :test
+    config.action_mailer.perform_deliveries = false
   end
 end

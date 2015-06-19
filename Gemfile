@@ -13,6 +13,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'devise'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 # gem 'bcrypt', '~> 3.1.7'
 
