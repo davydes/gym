@@ -30,10 +30,8 @@ RSpec.describe User, :type => :model do
       it 'wrong email format' do
         user1 = build(:user, :email => 'user@example')
         user2 = build(:user, :email => 'userexample.org')
-        user3 = build(:user, :email => '#user@example.org')
         expect(user1).to be_invalid
         expect(user2).to be_invalid
-        expect(user3).to be_invalid
       end
       it 'short password' do
         user = build(:user, :password => '12345', :password_confirmation => '12345')

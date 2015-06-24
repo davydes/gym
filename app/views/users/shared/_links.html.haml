@@ -13,10 +13,6 @@
     %br
 
   - if devise_mapping.omniauthable? && %w(registrations sessions).include?(controller_name)
-    %div.loginSocial
-      %hr
-      %span use social
-
     %div.socialButtons.row
       - resource_class.omniauth_providers.each do |provider|
         %div.col-xs-4.col-sm-4.colSocial

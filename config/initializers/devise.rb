@@ -264,6 +264,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # Providers
-  config.omniauth :vkontakte, ENV['VK_KEY'], ENV['VK_SECRET']
+  config.omniauth :vkontakte, ENV['VK_KEY'], ENV['VK_SECRET'], scope: 'email'
 
 end
