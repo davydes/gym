@@ -7,6 +7,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'

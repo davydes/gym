@@ -52,6 +52,17 @@
             = f.radio_button(:gender, gender[1], checked: gender[1] == @user.gender)
             = gender[0]
 
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong Date of birth
+    %div.col-sm-5
+      %div.input-group.input-group-sm.date
+        %span.input-group-addon
+          %i.glyphicon.glyphicon-th
+        = f.text_field :date_of_birth, value: birthday(@user), :class => 'datepicker form-control', data: {provide: 'datepicker'}
+      %span.help-block
+
+
 %div.row
   %div.col-sm-offset-4.col-sm-5
     = button_to "Drop my account", registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete
