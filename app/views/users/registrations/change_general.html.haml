@@ -1,0 +1,57 @@
+= render layout: 'edit' do |f|
+
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong Email
+    %div.col-sm-5
+      %div.input-group.input-group-sm
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-envelope
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail"
+      %span.help-block
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong Name
+    %div.col-sm-5
+      %div.input-group.input-group-sm
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-user
+        = f.text_field :name, class: 'form-control', placeholder: "name"
+      %span.help-block
+
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong First Name
+    %div.col-sm-5
+      %div.input-group.input-group-sm
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-user
+        = f.text_field :first_name, class: 'form-control', placeholder: "first name"
+      %span.help-block
+
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong Last Name
+    %div.col-sm-5
+      %div.input-group.input-group-sm
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-user
+        = f.text_field :last_name, class: 'form-control', placeholder: "last name"
+      %span.help-block
+
+  %div.form-group
+    %label.col-sm-4.control-label
+      %strong Gender
+    %div.col-sm-5
+      %div.btn-group.pull-right{data:{toggle: 'buttons'}, style: 'width:100%'}
+        - [['female', 'f'], ['male', 'm']].each do |gender|
+          = label_tag nil, class: "btn btn-default #{ 'active' if gender[1] == @user.gender }", style: 'width: 50%' do
+            = f.radio_button(:gender, gender[1], checked: gender[1] == @user.gender)
+            = gender[0]
+
+%div.row
+  %div.col-sm-offset-4.col-sm-5
+    = button_to "Drop my account", registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete

@@ -1,0 +1,28 @@
+- action = local_assigns.has_key?(:action) ? action : ''
+
+%h3.text-center
+  = link_to 'General Information', edit_user_registration_path
+  \/
+  = link_to 'Contacts', edit_user_registration_path(act: 'contacts')
+  \/
+  = link_to 'Password', edit_user_registration_path(act: 'password')
+
+= devise_error_messages!
+%div.user_form
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal', data: {model: resource_name}, method: :put }) do |f|
+
+    = yield f
+
+    %div.form-group
+      %div.col-sm-offset-6.col-sm-3
+        = button_tag(type: 'submit', class: "btn-block btn btn btn-primary") do
+          %i.fa.fa-sign-in
+          Update
+
+    = hidden_field_tag 'act', action if action.present?
+
+- if resource.errors.any?
+  :coffeescript
+    $ ->
+      $("form[data-model=#{resource_name}]").renderFormErrors(#{resource.errors.to_json.html_safe});

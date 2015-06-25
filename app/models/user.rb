@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates_length_of :email, maximum: 100
+  validates_length_of :city, maximum: 100
+  validates_length_of :country, maximum: 100
 
   validates :name, presence: true, format: { with: /\A\w*\z/i },
             length: { maximum: 50 },
@@ -29,13 +31,8 @@ class User < ActiveRecord::Base
   # associations
 
   has_many :identities
-  attr_writer :password_required
 
   #methods
-
-  def password_required?
-    super && (@password_required.nil? || @password_required)
-  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -49,15 +46,22 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(normalized_auth, signed_in_user = nil)
     identity = Identity.find_for_oauth normalized_auth
-    user = identity.user || signed_in_user
+    user = identity.user || signed_in_user || User.find_by_email(identity.email)
 
-    user = User.create(
-        email: identity.email,
-        name: identity.nickname,
-        first_name: normalized_auth.info.first_name,
-        last_name: normalized_auth.info.last_name,
-        password_required: false
-    ) if user.nil?
+    if user.nil?
+      generated_password = Devise.friendly_token.first(8)
+      user = User.create(
+          email: identity.email,
+          name: identity.nickname,
+          first_name: normalized_auth.info.first_name,
+          last_name: normalized_auth.info.last_name,
+          password: (generated_password),
+          password_confirmation: (generated_password)
+      )
+      UserMailer.welcome(user, generated_password).deliver
+    end
+
+    puts user.errors.full_messages
 
     user.skip_confirmation!
 
