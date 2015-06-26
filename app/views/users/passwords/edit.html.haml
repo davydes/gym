@@ -1,20 +1,29 @@
-%h2 Change your password
+%div.login
+  %h3.authTitle Change your password
 
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    = f.hidden_field :reset_password_token
 
-  %div.field
-    = f.label :password, "New password"
-    - if @minimum_password_length
-      %em (#{@minimum_password_length} characters minimum)
-    = f.password_field :password, autofocus: true, autocomplete: "off"
+    %div.form-group
+      %div.input-group
+        %span.input-group-addon
+          %i.fa.fa-fw.fa-lock
+        = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: "password"
+      %span.help-block
+        - if @minimum_password_length
+          %em (#{@minimum_password_length} characters minimum)
 
-  %div.field
-    = f.label :password_confirmation, "Confirm new password"
-    = f.password_field :password_confirmation, autocomplete: "off"
+    %div.form-group
+      %div.input-group
+        %span.input-group-addon
+          %i.fa.fa-fw.fa-lock
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "confirmation"
+        %span.help-block
 
-  %div.actions
-    = f.submit "Change my password"
+    %div.form-group
+      = button_tag(type: 'submit', class: "btn btn-lg btn-primary btn-block") do
+        %i.fa.fa-send
+        Change my password
 
 = render "users/shared/links"
