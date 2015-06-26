@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+  default from: ENV['MAILER_FROM']
+
   def welcome(user, generated_password)
     @user = user
     @password = generated_password

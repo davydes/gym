@@ -50,20 +50,24 @@ class User < ActiveRecord::Base
 
     if user.nil?
       generated_password = Devise.friendly_token.first(8)
-      user = User.create(
+      user = User.new(
           email: identity.email,
+          confirmed_at: DateTime.now,
           name: identity.nickname,
           first_name: normalized_auth.info.first_name,
           last_name: normalized_auth.info.last_name,
           password: (generated_password),
           password_confirmation: (generated_password)
       )
-      UserMailer.welcome(user, generated_password).deliver
+      user.skip_confirmation!
+      user.save!
+      if user.persisted?
+        puts 'Send welcome email to: '+user.email
+        UserMailer.welcome(user, generated_password).deliver
+      end
     end
 
-    puts user.errors.full_messages
 
-    user.skip_confirmation!
 
     if identity.user != user
       identity.user = user
