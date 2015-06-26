@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   # associations
 
-  has_many :identities
+  has_many :identities, :dependent => :delete_all
 
   #methods
 
