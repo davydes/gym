@@ -1,24 +1,29 @@
 %ul.nav.nav-pills.nav-stacked
-  = menu_link_to user_path(current_user) do
-    %i.fa.fa-fw.fa-home
-    Home
-  = menu_link_to '' do
-    %i.fa.fa-fw.fa-envelope
-    Messages
-    %span.badge.badge-info 4
-  = menu_link_to '' do
-    %i.fa.fa-fw.fa-comment
-    Comments
-    %span.badge.badge-info 10
-  = menu_link_to '' do
-    %i.fa.fa-fw.fa-user
-    Members
-  = menu_link_to edit_user_registration_path do
-    %i.fa.fa-fw.fa-briefcase
-    Profile
-  = menu_link_to '' do
-    %i.fa.fa-fw.fa-cog
-    Settings
-  = menu_link_to destroy_user_session_path, :method => :delete do
-    %i.fa.fa-fw.fa-sign-out
-    Logout
+  - if current_user
+    = menu_link_to user_path(current_user) do
+      %i.fa.fa-fw.fa-home
+      Home
+    = menu_link_to '' do
+      %i.fa.fa-fw.fa-envelope
+      Messages
+      %span.badge.badge-info 4
+    = menu_link_to '' do
+      %i.fa.fa-fw.fa-comment
+      Comments
+      %span.badge.badge-info 10
+    = menu_link_to '' do
+      %i.fa.fa-fw.fa-user
+      Members
+    = menu_link_to edit_user_registration_path do
+      %i.fa.fa-fw.fa-briefcase
+      Profile
+    = menu_link_to '' do
+      %i.fa.fa-fw.fa-cog
+      Settings
+    = menu_link_to destroy_user_session_path, :method => :delete do
+      %i.fa.fa-fw.fa-sign-out
+      Logout
+  - else
+    = menu_link_to new_user_session_path do
+      %i.fa.fa-sign-in
+      Sign in
