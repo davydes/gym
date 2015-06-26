@@ -1,13 +1,18 @@
-%h2 Resend confirmation instructions
+%div.login
+  %h3.authTitle Resend confirmation instructions
 
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = devise_error_messages!
 
-  %div.field
-    = f.label :email
-    = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+    %div.form-group
+      %div.input-group
+        %span.input-group-addon
+          %i.fa.fa-fw.fa-envelope
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
 
-  %div.actions
-    = f.submit "Resend confirmation instructions"
+    %div.form-group
+      = button_tag(type: 'submit', class: "btn btn-lg btn-primary btn-block") do
+        %i.fa.fa-send
+        Resend confirmation instructions
 
 = render "users/shared/links"

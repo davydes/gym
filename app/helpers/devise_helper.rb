@@ -11,13 +11,25 @@ module DeviseHelper
       <div class="panel-heading">
         #{sentence}
         <a class="pull-right btn btn-danger btn-xs" role="button" data-toggle="collapse" href="#error_explanation" aria-expanded="false" aria-controls="error_explanation">
-          <span class="glyphicon glyphicon-collapse-down"></span>
+          <i id="error_explanation_chevron" class="fa fa-chevron-down"></i>
         </a>
       </div>
       <div class="panel-body collapse" id="error_explanation">
         <ul>#{messages}</ul>
       </div>
     </div>
+
+    <script>
+      (function() {
+        $('#error_explanation').on('shown.bs.collapse', function() {
+          $("#error_explanation_chevron").addClass('fa-chevron-up').removeClass('fa-chevron-down');
+        });
+
+        $('#error_explanation').on('hidden.bs.collapse', function() {
+          $("#error_explanation_chevron").addClass('fa-chevron-down').removeClass('fa-chevron-up');
+        });
+      }).call(this);
+    </script>
     HTML
 
     html.html_safe

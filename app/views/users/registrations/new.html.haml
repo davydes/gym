@@ -6,28 +6,28 @@
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-envelope
+          %i.fa.fa-fw.fa-envelope
         = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail"
       %span.help-block
 
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-user
+          %i.fa.fa-fw.fa-user
         = f.text_field :name, autofocus: true, class: 'form-control', placeholder: "name"
       %span.help-block
 
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-lock
+          %i.fa.fa-fw.fa-lock
         = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "password"
       %span.help-block
 
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-lock
+          %i.fa.fa-fw.fa-lock
         = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "password confirmation"
       %span.help-block
     %div.form-group
