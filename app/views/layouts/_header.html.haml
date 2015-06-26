@@ -10,8 +10,10 @@
     %ul.nav.navbar-nav.navbar-right
       %li
         - if !current_user
-          = link_to('sign in',new_user_session_path)
+          = link_to new_user_session_path do
+            Sign in
+            %i.fa.fa-sign-in
         - else
           = link_to destroy_user_session_path, :method => :delete do
-            Logout
-            %span.glyphicon.glyphicon-log-out
+            Sign out
+            %i.fa.fa-sign-out

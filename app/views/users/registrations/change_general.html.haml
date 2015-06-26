@@ -6,7 +6,7 @@
     %div.col-sm-5
       %div.input-group.input-group-sm
         %span.input-group-addon
-          %span.glyphicon.glyphicon-envelope
+          %i.fa.fa-fw.fa-envelope
         = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail"
       %span.help-block
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -18,7 +18,7 @@
     %div.col-sm-5
       %div.input-group.input-group-sm
         %span.input-group-addon
-          %span.glyphicon.glyphicon-user
+          %i.fa.fa-fw.fa-user
         = f.text_field :name, class: 'form-control', placeholder: "name"
       %span.help-block
 
@@ -28,7 +28,7 @@
     %div.col-sm-5
       %div.input-group.input-group-sm
         %span.input-group-addon
-          %span.glyphicon.glyphicon-user
+          %i.fa.fa-fw.fa-edit
         = f.text_field :first_name, class: 'form-control', placeholder: "first name"
       %span.help-block
 
@@ -38,7 +38,7 @@
     %div.col-sm-5
       %div.input-group.input-group-sm
         %span.input-group-addon
-          %span.glyphicon.glyphicon-user
+          %i.fa.fa-fw.fa-edit
         = f.text_field :last_name, class: 'form-control', placeholder: "last name"
       %span.help-block
 
@@ -58,11 +58,13 @@
     %div.col-sm-5
       %div.input-group.input-group-sm.date
         %span.input-group-addon
-          %i.glyphicon.glyphicon-th
+          %i.fa.fa-fw.fa-th
         = f.text_field :date_of_birth, value: birthday(@user), :class => 'datepicker form-control', data: {provide: 'datepicker'}
       %span.help-block
 
 
 %div.row
   %div.col-sm-offset-4.col-sm-5
-    = button_to "Drop my account", registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete
+    = link_to registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete do
+      %i.fa.fa-trash-o
+      Drop my account

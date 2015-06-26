@@ -1,24 +1,24 @@
 %ul.nav.nav-pills.nav-stacked
   = menu_link_to user_path(current_user) do
-    %span.glyphicon.glyphicon-home
+    %i.fa.fa-fw.fa-home
     Home
   = menu_link_to '' do
-    %span.glyphicon.glyphicon-envelope
+    %i.fa.fa-fw.fa-envelope
     Messages
     %span.badge.badge-info 4
   = menu_link_to '' do
-    %span.glyphicon.glyphicon-comment
+    %i.fa.fa-fw.fa-comment
     Comments
     %span.badge.badge-info 10
   = menu_link_to '' do
-    %span.glyphicon.glyphicon-user
+    %i.fa.fa-fw.fa-user
     Members
   = menu_link_to edit_user_registration_path do
-    %span.glyphicon.glyphicon-briefcase
+    %i.fa.fa-fw.fa-briefcase
     Profile
   = menu_link_to '' do
-    %span.glyphicon.glyphicon-cog
+    %i.fa.fa-fw.fa-cog
     Settings
   = menu_link_to destroy_user_session_path, :method => :delete do
-    %span.glyphicon.glyphicon-log-out
+    %i.fa.fa-fw.fa-sign-out
     Logout

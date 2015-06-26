@@ -6,13 +6,13 @@
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-envelope
+          %i.fa.fa-fw.fa-envelope
         = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail"
 
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %span.glyphicon.glyphicon-lock
+          %i.fa.fa-fw.fa-lock
         = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "password"
 
     - if devise_mapping.rememberable?
