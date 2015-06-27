@@ -1,9 +1,9 @@
 = render layout: 'edit' do |f|
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong Email
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-envelope
@@ -13,9 +13,9 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong Name
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-user
@@ -23,9 +23,9 @@
       %span.help-block
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong First Name
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
@@ -33,9 +33,9 @@
       %span.help-block
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong Last Name
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
@@ -43,9 +43,9 @@
       %span.help-block
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong Gender
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.btn-group.pull-right{data:{toggle: 'buttons'}, style: 'width:100%'}
         - [['female', 'f'], ['male', 'm']].each do |gender|
           = label_tag nil, class: "btn btn-default #{ 'active' if gender[1] == @user.gender }", style: 'width: 50%' do
@@ -53,9 +53,9 @@
             = gender[0]
 
   %div.form-group
-    %label.col-sm-4.control-label
+    %label.col-sm-3.col-md-4.control-label
       %strong Date of birth
-    %div.col-sm-5
+    %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm.date
         %span.input-group-addon
           %i.fa.fa-fw.fa-th
@@ -64,7 +64,7 @@
 
 
 %div.row
-  %div.col-sm-offset-4.col-sm-5
+  %div.col-sm-offset-3.col-sm-7.col-md-5.col-md-offset-4
     = link_to registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete do
       %i.fa.fa-trash-o
       Drop my account
