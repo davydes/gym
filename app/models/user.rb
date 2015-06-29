@@ -56,20 +56,15 @@ class User < ActiveRecord::Base
           name: identity.nickname,
           first_name: normalized_auth.info.first_name,
           last_name: normalized_auth.info.last_name,
-          password: (generated_password),
-          password_confirmation: (generated_password)
+          password: generated_password,
+          password_confirmation: generated_password
       )
       user.skip_confirmation!
       user.save!
-      if user.persisted?
-        puts 'Send welcome email to: '+user.email
-        UserMailer.welcome(user, generated_password).deliver
-      end
+      UserMailer.welcome(user, generated_password).deliver if user.persisted?
     end
 
-
-
-    if identity.user != user
+    if user.persisted? && identity.user != user
       identity.user = user
       identity.save!
     end
@@ -81,7 +76,7 @@ class User < ActiveRecord::Base
 
   def at_least_18
     if self.date_of_birth
-      errors.add(:date_of_birth, I18n.t('users.error.too_young')) if self.date_of_birth > 18.years.ago
+      errors.add(:date_of_birth, I18n.t('users.error.too_young')) if self.date_of_birth >= 18.years.ago
     end
   end
 end

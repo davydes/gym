@@ -96,4 +96,65 @@ RSpec.describe User, :type => :model do
       end
     end
   end
+
+  describe 'when find_for_oauth' do
+    it 'find existing user by identity' do
+      user1 = create(:user)
+      identity1 = create(:identity, user: user1)
+      omniauth_hash = { 'provider' => identity1.provider,
+                        'uid' => identity1.uid,
+                        'info' => {
+                            'name' => 'example',
+                            'email' => identity1.email,
+                            'nickname' => 'example'
+                        },
+                        'credentials' => {
+                            'token' => Digest::SHA1.hexdigest([Time.now, rand].join),
+                            'refresh_token' => Digest::SHA1.hexdigest([Time.now, rand].join)
+                        }
+      }
+      user2 = User.find_for_oauth (Utils::OAuth.normalize omniauth_hash)
+      expect(user1.id).to be == user2.id
+    end
+
+    it 'find existing user by email' do
+      user1 = create(:user)
+      omniauth_hash = { 'provider' => 'provider_example',
+                        'uid' => '12345',
+                        'info' => {
+                            'name' => 'example',
+                            'email' => user1.email,
+                            'nickname' => 'example'
+                        },
+                        'credentials' => {
+                            'token' => Digest::SHA1.hexdigest([Time.now, rand].join),
+                            'refresh_token' => Digest::SHA1.hexdigest([Time.now, rand].join)
+                        }
+      }
+      user2 = User.find_for_oauth (Utils::OAuth.normalize omniauth_hash)
+      expect(user1.id).to be == user2.id
+    end
+
+    it 'link identity to signed in user' do
+      user1 = create(:user)
+      omniauth_hash = { 'provider' => 'provider_example',
+                        'uid' => '12345',
+                        'info' => {
+                            'name' => 'example',
+                            'email' => 'example@ex.com',
+                            'nickname' => 'example'
+                        },
+                        'credentials' => {
+                            'token' => Digest::SHA1.hexdigest([Time.now, rand].join),
+                            'refresh_token' => Digest::SHA1.hexdigest([Time.now, rand].join)
+                        }
+      }
+
+      expect{
+        User.find_for_oauth(Utils::OAuth.normalize(omniauth_hash), user1)
+      }.to change { Identity.count }.by(1)
+      expect(user1.identities.first.provider).to be == 'provider_example'
+      expect(user1.identities.first.uid).to be == '12345'
+    end
+  end
 end
