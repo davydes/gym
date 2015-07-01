@@ -21,7 +21,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource, bypass: true
-      respond_with resource, location: after_update_path_for(resource)
+      respond_with resource do |format|
+        format.html {render :action => get_action}
+      end
     else
       clean_up_passwords resource
       respond_with resource, :action => get_action
