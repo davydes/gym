@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623140550) do
+ActiveRecord::Schema.define(version: 20150703103321) do
+
+  create_table "body_parts", force: :cascade do |t|
+    t.string "alias",       null: false
+    t.string "name",        null: false
+    t.text   "description"
+  end
+
+  add_index "body_parts", ["alias"], name: "index_body_parts_on_alias", unique: true
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
