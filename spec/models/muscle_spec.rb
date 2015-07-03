@@ -20,5 +20,8 @@ RSpec.describe Muscle, type: :model do
         muscle = build(:muscle, shape: 'non-existing shape')
       }.to raise_error(ArgumentError)
     end
+    it 'should create body_part' do
+      expect { create(:muscle_with_body_part) }.to change{BodyPart.count}.by(1)
+    end
   end
 end
