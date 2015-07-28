@@ -1,0 +1,51 @@
+%h2
+  = link_to 'Muscles', muscles_path
+  \\
+  #{@muscle.name}
+
+  .dropdown.pull-right
+    %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
+      %i.fa.fa-cog
+      %span.caret
+    %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
+      %li
+        = link_to edit_muscle_path(@muscle) do
+          %i.fa.fa-edit
+          Edit
+      %li
+        = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
+          %i.fa.fa-trash-o
+          Delete
+
+%strong Latin:
+= @muscle.alias.humanize
+
+%br
+
+%strong Shape:
+= @muscle.shape.human_name
+
+%br
+
+%strong Body Parts:
+= @muscle.body_parts.map{ |e| link_to(e.name,'#') }.join(', ').html_safe
+
+%br
+
+%strong Exercises:
+= @muscle.exercises.map{ |e| link_to(e.name,'#') }.join(', ').html_safe
+
+.modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
+        %h4.modal-title#myModalLabel Confirm Delete
+      .modal-body
+        You are about to delete muscle, this procedure is irreversible.
+        Do you want to proceed?
+      .modal-footer
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} Cancel
+        = link_to muscle_path(@muscle), class: "btn btn-danger btn-ok", method: 'delete' do
+          %i.fa.fa-trash-o
+          Delete
