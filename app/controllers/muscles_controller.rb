@@ -1,6 +1,7 @@
 class MusclesController < ApplicationController
   respond_to :html
   before_filter :set_muscle, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:[:show, :index]
 
   def index
     @muscles = Muscle.all
