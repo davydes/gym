@@ -1,7 +1,7 @@
 %h2
-  = link_to 'Muscles', muscles_path
+  = link_to 'Exercises', exercises_path
   \\
-  #{@muscle.name}
+  #{@exercise.name}
 
   .dropdown.pull-right
     %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
@@ -9,7 +9,7 @@
       %span.caret
     %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
       %li
-        = link_to edit_muscle_path(@muscle) do
+        = link_to edit_exercise_path(@exercise) do
           %i.fa.fa-edit
           Edit
       %li
@@ -18,28 +18,23 @@
           Delete
 
 %strong Latin:
-= @muscle.alias.humanize
-
-%br
-
-%strong Shape:
-= @muscle.shape.human_name
+= @exercise.alias.humanize
 
 %br
 
 %strong Body Parts:
-= @muscle.body_parts.map{ |b| link_to(b.name,'#') }.join(', ').html_safe
+= @exercise.body_parts.map{ |b| link_to(b.name,'#') }.join(', ').html_safe
 
 %br
 
-%strong Exercises:
-= @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
+%strong Muscles:
+= @exercise.muscles.map{ |m| link_to(m.name, muscle_path(m)) }.join(', ').html_safe
 
 %br
 
 %strong Description:
 %br
-= @muscle.description
+= @exercise.description
 
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog
@@ -48,10 +43,10 @@
         %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
         %h4.modal-title#myModalLabel Confirm Delete
       .modal-body
-        You are about to delete muscle, this procedure is irreversible.
+        You are about to delete exercise, this procedure is irreversible.
         Do you want to proceed?
       .modal-footer
         %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} Cancel
-        = link_to muscle_path(@muscle), class: "btn btn-danger btn-ok", method: 'delete' do
+        = link_to exercise_path(@exercise), class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
           Delete

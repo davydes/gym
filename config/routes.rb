@@ -8,6 +8,7 @@ Rails.application.routes.draw do
              }
   resources :users
   resources :muscles
+  resources :exercises
 
   root 'welcome#index'
 end
