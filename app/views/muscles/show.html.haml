@@ -35,6 +35,12 @@
 %strong Exercises:
 = @muscle.exercises.map{ |e| link_to(e.name,'#') }.join(', ').html_safe
 
+%br
+
+%strong Description:
+%br
+= @muscle.description
+
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog
     .modal-content

@@ -19,6 +19,12 @@
       %span.help-block
 
   .form-group
+    %label.col-sm-2.control-label Description
+    .col-sm-10
+      = f.text_area :description, {class: 'form-control'}
+      %span.help-block
+
+  .form-group
     %label.col-sm-2.control-label Body Parts
     .col-sm-10
       = f.collection_select(:body_part_ids, BodyPart.all, :id, :name, {:selected => f.object.body_part_ids}, {id:"#{model_name}_body_parts", class:'multi form-control', :multiple => true})
