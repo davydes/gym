@@ -12,25 +12,25 @@ class AnatomicController < ApplicationController
   end
 
   def new
-    instance_variable_set "@#{model_class.downcase}", model_class.constantize.new
+    instance_variable_set "@#{model_class.underscore}", model_class.constantize.new
   end
 
   def create
-    instance_variable_set "@#{model_class.downcase}", model_class.constantize.create(resource_params)
-    respond_with instance_variable_get("@#{model_class.downcase}")
+    instance_variable_set "@#{model_class.underscore}", model_class.constantize.create(resource_params)
+    respond_with instance_variable_get("@#{model_class.underscore}")
   end
 
   def edit
   end
 
   def update
-    instance_variable_get("@#{model_class.downcase}").update(resource_params)
-    respond_with instance_variable_get("@#{model_class.downcase}")
+    instance_variable_get("@#{model_class.underscore}").update(resource_params)
+    respond_with instance_variable_get("@#{model_class.underscore}")
   end
 
   def destroy
-    instance_variable_get("@#{model_class.downcase}").destroy!
-    respond_with instance_variable_get("@#{model_class.downcase}")
+    instance_variable_get("@#{model_class.underscore}").destroy!
+    respond_with instance_variable_get("@#{model_class.underscore}")
   end
 
   private
@@ -40,11 +40,11 @@ class AnatomicController < ApplicationController
   end
 
   def set_resource
-    instance_variable_set "@#{model_class.downcase}", model_class.constantize.find(params[:id])
+    instance_variable_set "@#{model_class.underscore}", model_class.constantize.find(params[:id])
   end
 
   def resource_params
     accessible = [ :name, :alias, :description ]
-    params.require(model_class.downcase.to_sym).permit(accessible)
+    params.require(model_class.underscore.to_sym).permit(accessible)
   end
 end

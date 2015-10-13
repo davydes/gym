@@ -1,0 +1,60 @@
+- model_name = 'body_part'
+= form_for(@body_part, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
+  .form-group
+    %label.col-sm-2.control-label Name
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+      %span.help-block
+
+  .form-group
+    %label.col-sm-2.control-label Alias
+    .col-sm-10
+      = f.text_field :alias, class: 'form-control'
+      %span.help-block
+
+  .form-group
+    %label.col-sm-2.control-label Description
+    .col-sm-10
+      = f.text_area :description, {class: 'form-control'}
+      %span.help-block
+
+  .form-group
+    %label.col-sm-2.control-label Exercises
+    .col-sm-10
+      = f.collection_select(:exercise_ids, Exercise.all, :id, :name, {:selected => f.object.exercise_ids}, {id:"#{model_name}_exercises", class:'multi form-control', :multiple => true})
+      %span.help-block
+
+  .form-group
+    %label.col-sm-2.control-label Muscles
+    .col-sm-10
+      = f.collection_select(:muscle_ids, Muscle.all, :id, :name, {:selected => f.object.muscle_ids}, {id:"#{model_name}_muscles", class:'multi form-control', :multiple => true})
+      %span.help-block
+
+  .form-group
+    %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
+      = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
+        %i.fa.fa-check
+        Update
+
+:coffeescript
+  $ ->
+    $('select.multi').multiselect(
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      filterBehavior: 'both',
+      buttonContainer: '<div class="btn-group" />',
+      buttonWidth: '100%',
+      templates:
+        button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> <b class="caret"></b></button>',
+        ul: '<ul class="multiselect-container dropdown-menu"></ul>',
+        filter: '<li class="multiselect-item filter"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
+        filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="fa fa-times-circle"></i></button></span>',
+        li: '<li><a tabindex="0"><label></label></a></li>',
+        divider: '<li class="multiselect-item divider"></li>',
+        liGroup: '<li class="multiselect-item multiselect-group"><label></label></li>'
+    );
+
+- if @body_part.errors.any?
+  :coffeescript
+    $ ->
+      $("form[data-model=body_part]").renderFormErrors(#{@body_part.errors.to_json.html_safe});

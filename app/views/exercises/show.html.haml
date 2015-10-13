@@ -23,7 +23,7 @@
 %br
 
 %strong Body Parts:
-= @exercise.body_parts.map{ |b| link_to(b.name,'#') }.join(', ').html_safe
+= @exercise.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
 
 %br
 

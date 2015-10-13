@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :muscles
   resources :exercises
+  resources :body_parts
 
   root 'welcome#index'
 end
