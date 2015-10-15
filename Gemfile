@@ -21,6 +21,7 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 gem 'less-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'cancan'
 
 group :production do
   gem 'pg'

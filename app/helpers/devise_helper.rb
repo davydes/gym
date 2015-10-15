@@ -1,4 +1,8 @@
 module DeviseHelper
+  def admin?
+    current_user and current_user.admin?
+  end
+
   def devise_error_messages!
     return '' if resource.errors.empty?
 

@@ -53,6 +53,7 @@ GEM
       railties (>= 3.0)
     builder (3.2.2)
     byebug (6.0.2)
+    cancan (1.6.10)
     codeclimate-test-reporter (0.4.8)
       simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.0)
@@ -268,6 +269,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-datepicker-rails
   byebug
+  cancan
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   database_cleaner

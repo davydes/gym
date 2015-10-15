@@ -5,7 +5,10 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    %a.navbar-brand{href: root_path} Gym #{'<sup><strong>dev</strong></sup>'.html_safe if Rails.env.development?}
+    %a.navbar-brand{href: root_path}
+      Gym
+      #{'<sup><strong class="alert-info">dev</strong></sup>'.html_safe if Rails.env.development?}
+      #{'<sup><strong class="alert-danger">admin</strong></sup>'.html_safe if admin?}
   .collapse.navbar-collapse
     %ul.nav.navbar-nav.navbar-right
       %li
