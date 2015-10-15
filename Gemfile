@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.1'
+gem 'rails', '~>4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
