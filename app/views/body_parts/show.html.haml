@@ -3,19 +3,20 @@
   \\
   #{@body_part.name}
 
-  .dropdown.pull-right
-    %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
-      %i.fa.fa-cog
-      %span.caret
-    %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
-      %li
-        = link_to edit_body_part_path(@body_part) do
-          %i.fa.fa-edit
-          Edit
-      %li
-        = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
-          %i.fa.fa-trash-o
-          Delete
+  - if can? :manage, @body_part
+    .dropdown.pull-right
+      %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
+        %i.fa.fa-cog
+        %span.caret
+      %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
+        %li
+          = link_to edit_body_part_path(@body_part) do
+            %i.fa.fa-edit
+            Edit
+        %li
+          = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
+            %i.fa.fa-trash-o
+            Delete
 
 %strong Latin:
 = @body_part.alias.humanize

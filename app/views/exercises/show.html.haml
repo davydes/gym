@@ -3,19 +3,20 @@
   \\
   #{@exercise.name}
 
-  .dropdown.pull-right
-    %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
-      %i.fa.fa-cog
-      %span.caret
-    %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
-      %li
-        = link_to edit_exercise_path(@exercise) do
-          %i.fa.fa-edit
-          Edit
-      %li
-        = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
-          %i.fa.fa-trash-o
-          Delete
+  - if can? :manage, @exercise
+    .dropdown.pull-right
+      %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
+        %i.fa.fa-cog
+        %span.caret
+      %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
+        %li
+          = link_to edit_exercise_path(@exercise) do
+            %i.fa.fa-edit
+            Edit
+        %li
+          = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
+            %i.fa.fa-trash-o
+            Delete
 
 %strong Latin:
 = @exercise.alias.humanize

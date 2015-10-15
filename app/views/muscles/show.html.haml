@@ -3,19 +3,20 @@
   \\
   #{@muscle.name}
 
-  .dropdown.pull-right
-    %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
-      %i.fa.fa-cog
-      %span.caret
-    %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
-      %li
-        = link_to edit_muscle_path(@muscle) do
-          %i.fa.fa-edit
-          Edit
-      %li
-        = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
-          %i.fa.fa-trash-o
-          Delete
+  - if can? :manage, @muscle
+    .dropdown.pull-right
+      %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
+        %i.fa.fa-cog
+        %span.caret
+      %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
+        %li
+          = link_to edit_muscle_path(@muscle) do
+            %i.fa.fa-edit
+            Edit
+        %li
+          = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
+            %i.fa.fa-trash-o
+            Delete
 
 %strong Latin:
 = @muscle.alias.humanize

@@ -1,7 +1,7 @@
 class AnatomicController < ApplicationController
   respond_to :html
-  before_filter :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except:[:show, :index]
+  load_and_authorize_resource except: [:create]
 
   def index
     objects = model_class.constantize.all
@@ -37,10 +37,6 @@ class AnatomicController < ApplicationController
 
   def model_class
     controller_name.classify
-  end
-
-  def set_resource
-    instance_variable_set "@#{model_class.underscore}", model_class.constantize.find(params[:id])
   end
 
   def resource_params
