@@ -1,8 +1,7 @@
 = render layout: 'edit' do |f|
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Email
+    = f.label :email, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
@@ -13,48 +12,43 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Name
+    = f.label :name, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-user
-        = f.text_field :name, class: 'form-control', placeholder: "name"
+        = f.text_field :name, class: 'form-control', placeholder: User.human_attribute_name('name')
       %span.help-block
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong First Name
+    = f.label :first_name, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
-        = f.text_field :first_name, class: 'form-control', placeholder: "first name"
+        = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name('first_name')
       %span.help-block
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Last Name
+    = f.label :last_name, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
-        = f.text_field :last_name, class: 'form-control', placeholder: "last name"
+        = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name('last_name')
       %span.help-block
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Gender
+    = f.label :gender, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.btn-group.pull-right{data:{toggle: 'buttons'}, style: 'width:100%'}
-        - [['female', 'f'], ['male', 'm']].each do |gender|
+        - [[User.human_attribute_name('gender.female'), 'f'], [User.human_attribute_name('gender.male'), 'm']].each do |gender|
           = label_tag nil, class: "btn btn-default #{ 'active' if gender[1] == @user.gender }", style: 'width: 50%' do
             = f.radio_button(:gender, gender[1], checked: gender[1] == @user.gender)
             = gender[0]
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Date of birth
+    = f.label :birthday, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm.date
         %span.input-group-addon
@@ -67,4 +61,4 @@
   %div.col-sm-offset-3.col-sm-7.col-md-5.col-md-offset-4
     = link_to registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete do
       %i.fa.fa-trash-o
-      Drop my account
+      = t '.drop_acct'

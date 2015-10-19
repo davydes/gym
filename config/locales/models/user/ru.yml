@@ -1,0 +1,24 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: 'Участник'
+        few: 'Участники'
+        many: 'Участники'
+        others: 'Участники'
+    attributes:
+      user:
+        email: 'E-mail'
+        name: 'Ник'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        gender: 'Пол'
+        birthday: 'Дата рождения'
+        country: 'Страна'
+        city: 'Город'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение'
+        current_password: 'Текущий пароль'
+      user/gender:
+        female: 'жен.'
+        male: 'муж.'

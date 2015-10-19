@@ -1,0 +1,9 @@
+ru:
+  muscles:
+    shapes:
+      long: 'Длинная'
+      short: 'Короткая'
+      wide: 'Широкая'
+      diamond: 'Ромбовидная'
+      square: 'Квадратная'
+      circle: 'Куглая'

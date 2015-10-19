@@ -1,21 +1,19 @@
 = render layout: 'edit', locals: {action: 'contacts'} do |f|
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong Country
+    = f.label :country, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
-        = f.text_field :country, autofocus: true, class: 'form-control', placeholder: "Country"
+        = f.text_field :country, autofocus: true, class: 'form-control', placeholder: User.human_attribute_name('country')
       %span.help-block
 
   %div.form-group
-    %label.col-sm-3.col-md-4.control-label
-      %strong City
+    = f.label :city, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm
         %span.input-group-addon
           %i.fa.fa-fw.fa-edit
-        = f.text_field :city, class: 'form-control', placeholder: "City"
+        = f.text_field :city, class: 'form-control', placeholder: User.human_attribute_name('city')
       %span.help-block

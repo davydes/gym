@@ -1,31 +1,31 @@
 - model_name = 'exercise'
 = form_for(@exercise, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
   .form-group
-    %label.col-sm-2.control-label Name
+    = f.label :name, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :name, class: 'form-control'
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Alias
+    = f.label :alias, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :alias, class: 'form-control'
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Description
+    = f.label :description, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_area :description, {class: 'form-control'}
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Body Parts
+    = f.label :body_parts, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select(:body_part_ids, BodyPart.all, :id, :name, {:selected => f.object.body_part_ids}, {id:"#{model_name}_body_parts", class:'multi form-control', :multiple => true})
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Muscles
+    = f.label :muscles, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select(:muscle_ids, Muscle.all, :id, :name, {:selected => f.object.muscle_ids}, {id:"#{model_name}_muscles", class:'multi form-control', :multiple => true})
       %span.help-block
@@ -34,7 +34,7 @@
     %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
       = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
         %i.fa.fa-check
-        Update
+        = t 'exercises.actions.save'
 
 :coffeescript
   $ ->

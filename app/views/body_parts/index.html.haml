@@ -1,4 +1,4 @@
-%h3 Body Parts
+%h3 #{BodyPart.model_name.human(count: '')}
 %ul
 - @body_parts.each do |body_part|
   %li #{link_to body_part.name, body_part}
@@ -7,4 +7,4 @@
   .row
     .col-sm-4.col-sm-offset-4
       .btn-group-justified
-        = link_to 'Add New', new_body_part_path, class: 'btn btn-primary'
+        = link_to t('body_parts.actions.new'), new_body_part_path, class: 'btn btn-primary'

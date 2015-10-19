@@ -1,37 +1,37 @@
 - model_name = 'muscle'
 = form_for(@muscle, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
   .form-group
-    %label.col-sm-2.control-label Name
+    = f.label :name, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :name, class: 'form-control'
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Alias
+    = f.label :alias, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :alias, class: 'form-control'
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Shape
+    = f.label :shape, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select :shape, Muscles::Shape.values, :value, :human_name, {}, {class: 'form-control'}
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Description
+    = f.label :description, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_area :description, {class: 'form-control'}
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Body Parts
+    = f.label :body_parts, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select(:body_part_ids, BodyPart.all, :id, :name, {:selected => f.object.body_part_ids}, {id:"#{model_name}_body_parts", class:'multi form-control', :multiple => true})
       %span.help-block
 
   .form-group
-    %label.col-sm-2.control-label Exercises
+    = f.label :exercises, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select(:exercise_ids, Exercise.all, :id, :name, {:selected => f.object.exercise_ids}, {id:"#{model_name}_exercises", class:'multi form-control', :multiple => true})
       %span.help-block
@@ -40,7 +40,7 @@
     %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
       = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
         %i.fa.fa-check
-        Update
+        = t 'muscles.actions.save'
 
 :coffeescript
   $ ->

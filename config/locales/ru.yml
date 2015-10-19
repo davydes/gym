@@ -21,3 +21,6 @@
 
 ru:
   sitename: "Качалка"
+  sessions:
+    sign_in: "Войти"
+    sign_out: "Выйти"

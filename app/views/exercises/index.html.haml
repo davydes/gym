@@ -1,4 +1,4 @@
-%h3 Exercises
+%h3 #{Exercise.model_name.human(count: '')}
 %ul
 - @exercises.each do |exercise|
   %li #{link_to exercise.name, exercise}
@@ -7,4 +7,4 @@
   .row
     .col-sm-4.col-sm-offset-4
       .btn-group-justified
-        = link_to 'Add New', new_exercise_path, class: 'btn btn-primary'
+        = link_to t('exercises.actions.new'), new_exercise_path, class: 'btn btn-primary'

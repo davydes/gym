@@ -1,5 +1,5 @@
 %h2
-  = link_to 'Muscles', muscles_path
+  = link_to Muscle.model_name.human(count: ''), muscles_path
   \\
   #{@muscle.name}
 
@@ -12,33 +12,33 @@
         %li
           = link_to edit_muscle_path(@muscle) do
             %i.fa.fa-edit
-            Edit
+            = t 'muscles.actions.edit'
         %li
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
-            Delete
+            = t 'muscles.actions.delete'
 
-%strong Latin:
+%strong #{Muscle.human_attribute_name 'alias'}:
 = @muscle.alias.humanize
 
 %br
 
-%strong Shape:
+%strong #{Muscle.human_attribute_name 'shape'}:
 = @muscle.shape.human_name
 
 %br
 
-%strong Body Parts:
+%strong #{Muscle.human_attribute_name 'body_parts'}:
 = @muscle.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
 
 %br
 
-%strong Exercises:
+%strong #{Muscle.human_attribute_name 'exercises'}:
 = @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
 
 %br
 
-%strong Description:
+%strong #{Muscle.human_attribute_name 'description'}:
 %br
 = @muscle.description
 
@@ -47,12 +47,11 @@
     .modal-content
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
-        %h4.modal-title#myModalLabel Confirm Delete
+        %h4.modal-title#myModalLabel #{t 'muscles.modal_delete.title'}
       .modal-body
-        You are about to delete muscle, this procedure is irreversible.
-        Do you want to proceed?
+        #{t 'muscles.modal_delete.body'}
       .modal-footer
-        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} Cancel
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t 'muscles.modal_delete.cancel'}
         = link_to muscle_path(@muscle), class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
-          Delete
+          = t 'muscles.actions.delete'

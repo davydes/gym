@@ -1,0 +1,48 @@
+ru:
+  users:
+    home: "Моя страница"
+    profile: "Мой профиль"
+    members: "Участники"
+
+    confirmations:
+      new:
+        title: 'Повторить отправку'
+
+    passwords:
+      edit:
+        title: 'Сменить пароль'
+        placeholder_password: 'пароль'
+        placeholder_confirmation: 'подтверждение'
+        characters_minimum: 'символов минимум'
+
+      new:
+        title: 'Забыли пароль?'
+        send: 'Восстановть'
+
+    sessions:
+      new:
+        login: 'Войти'
+        login_or: 'Войти или'
+        placeholder_password: 'пароль'
+        remember_me: 'Запомнить вход'
+
+    registrations:
+      new:
+        signup: 'Зарегистрироваться'
+        signup_or: 'Зарегистрироваться или'
+        placeholder_name: 'имя'
+        placeholder_password: 'пароль'
+        placeholder_confirmation: 'подтверждение'
+      edit:
+        general_information: 'Общая информация'
+        contacts: 'Контакты'
+        password: 'Пароль'
+        save: 'Сохранить'
+      change_general:
+        drop_acct: 'Удалить уч. запись'
+
+    shared:
+      links:
+        forgot: "Забыли пароль?"
+        reconfirmation: "Не получили письмо с подтверждением уч. записи?"
+        unlock: "Не получили письмо с инструкциями по разблокировке?"

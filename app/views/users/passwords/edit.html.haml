@@ -1,5 +1,5 @@
 %div.login
-  %h3.authTitle Change your password
+  %h3.authTitle #{t '.title'}
 
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
     = devise_error_messages!
@@ -9,21 +9,21 @@
       %div.input-group
         %span.input-group-addon
           %i.fa.fa-fw.fa-lock
-        = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: "password"
+        = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: t('.placeholder_password')
       %span.help-block
         - if @minimum_password_length
-          %em (#{@minimum_password_length} characters minimum)
+          %em (#{@minimum_password_length} #{t '.characters_minimum'})
 
     %div.form-group
       %div.input-group
         %span.input-group-addon
           %i.fa.fa-fw.fa-lock
-        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "confirmation"
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: t('.placeholder_confirmation')
         %span.help-block
 
     %div.form-group
       = button_tag(type: 'submit', class: "btn btn-lg btn-primary btn-block") do
         %i.fa.fa-send
-        Change my password
+        #{t '.title'}
 
 = render "users/shared/links"

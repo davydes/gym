@@ -1,0 +1,16 @@
+ru:
+  activerecord:
+    models:
+      exercise:
+        one: 'Упражнение'
+        few: 'Упражнения'
+        many: 'Упражнения'
+        other: 'Упражнения'
+    attributes:
+      exercise:
+        name: 'Название'
+        alias: 'Строковый ид.'
+        latin: 'Лат.'
+        body_parts: 'Элементы тела'
+        muscles: 'Мышцы'
+        description: 'Описание'

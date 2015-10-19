@@ -1,5 +1,5 @@
 %div.login
-  %h3.authTitle Resend confirmation instructions
+  %h3.authTitle #{t '.title'}
 
   = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
     = devise_error_messages!
@@ -13,6 +13,6 @@
     %div.form-group
       = button_tag(type: 'submit', class: "btn btn-lg btn-primary btn-block") do
         %i.fa.fa-send
-        Resend confirmation instructions
+        #{t '.title'}
 
 = render "users/shared/links"

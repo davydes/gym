@@ -14,9 +14,9 @@
       %li
         - if !current_user
           = link_to new_user_session_path do
-            Sign in
+            = t 'sessions.sign_in'
             %i.fa.fa-sign-in
         - else
           = link_to destroy_user_session_path, :method => :delete do
-            Sign out
+            = t 'sessions.sign_out'
             %i.fa.fa-sign-out

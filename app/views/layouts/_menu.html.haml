@@ -1,35 +1,32 @@
 %ul.nav.nav-pills.nav-stacked
   = menu_link_to muscles_path do
     %i.fa.fa-fw.fa-book
-    Muscles
+    = Muscle.model_name.human(count: '')
     %span.badge.badge-info #{Muscle.count}
   = menu_link_to exercises_path do
     %i.fa.fa-fw.fa-book
-    Exercises
+    = Exercise.model_name.human(count: '')
     %span.badge.badge-info #{Exercise.count}
   = menu_link_to body_parts_path do
     %i.fa.fa-fw.fa-book
-    BodyParts
+    = BodyPart.model_name.human(count: '')
     %span.badge.badge-info #{BodyPart.count}
 
   - if current_user
     = menu_link_to user_path(current_user) do
       %i.fa.fa-fw.fa-home
-      Home
+      = t 'users.home'
     = menu_link_to users_path do
       %i.fa.fa-fw.fa-user
-      Members
+      = t 'users.members'
       %span.badge.badge-info #{User.count}
     = menu_link_to edit_user_registration_path do
       %i.fa.fa-fw.fa-briefcase
-      Profile
-    = menu_link_to '' do
-      %i.fa.fa-fw.fa-cog
-      Settings
+      = t 'users.profile'
     = menu_link_to destroy_user_session_path, :method => :delete do
       %i.fa.fa-fw.fa-sign-out
-      Logout
+      = t 'sessions.sign_out'
   - else
     = menu_link_to new_user_session_path do
       %i.fa.fa-sign-in
-      Sign in
+      = t 'sessions.sign_in'
