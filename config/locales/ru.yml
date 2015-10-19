@@ -24,3 +24,13 @@ ru:
   sessions:
     sign_in: "Войти"
     sign_out: "Выйти"
+
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  datetime:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%H:%M"
+      notime: "%m/%d/%Y"

@@ -1,0 +1,4 @@
+%h1 #{User.model_name.human(count: 999)}
+%ul
+- @users.each do |user|
+  %li #{link_to user.name, user} #{ l(user.last_sign_in_at, format: :short) rescue ''}
