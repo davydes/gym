@@ -1,7 +1,15 @@
 %h3 #{Muscle.model_name.human(count: '')}
-%ul
-- @muscles.each do |muscle|
-  %li #{link_to muscle.name, muscle}
+
+#muscles-by-bodyparts
+  %div.list-group#bodyparts
+    - @body_parts.each do |body_part|
+      %a.list-group-item{href: "#"+body_part.alias, data: {toggle: "collapse", parent:"#bodyparts"}}
+        %strong
+          #{body_part.name}
+          %span.badge.badge-info #{body_part.muscles.size}
+      %div.collapse{id: body_part.alias}
+        - body_part.muscles.each do |muscle|
+          = link_to muscle.name, muscle, class: "list-group-item sublevel", data: {parent: body_part.alias}
 
 - if can? :manage, Muscle
   .row
