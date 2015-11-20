@@ -6,4 +6,8 @@ class Muscle < ActiveRecord::Base
 
   serialize :shape, Muscles::Shape
   validates_inclusion_of :shape, in: Muscles::Shape.values
+
+  scope :no_bodypart, -> {
+      where('id NOT IN (SELECT DISTINCT(muscle_id) FROM body_parts_muscles)')
+  }
 end

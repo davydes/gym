@@ -16,3 +16,6 @@ ru:
 
     edit:
       title: "Изменить мышцу"
+
+    index:
+      no_group: "Вне групп"
