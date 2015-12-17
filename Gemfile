@@ -15,6 +15,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'devise'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'carrierwave'
 
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -30,6 +31,8 @@ group :production do
 end
 
 group :development, :test do
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'sqlite3'
   gem 'byebug'
   gem 'web-console', '~> 2.0'

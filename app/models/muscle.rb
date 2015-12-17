@@ -10,4 +10,6 @@ class Muscle < ActiveRecord::Base
   scope :no_bodypart, -> {
       where('id NOT IN (SELECT DISTINCT(muscle_id) FROM body_parts_muscles)')
   }
+
+  has_many :pictures, as: :imageable, dependent: :destroy
 end
