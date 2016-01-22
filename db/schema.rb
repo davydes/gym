@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015070002) do
+ActiveRecord::Schema.define(version: 20151216085106) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20151015070002) do
   end
 
   add_index "muscles", ["alias"], name: "index_muscles_on_alias", unique: true
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "image"
+    t.text     "description"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pictures", ["imageable_id"], name: "index_pictures_on_imageable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                             default: "",    null: false
