@@ -42,6 +42,9 @@
 %br
 = @muscle.description
 
+- @muscle.pictures.each do |p|
+  %img{src: p.image.url}
+
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog
     .modal-content
