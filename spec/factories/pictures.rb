@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :picture do
-    image "MyString"
-description "MyText"
+    image "/path/to/test/image.jpg"
+    description "Test Picture"
   end
 
 end

@@ -30,5 +30,9 @@ RSpec.describe Muscle, type: :model do
     it 'should create exercise' do
       expect { create(:muscle_with_exercise) }.to change{Exercise.count}.by(1)
     end
+
+    it 'should create pictures' do
+      expect { create(:muscle) }.to change{Picture.count}.by(3)
+    end
   end
 end
