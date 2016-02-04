@@ -15,7 +15,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/system
 /coverage
-
+/public/system
+/public/uploads
+/public/picture
 /enviroments.sh
