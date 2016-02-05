@@ -1,8 +1,4 @@
 %h2
-  = link_to Muscle.model_name.human(count: ''), muscles_path
-  %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
-  #{@muscle.name}
-
   - if can? :manage, @muscle
     .dropdown.pull-right
       %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
@@ -22,34 +18,29 @@
             %i.fa.fa-trash-o
             = t 'muscles.actions.delete'
 
-.row
-  .col-lg-4.col-lg-push-8.col-md-4.col-md-push-8.col-sm-12
-    %ul.list-group
-      %li.list-group-item
-        %strong
-          = @muscle.alias.humanize
-      %li.list-group-item
-        %strong #{Muscle.human_attribute_name 'shape'}:
-        = @muscle.shape.human_name
-      %li.list-group-item
-        %strong #{Muscle.human_attribute_name 'body_parts'}:
-        = @muscle.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
-      %li.list-group-item
-        %strong #{Muscle.human_attribute_name 'exercises'}:
-        = @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
+  %div{style: 'margin-right: 50px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'}
+    = link_to Muscle.model_name.human(count: ''), muscles_path
+    %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
+    #{@muscle.name}
 
-  .col-lg-8.col-lg-pull-4.col-md-8.col-md-pull-4.col-sm-12
-    .panel-group
-      .panel.panel-default
-        .panel-heading
-          %h4.panel-title
-            #{Muscle.human_attribute_name 'description'}
-            [
-            %a{href: "#description", data: { toggle: "collapse"} } +
-            ]
-        #description.panel-collapse.collapse.in
-          .panel-body
-            = @muscle.description
+.row
+  .col-lg-12
+    .pull-right{style: 'margin: 0 0 10px 10px; max-width: 250px;'}
+      %ul.list-group
+        %li.list-group-item.text-center.active
+          %strong
+            = @muscle.alias.humanize
+        %li.list-group-item
+          %strong #{Muscle.human_attribute_name 'shape'}:
+          = @muscle.shape.human_name
+        %li.list-group-item
+          %strong #{Muscle.human_attribute_name 'body_parts'}:
+          = @muscle.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
+        %li.list-group-item
+          %strong #{Muscle.human_attribute_name 'exercises'}:
+          = @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
+
+    = markdown(@muscle.description)
 
 .panel-group
   .panel.panel-default

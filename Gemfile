@@ -18,6 +18,7 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem "fog"
 gem 'carrierwave'
 gem 'active_model_serializers', '0.10.0.rc4'
+gem "redcarpet"
 
 # gem 'bcrypt', '~> 3.1.7'
 
