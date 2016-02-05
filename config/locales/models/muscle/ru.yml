@@ -15,6 +15,7 @@ ru:
         body_parts: 'Элементы тела'
         exercises: 'Упражнения'
         description: 'Описание'
+        pictures: 'Изображения'
       muscle/shape:
         long: 'Длинная'
         short: 'Короткая'

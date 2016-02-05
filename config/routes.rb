@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  concern :pictureable do
+    resources :pictures, only: [:index, :destroy], shallow: true
+  end
+
+  root 'welcome#index'
   get 'welcome/index'
 
   devise_for :users,
@@ -7,9 +12,7 @@ Rails.application.routes.draw do
                :registrations => 'users/registrations'
              }
   resources :users
-  resources :muscles
+  resources :muscles, concerns: :pictureable
   resources :exercises
   resources :body_parts
-
-  root 'welcome#index'
 end

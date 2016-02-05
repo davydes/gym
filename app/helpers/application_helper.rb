@@ -22,4 +22,8 @@ module ApplicationHelper
       link_to name, options, html_options, &block
     end
   end
+
+  def index_of_model_path(model)
+    send(model.class.to_s.underscore.pluralize+'_path')
+  end
 end

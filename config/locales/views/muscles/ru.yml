@@ -5,6 +5,7 @@ ru:
       edit: "Изменить"
       delete: "Удалить"
       save: "Сохранить"
+      pictures_manage: "Управление изображениями"
 
     modal_delete:
       title: "Подтвердите удаление"

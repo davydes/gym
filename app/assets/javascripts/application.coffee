@@ -7,8 +7,8 @@
 #= require_tree .
 
 $.fn.renderFormErrors = (errors) ->
-  this.clearPreviousErrors()
-  model = this.data('model')
+  @clearPreviousErrors()
+  model = @data('model')
   $.each errors, (field, messages) ->
     if (messages.length > 0)
       input = $('#'+model+'_'+field)
@@ -16,8 +16,8 @@ $.fn.renderFormErrors = (errors) ->
 
 $.fn.clearPreviousErrors = ->
   $('.form-group.has-error', this).each ->
-    $('.help-block', $(this)).html('');
-    $(this).removeClass('has-error');
+    $('.help-block', $(@)).html('');
+    $(@).removeClass('has-error');
 
 $ ->
   $(document).bind 'ajaxError', 'form[data-remote]', (event, jqxhr) ->

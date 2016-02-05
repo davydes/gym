@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      picture:
+        one: 'Изображение'
+        few: 'Изображения'
+        many: 'Изображения'
+        other: 'Изображения'
+    attributes:
+      picture:
+        name: 'Название'
+        description: 'Описание'
+        image: 'Изображение'

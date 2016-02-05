@@ -1,6 +1,6 @@
 %h2
   = link_to Muscle.model_name.human(count: ''), muscles_path
-  \\
+  %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
   #{@muscle.name}
 
   - if can? :manage, @muscle
@@ -14,36 +14,60 @@
             %i.fa.fa-edit
             = t 'muscles.actions.edit'
         %li
+          = link_to muscle_pictures_path(@muscle) do
+            %i.fa.fa-file-image-o
+              = t 'muscles.actions.pictures_manage'
+        %li
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
             = t 'muscles.actions.delete'
 
-%strong #{Muscle.human_attribute_name 'alias'}:
-= @muscle.alias.humanize
+.row
+  .col-lg-4.col-lg-push-8.col-md-4.col-md-push-8.col-sm-12
+    %ul.list-group
+      %li.list-group-item
+        %strong
+          = @muscle.alias.humanize
+      %li.list-group-item
+        %strong #{Muscle.human_attribute_name 'shape'}:
+        = @muscle.shape.human_name
+      %li.list-group-item
+        %strong #{Muscle.human_attribute_name 'body_parts'}:
+        = @muscle.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
+      %li.list-group-item
+        %strong #{Muscle.human_attribute_name 'exercises'}:
+        = @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
 
-%br
+  .col-lg-8.col-lg-pull-4.col-md-8.col-md-pull-4.col-sm-12
+    .panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            #{Muscle.human_attribute_name 'description'}
+            [
+            %a{href: "#description", data: { toggle: "collapse"} } +
+            ]
+        #description.panel-collapse.collapse.in
+          .panel-body
+            = @muscle.description
 
-%strong #{Muscle.human_attribute_name 'shape'}:
-= @muscle.shape.human_name
-
-%br
-
-%strong #{Muscle.human_attribute_name 'body_parts'}:
-= @muscle.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
-
-%br
-
-%strong #{Muscle.human_attribute_name 'exercises'}:
-= @muscle.exercises.map{ |e| link_to(e.name, exercise_path(e)) }.join(', ').html_safe
-
-%br
-
-%strong #{Muscle.human_attribute_name 'description'}:
-%br
-= @muscle.description
-
-- @muscle.pictures.each do |p|
-  %img{src: p.image.url}
+.panel-group
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        %strong #{Muscle.human_attribute_name 'pictures'}
+        [
+        %a{href: "#images", data: { toggle: "collapse"} } +
+        ]
+    #images.panel-collapse.collapse
+      .panel-body
+        .row
+          - @muscle.pictures.each do |p|
+            .col-xs-6.col-sm-6.col-md-3
+              .thumbnail
+                = image_tag p.image_url
+              .caption
+                %h5 #{p.name}
 
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog

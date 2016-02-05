@@ -1,0 +1,24 @@
+%h2
+  #{link_to @parent.class.model_name.human(count: ''), index_of_model_path(@parent)}
+  %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
+  #{link_to @parent.name, @parent}
+%h3
+  #{t 'pictures.index.title'}
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Picture
+      %th Actions
+  %tbody
+    - @pictures.each do |p|
+      %tr
+        %td
+          = p.name
+        %td
+          = image_tag p.image_url, size: "50"
+        %td
+          = link_to picture_path(p), class: "btn btn-sm btn-danger btn-ok", method: 'delete' do
+            %i.fa.fa-trash
+            Delete

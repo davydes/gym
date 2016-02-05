@@ -1,0 +1,10 @@
+ru:
+  pictures:
+    actions:
+      new: "Добавить"
+      edit: "Изменить"
+      delete: "Удалить"
+      save: "Сохранить"
+
+    index:
+      title: "Управление изображениями"

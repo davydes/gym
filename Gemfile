@@ -15,7 +15,9 @@ gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'devise'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
+gem "fog"
 gem 'carrierwave'
+gem 'active_model_serializers', '0.10.0.rc4'
 
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -31,13 +33,16 @@ group :production do
 end
 
 group :development, :test do
-  gem "better_errors"
-  gem "binding_of_caller"
   gem 'sqlite3'
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   # gem 'capistrano-rails'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'web-console', '~> 2.0'
+  gem 'byebug'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -45,5 +50,5 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
