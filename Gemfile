@@ -8,6 +8,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
+gem 'rails-backbone'
+gem 'handlebars_assets'
+gem 'hamlbars'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'omniauth'
@@ -17,10 +20,10 @@ gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'devise'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
-gem "fog"
+gem 'fog'
 gem 'carrierwave'
 gem 'active_model_serializers', '0.10.0.rc4'
-gem "redcarpet"
+gem 'redcarpet'
 
 # gem 'bcrypt', '~> 3.1.7'
 
