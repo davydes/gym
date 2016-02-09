@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   concern :pictureable do
-    resources :pictures, only: [:index, :destroy], shallow: true
+    resources :pictures, only: [:index, :create, :update, :destroy], shallow: true
   end
 
   root 'welcome#index'
