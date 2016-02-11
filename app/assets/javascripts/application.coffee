@@ -23,6 +23,17 @@ $.fn.clearPreviousErrors = ->
     $('.help-block', $(@)).html('');
     $(@).removeClass('has-error');
 
+@messages =
+  notice: (msg) ->
+    div = document.createElement('div')
+    $(div).addClass('alert alert-info')
+          .attr('role', 'alert')
+          .text(msg)
+          .prependTo('#content')
+    $(div).delay(3000).fadeOut
+      complete: ->
+        @remove()
+
 $ ->
   $(document).bind 'ajaxError', 'form[data-remote]', (event, jqxhr) ->
     $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText));

@@ -41,4 +41,10 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+
+  def json_for(target, options = {})
+    options[:scope] ||= self
+    options[:url_options] ||= url_options
+    ActiveModel::SerializableResource.new(target, options).to_json
+  end
 end

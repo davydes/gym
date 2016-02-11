@@ -1,0 +1,13 @@
+%td
+  = hb('id')
+%td
+  = hb('name')
+%td
+  %img{src: hb('url'), width: 50, height: 50}
+%td
+  %a{class: 'delete btn btn-sm btn-danger btn-ok'}
+    %i.fa.fa-trash
+    Delete
+  %a{class: 'edit btn btn-sm btn-info btn-ok'}
+    %i.fa.fa-edit
+    Edit

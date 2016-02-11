@@ -4,4 +4,6 @@ $ ->
   $('[data-toggle=offcanvas]').click ->
     $('.row-offcanvas').toggleClass('active')
 
-  $(".alert-3s").delay(3000).fadeOut()
+  $(".alert-3s").delay(3000).fadeOut
+    complete: ->
+      @remove()

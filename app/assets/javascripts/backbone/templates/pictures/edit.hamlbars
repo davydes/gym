@@ -1,0 +1,13 @@
+%td
+  = hb('id')
+%td
+  %input{name: 'name', value: hb('name')}
+%td
+  %img{src: hb('url'), width: 50, height: 50}
+%td
+  %a{class: 'save btn btn-sm btn-success btn-ok'}
+    %i.fa.fa-edit
+    Save
+  %a{class: 'cancel btn btn-sm btn-danger btn-ok'}
+    %i.fa.fa-ban
+    Cancel

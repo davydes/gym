@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, only: [:index]
+  respond_to :json
 
   before_action :authenticate_user!
   load_and_authorize_resource except: [:create]

@@ -8,17 +8,14 @@
 %table.table.table-striped
   %thead
     %tr
+      %th Id
       %th Name
       %th Picture
       %th Actions
-  %tbody
-    - @pictures.each do |p|
-      %tr
-        %td
-          = p.name
-        %td
-          = image_tag p.image_url, size: "50"
-        %td
-          = link_to picture_path(p), class: "btn btn-sm btn-danger btn-ok", method: 'delete' do
-            %i.fa.fa-trash
-            Delete
+  %tbody#picture-list
+
+:coffeescript
+  $ ->
+    pictures = new App.Collections.Pictures #{json_for @pictures},
+      url: '#{ muscle_pictures_path(@parent) }'
+    new App.Views.Pictures.Index(collection: pictures).render()

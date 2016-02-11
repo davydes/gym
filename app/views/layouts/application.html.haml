@@ -23,7 +23,7 @@
         .row.row-offcanvas.row-offcanvas-left
           .col-xs-6.col-md-3.col-sm-4.sidebar-offcanvas#sidebar{role:"navigation"}
             = render partial: 'layouts/menu'
-          .col-xs-12.col-md-9.col-sm-8
+          .col-xs-12.col-md-9.col-sm-8#content
             - if notice
               .alert.alert-info.alert-3s{:role => "alert"}= notice
             - if alert

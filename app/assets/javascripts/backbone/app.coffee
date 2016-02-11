@@ -27,6 +27,7 @@
   Models: {}
   Collections: {}
   Routers: {}
-  Views: {}
+  Views:
+    Pictures: {}
 
 _.extend App, Backbone.Events
