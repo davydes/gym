@@ -1,7 +1,9 @@
 %td
   = hb('id')
 %td
-  %input{name: 'name', value: hb('name')}
+  .form-group
+    %input{name: 'name', class: 'form-control', value: hb('name')}
+    %span.help-block
 %td
   %img{src: hb('url'), width: 50, height: 50}
 %td

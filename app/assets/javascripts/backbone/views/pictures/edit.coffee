@@ -28,8 +28,13 @@ class App.Views.Pictures.Edit extends App.View
       name: @$el.find('input[name=\'name\']').val(),
         patch: true
         wait: true
-        error: =>
+        error: (model, response) =>
+          errors = new App.ErrorList(response)
+          view = new App.Views.ErrorView
+            el: @el
+            errors: errors
+          .render()
           messages.notice 'Can not save!'
         success: =>
           messages.notice 'Changed successfully.'
-    @replaceWith(new App.Views.Pictures.Item(model: @model))
+          @replaceWith(new App.Views.Pictures.Item(model: @model))

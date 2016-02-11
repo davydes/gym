@@ -22,6 +22,8 @@
 #= require_tree ./routers/base
 #= require_tree ./routers
 
+#= require_tree ./others
+
 @App  =
   Mixins: {}
   Models: {}
