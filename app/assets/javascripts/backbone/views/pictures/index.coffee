@@ -8,7 +8,6 @@ class App.Views.Pictures.Index extends App.View
     @listenTo @collection, "change reset remove add", @render
 
   render: () ->
-    console.log 'render '+@collection.length
     @$el.empty()
     @collection.each (picture) =>
       view = new App.Views.Pictures.Item({ model: picture })

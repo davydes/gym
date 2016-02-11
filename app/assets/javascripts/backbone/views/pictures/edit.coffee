@@ -9,6 +9,7 @@ class App.Views.Pictures.Edit extends App.View
 
   events:
     'click a.save'   : 'save'
+    'keyup input'    : 'keyupHandler'
     'click a.cancel' : 'cancel'
 
   render: ->
@@ -38,3 +39,6 @@ class App.Views.Pictures.Edit extends App.View
         success: =>
           messages.notice 'Changed successfully.'
           @replaceWith(new App.Views.Pictures.Item(model: @model))
+
+  keyupHandler: (e) ->
+    @save() if e.which == 13
