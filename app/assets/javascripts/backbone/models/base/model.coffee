@@ -7,7 +7,7 @@ class App.Model extends Backbone.Model
       _.result(@, 'urlRoot') ||
         _.result(@collection, 'url') ||
         urlError()
-    id = @id || @attributes[@idAttribute];
+    id = @id || @attributes[@idAttribute]
     base.replace(/([^\/])$/, '$1/') + encodeURIComponent(id)
 
   url: ->

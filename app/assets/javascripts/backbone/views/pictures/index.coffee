@@ -4,7 +4,7 @@ class App.Views.Pictures.Index extends App.View
   id: 'picture-list'
 
   initialize: () ->
-    _.bindAll(this, "render");
+    _.bindAll(@, "render")
     @listenTo @collection, "change reset remove add", @render
 
   render: () ->

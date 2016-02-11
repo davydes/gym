@@ -4,8 +4,8 @@ class App.Views.ErrorView extends App.View
 
   clearPreviousErrors: ->
     $('.form-group.has-error', @).each ->
-      $('.help-block', $(@)).html('');
-      $(@).removeClass('has-error');
+      $('.help-block', $(@)).html('')
+      $(@).removeClass('has-error')
 
   render: ->
     @clearPreviousErrors()

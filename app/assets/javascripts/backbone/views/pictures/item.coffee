@@ -17,8 +17,8 @@ class App.Views.Pictures.Item extends App.View
 
   replaceWith: (view) ->
     @stopListening()
-    $(@el).replaceWith(view.el);
-    view.render();
+    $(@el).replaceWith(view.el)
+    view.render()
 
   destroy: ->
     @model.destroy

@@ -20,8 +20,8 @@ $.fn.renderFormErrors = (errors) ->
 
 $.fn.clearPreviousErrors = ->
   $('.form-group.has-error', this).each ->
-    $('.help-block', $(@)).html('');
-    $(@).removeClass('has-error');
+    $('.help-block', $(@)).html('')
+    $(@).removeClass('has-error')
 
 @messages =
   notice: (msg) ->
@@ -36,4 +36,4 @@ $.fn.clearPreviousErrors = ->
 
 $ ->
   $(document).bind 'ajaxError', 'form[data-remote]', (event, jqxhr) ->
-    $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText));
+    $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText))

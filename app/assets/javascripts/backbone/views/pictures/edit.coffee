@@ -17,8 +17,8 @@ class App.Views.Pictures.Edit extends App.View
 
   replaceWith: (view) ->
     @stopListening()
-    $(@el).replaceWith(view.el);
-    view.render();
+    $(@el).replaceWith(view.el)
+    view.render()
 
   cancel: ->
     @replaceWith(new App.Views.Pictures.Item(model: @model))
