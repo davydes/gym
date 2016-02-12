@@ -1,7 +1,5 @@
 class App.Views.Pictures.Edit extends App.View
-
   template: HandlebarsTemplates['pictures/edit']
-
   tagName: 'tr'
 
   id: ->
@@ -30,10 +28,9 @@ class App.Views.Pictures.Edit extends App.View
         patch: true
         wait: true
         error: (model, response) =>
-          errors = new App.ErrorList(response)
-          view = new App.Views.ErrorView
+          new App.Views.ErrorView
             el: @el
-            errors: errors
+            errors: new App.ErrorList(response)
           .render()
           messages.danger I18n.t 'pictures.messages.save_unsuccessful'
         success: =>

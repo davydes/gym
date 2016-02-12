@@ -8,10 +8,11 @@
     %span.help-block
 %td
   %img{src: hb('url'), width: 50, height: 50}
-%td
-  %a{class: 'save btn btn-sm btn-success btn-ok'}
-    %i.fa.fa-edit
-    = I18n.t 'actions.save', options
-  %a{class: 'cancel btn btn-sm btn-danger btn-ok'}
-    %i.fa.fa-ban
-    = I18n.t 'actions.cancel', options
+%td.text-center
+  .btn-group.btn-group-sm{role: 'group'}
+    %a{class: 'save btn btn-success btn-secondary'}
+      %i.fa.fa-save
+      = I18n.t 'actions.save', options
+    %a{class: 'cancel btn btn-danger btn-secondary'}
+      %i.fa.fa-ban
+      = I18n.t 'actions.cancel', options

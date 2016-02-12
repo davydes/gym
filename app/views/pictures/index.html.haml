@@ -5,17 +5,11 @@
 %h3
   #{t 'pictures.index.title'}
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th #{Picture.human_attribute_name 'id'}
-      %th #{Picture.human_attribute_name 'name'}
-      %th #{Picture.human_attribute_name 'image'}
-      %th #{t '.actions'}
-  %tbody#picture-list
+#pictures
 
 :coffeescript
   $ ->
-    pictures = new App.Collections.Pictures #{json_for @pictures},
+    window.app = new App.Routers.Pictures
+      pictures: #{json_for @pictures}
       url: '#{ muscle_pictures_path(@parent) }'
-    new App.Views.Pictures.Index(collection: pictures).render()
+    Backbone.history.start()

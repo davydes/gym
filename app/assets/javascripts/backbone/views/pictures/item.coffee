@@ -1,7 +1,5 @@
 class App.Views.Pictures.Item extends App.View
-
   template: HandlebarsTemplates['pictures/item']
-
   tagName: 'tr'
 
   id: ->
