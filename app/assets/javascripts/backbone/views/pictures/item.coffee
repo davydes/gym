@@ -24,10 +24,10 @@ class App.Views.Pictures.Item extends App.View
     @model.destroy
       wait: true
       error: =>
-        messages.notice 'Can not delete!'
+        messages.danger I18n.t 'pictures.messages.delete_unsuccessful'
       success: =>
         @remove()
-        messages.notice 'Deleted successfully.'
+        messages.info I18n.t 'pictures.messages.delete_successful'
 
   edit: ->
     @replaceWith(new App.Views.Pictures.Edit(model: @model))

@@ -1,3 +1,4 @@
+#= require i18n/translations
 #= require jquery
 #= require jquery_ujs
 #= require underscore
@@ -22,17 +23,6 @@ $.fn.clearPreviousErrors = ->
   $('.form-group.has-error', this).each ->
     $('.help-block', $(@)).html('')
     $(@).removeClass('has-error')
-
-@messages =
-  notice: (msg) ->
-    div = document.createElement('div')
-    $(div).addClass('alert alert-info')
-          .attr('role', 'alert')
-          .text(msg)
-          .prependTo('#content')
-    $(div).delay(3000).fadeOut
-      complete: ->
-        @remove()
 
 $ ->
   $(document).bind 'ajaxError', 'form[data-remote]', (event, jqxhr) ->

@@ -1,3 +1,5 @@
+- options = {scope: 'pictures'}
+
 %td
   = hb('id')
 %td
@@ -7,7 +9,7 @@
 %td
   %a{class: 'delete btn btn-sm btn-danger btn-ok'}
     %i.fa.fa-trash
-    Delete
+    = I18n.t 'actions.delete', options
   %a{class: 'edit btn btn-sm btn-info btn-ok'}
     %i.fa.fa-edit
-    Edit
+    = I18n.t 'actions.edit', options

@@ -10,10 +10,8 @@
 
     :coffeescript
       $ ->
-        $('.datepicker').datepicker({
-          language: '#{I18n.locale}',
-          format: 'dd.mm.yyyy'
-        });
+        I18n.defaultLocale = "#{I18n.default_locale}"
+        I18n.locale = "#{I18n.locale}"
 
   %body
     .page-container

@@ -35,9 +35,9 @@ class App.Views.Pictures.Edit extends App.View
             el: @el
             errors: errors
           .render()
-          messages.notice 'Can not save!'
+          messages.danger I18n.t 'pictures.messages.save_unsuccessful'
         success: =>
-          messages.notice 'Changed successfully.'
+          messages.success I18n.t 'pictures.messages.save_successful'
           @replaceWith(new App.Views.Pictures.Item(model: @model))
 
   keyupHandler: (e) ->

@@ -3,34 +3,36 @@ ruby '2.2.1'
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
-gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'haml-rails'
-gem 'rails-backbone'
-gem 'handlebars_assets'
-gem 'hamlbars'
-gem 'twitter-bootstrap-rails'
-gem 'bootstrap-datepicker-rails'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'devise'
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
+gem 'cancan'
 gem 'fog'
 gem 'carrierwave'
 gem 'active_model_serializers', '0.10.0.rc4'
 gem 'redcarpet'
+#gem 'sdoc', '~> 0.4.0', group: :doc
+#gem 'bcrypt', '~> 3.1.7'
 
-# gem 'bcrypt', '~> 3.1.7'
-
-gem 'less-rails'
+# Interpreters
+gem 'therubyracer', platforms: :ruby
+gem 'haml-rails'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'less-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'cancan'
+
+# Assests
+gem "i18n-js", ">= 3.0.0.rc11"
+gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
+gem 'handlebars_assets'
+gem 'hamlbars'
+gem 'rails-backbone'
+gem 'bootstrap-datepicker-rails'
 
 group :production do
   gem 'pg'
@@ -41,7 +43,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'spring'
-  # gem 'capistrano-rails'
+  #gem 'capistrano-rails'
 end
 
 group :development do

@@ -1,4 +1,4 @@
-%h2
+%h3
   #{link_to @parent.class.model_name.human(count: ''), index_of_model_path(@parent)}
   %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
   #{link_to @parent.name, @parent}
@@ -8,10 +8,10 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Id
-      %th Name
-      %th Picture
-      %th Actions
+      %th #{Picture.human_attribute_name 'id'}
+      %th #{Picture.human_attribute_name 'name'}
+      %th #{Picture.human_attribute_name 'image'}
+      %th #{t '.actions'}
   %tbody#picture-list
 
 :coffeescript

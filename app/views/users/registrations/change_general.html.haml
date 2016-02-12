@@ -62,3 +62,9 @@
     = link_to registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete do
       %i.fa.fa-trash-o
       = t '.drop_acct'
+
+:coffeescript
+  $ ->
+    $('.datepicker').datepicker
+      language: I18n.locale
+      format: 'dd.mm.yyyy'
