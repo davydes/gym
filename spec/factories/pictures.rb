@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :picture do
-    image "/path/to/test/image.jpg"
-    description "Test Picture"
-    name "Picture Name"
+    name 'Test Picture'
+    description 'Test Picture'
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'pictures', 'test_image.jpg')) }
   end
 
 end

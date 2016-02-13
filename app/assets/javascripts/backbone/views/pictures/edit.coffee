@@ -28,10 +28,10 @@ class App.Views.Pictures.Edit extends App.View
         patch: true
         wait: true
         error: (model, response) =>
-          new App.Views.ErrorView
+          ev = new App.Views.ErrorView
             el: @el
             errors: new App.ErrorList(response)
-          .render()
+          ev.render()
           messages.danger I18n.t 'pictures.messages.save_unsuccessful'
         success: =>
           messages.success I18n.t 'pictures.messages.save_successful'

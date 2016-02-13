@@ -1,5 +1,7 @@
 @messages =
   message: (type, msg) ->
+    $('.alert[role=\'alert\']', $('#content')).each ->
+      @remove()
     div = document.createElement('div')
     $(div).addClass('alert')
     switch type

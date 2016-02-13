@@ -1,7 +1,7 @@
 ru:
   pictures:
     actions:
-      new: "Добавить"
+      new: "Загрузить"
       edit: "Изменить"
       delete: "Удалить"
       save: "Сохранить"
@@ -10,6 +10,10 @@ ru:
     index:
       title: "Управление изображениями"
       actions: "Действия"
+
+    new:
+      title: 'Загрузить изображение'
+      preview: 'Предпросмотр'
 
     messages:
       save_successful: 'Успешно сохранено'

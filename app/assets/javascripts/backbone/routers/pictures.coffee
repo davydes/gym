@@ -1,6 +1,7 @@
 class App.Routers.Pictures extends App.Router
 
   initialize: (options) ->
+    @el = options.el
     @pictures = new App.Collections.Pictures options.pictures,
       url: options.url
 
@@ -10,10 +11,8 @@ class App.Routers.Pictures extends App.Router
 
   index: ->
     view = new App.Views.Pictures.Index(collection: @pictures)
-    $('#pictures').html(view.el)
-    view.render()
+    @swapView(view)
 
   new: ->
     view = new App.Views.Pictures.New(collection: @pictures)
-    $('#pictures').html(view.el)
-    view.render()
+    @swapView(view)

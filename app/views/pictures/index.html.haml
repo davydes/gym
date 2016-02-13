@@ -12,4 +12,5 @@
     window.app = new App.Routers.Pictures
       pictures: #{json_for @pictures}
       url: '#{ muscle_pictures_path(@parent) }'
+      el: '#pictures'
     Backbone.history.start()

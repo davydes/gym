@@ -1,0 +1,6 @@
+ru:
+  errors:
+    messages:
+      wrong_size: "некорректный размер (должен быть %{file_size})"
+      size_too_small: "файл слишком мал (минимум %{file_size})"
+      size_too_big: "файл слишком большой (максимум %{file_size})"
