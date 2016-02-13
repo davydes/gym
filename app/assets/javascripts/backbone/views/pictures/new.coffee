@@ -35,6 +35,15 @@ class App.Views.Pictures.New extends App.View
         ev.render()
         messages.danger I18n.t 'pictures.messages.save_unsuccessful'
 
+      xhr: =>
+        xhr = new window.XMLHttpRequest()
+        xhr.upload.addEventListener 'progress', ((e) ->
+          if (e.lengthComputable)
+            percentComplete = e.loaded / e.total
+            console.log percentComplete
+        ), false
+        return xhr
+
   fileInputChange: (e) ->
     file = e.currentTarget.files[0]
 

@@ -20,3 +20,5 @@ class App.Models.Picture extends App.Model
         options.success && options.success( model, resp, options )
       error: (resp) ->
         options.error && options.error( model, resp, options )
+      xhr: ->
+        options.xhr && options.xhr()
