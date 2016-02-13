@@ -6,4 +6,4 @@ $ ->
 
   $(".alert-3s").delay(3000).fadeOut
     complete: ->
-      @remove()
+      $(@).remove()

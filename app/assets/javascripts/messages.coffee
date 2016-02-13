@@ -15,7 +15,7 @@
     $(div).prependTo('#content')
     $(div).delay(3000).fadeOut
       complete: ->
-        @remove()
+        $(@).remove()
 
   info: (msg) ->
     messages.message('info', msg)
