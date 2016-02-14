@@ -64,8 +64,11 @@ class App.Views.Pictures.New extends App.View
       @.updatePreview ''
 
   updatePreview: (src) ->
-    $('#preview', @$el).removeClass 'hide'
-    $('#preview-picture', @$el).attr 'src', src
+    if src? && src.length > 0
+      $('#preview', @$el).removeClass 'hide'
+      $('#preview-picture', @$el).attr 'src', src
+    else
+      $('#preview', @$el).addClass 'hide'
 
   showProgress: ->
     $('#progress', @$el).removeClass 'hide'

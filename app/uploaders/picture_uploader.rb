@@ -6,8 +6,8 @@ class PictureUploader < CarrierWave::Uploader::Base
     "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_whitelist
-    %w(jpg jpeg gif png tiff tif)
+  def extension_white_list
+    %w(jpg jpeg gif png tif tiff)
   end
 
   process convert: 'jpg'
@@ -21,10 +21,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :thumb, from_version: :small do
     process resize_to_fill: [150, 150]
     process convert: 'jpg'
-  end
-
-  def md5
-    @md5 ||= Digest::MD5.hexdigest model.send(mounted_as).read.to_s
   end
 
   def filename

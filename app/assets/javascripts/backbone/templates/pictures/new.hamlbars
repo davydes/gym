@@ -8,7 +8,7 @@
 
   .form-group
     %label #{Picture.human_attribute_name 'image'}
-    %input{type: 'file', name: 'image', class: 'form-control'}
+    %input{type: 'file', name: 'image', class: 'form-control', accept: 'image/jpeg,image/png,image/gif'}
     %span.help-block
 
   .row
