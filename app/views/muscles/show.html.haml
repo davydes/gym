@@ -56,7 +56,8 @@
           - @muscle.pictures.each do |p|
             .col-xs-6.col-sm-6.col-md-3
               .thumbnail
-                = image_tag p.image_url
+                = link_to p.image_url, rel: 'lightbox', data: {lightbox: 'anatomy', title: p.name} do
+                  = image_tag p.image_url
               .caption
                 %h5 #{p.name}
 

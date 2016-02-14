@@ -13,7 +13,7 @@
 
   .row
     .center-block{style: 'width: 150px; margin-bottom: 15px;'}
-      %img{src: '', id: 'preview-picture', width: 150, height: 150}
+      %img{src: '', id: 'preview-picture', width: 150}
 
   .form-group
     .row

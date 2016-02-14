@@ -260,6 +260,8 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.13)
+    lightbox2-rails (2.7.1)
+      railties (>= 3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -436,6 +438,7 @@ DEPENDENCIES
   i18n-js (>= 3.0.0.rc11)
   jquery-rails
   less-rails
+  lightbox2-rails
   omniauth
   omniauth-facebook
   omniauth-linkedin
@@ -456,3 +459,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2
