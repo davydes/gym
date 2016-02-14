@@ -23,12 +23,14 @@ class App.Views.Pictures.New extends App.View
 
     @model.saveFormData formData,
       success: =>
+        @hideProgress()
         @collection.add @model
         messages.success I18n.t 'pictures.messages.save_successful'
         app.navigate '',
           trigger: true
 
       error: (model, response) =>
+        @hideProgress()
         ev = new App.Views.ErrorView
           el: @el
           errors: new App.ErrorList(response)
@@ -37,12 +39,18 @@ class App.Views.Pictures.New extends App.View
 
       xhr: =>
         xhr = new window.XMLHttpRequest()
-        xhr.upload.addEventListener 'progress', ((e) ->
+        xhr.upload.addEventListener 'progress', ((e) =>
           if (e.lengthComputable)
-            percentComplete = e.loaded / e.total
-            console.log percentComplete
+            @setProgress(Math.round(100 * e.loaded / e.total))
+        ), false
+        xhr.upload.addEventListener 'load', ((e) =>
+          @setProgressInternal()
         ), false
         return xhr
+
+      beforeSend: =>
+        @showProgress()
+        @setProgress(0)
 
   fileInputChange: (e) ->
     file = e.currentTarget.files[0]
@@ -50,10 +58,30 @@ class App.Views.Pictures.New extends App.View
     if (file)
       reader = new FileReader()
       reader.onloadend = =>
-        @_updatePreview reader.result
+        @updatePreview reader.result
       reader.readAsDataURL file
     else
-      @._updatePreview ''
+      @.updatePreview ''
 
-  _updatePreview: (src) ->
-    @$el.find('#preview-picture').attr 'src', src
+  updatePreview: (src) ->
+    $('#preview', @$el).removeClass 'hide'
+    $('#preview-picture', @$el).attr 'src', src
+
+  showProgress: ->
+    $('#progress', @$el).removeClass 'hide'
+
+  hideProgress: ->
+    $('#progress', @$el).addClass 'hide'
+
+  setProgress: (prc) ->
+    $('#progress .progress-bar', @$el)
+      .removeClass 'progress-bar-striped active'
+      .css 'width', prc+'%'
+      .attr 'aria-valuenow', prc
+      .html prc+'%'
+
+  setProgressInternal: ->
+    @setProgress 100
+    $('#progress .progress-bar', @$el)
+      .addClass 'progress-bar-striped active'
+      .html '...'

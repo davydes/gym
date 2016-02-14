@@ -14,11 +14,17 @@ class App.Models.Picture extends App.Model
       data: formData
       processData: false
       contentType: false
+
+      beforeSend: ->
+        options.beforeSend && options.beforeSend()
+
       success: (resp) ->
         model.set(model.parse(resp))
         model.trigger('sync', model, resp, options)
         options.success && options.success( model, resp, options )
+
       error: (resp) ->
         options.error && options.error( model, resp, options )
+
       xhr: ->
         options.xhr && options.xhr()
