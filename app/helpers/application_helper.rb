@@ -42,6 +42,12 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def page_title
+    title = content_for?(:title) ? yield(:title) : I18n.t(:sitename)
+    title = 'Dev: ' + title if Rails.env.development?
+    title
+  end
+
   def json_for(target, options = {})
     options[:scope] ||= self
     options[:url_options] ||= url_options
