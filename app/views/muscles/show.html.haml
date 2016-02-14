@@ -57,7 +57,7 @@
             .col-xs-6.col-sm-6.col-md-3
               .thumbnail
                 = link_to p.image_url, rel: 'lightbox', data: {lightbox: 'anatomy', title: p.name} do
-                  = image_tag p.image_url
+                  = image_tag p.image_url(:small)
               .caption
                 %h5 #{p.name}
 

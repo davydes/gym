@@ -1,4 +1,5 @@
 require 'validators/file_size_validator'
+require 'validators/file_mime_type_validator'
 
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
@@ -9,8 +10,7 @@ class Picture < ActiveRecord::Base
 
   validates :image,
     presence: true,
-    file_size: {
-      maximum: 0.5.megabytes.to_i
-    }
+    file_size: { maximum: 1.megabytes.to_i },
+    file_mime_type: { content_type: /image/ }
 
 end

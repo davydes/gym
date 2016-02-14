@@ -1,0 +1,4 @@
+ru:
+  errors:
+    messages:
+      wrong_content_type: "тип файла недопустим"

@@ -15,6 +15,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'active_model_serializers', '0.10.0.rc4'
 gem 'redcarpet'
+gem 'mini_magick'
 #gem 'sdoc', '~> 0.4.0', group: :doc
 #gem 'bcrypt', '~> 3.1.7'
 
