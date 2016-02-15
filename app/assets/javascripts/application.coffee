@@ -13,3 +13,16 @@
 #= require_tree .
 
 window.console = { log: -> } if !window.console
+
+$.fn.renderFormErrors = (errors) ->
+  @clearPreviousErrors()
+  model = @data('model')
+  $.each errors, (field, messages) ->
+    if (messages.length > 0)
+      input = $('#'+model+'_'+field)
+      input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '))
+
+$.fn.clearPreviousErrors = ->
+  $('.form-group.has-error', this).each ->
+    $('.help-block', $(@)).html('');
+    $(@).removeClass('has-error');

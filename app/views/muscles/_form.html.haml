@@ -65,9 +65,22 @@
         li: '<li><a tabindex="0"><label></label></a></li>',
         divider: '<li class="multiselect-item divider"></li>',
         liGroup: '<li class="multiselect-item multiselect-group"><label></label></li>'
-    );
+    )
+
+    unsaved = false
+
+    $('button[type=\'submit\']').click ->
+      unsaved = false
+      return true
+
+    $('#content').on 'change', ':input', ->
+      unsaved = true
+
+    $(window).bind 'beforeunload', ->
+      if unsaved
+        return "#{t 'unsaved_alert'}"
 
 - if @muscle.errors.any?
   :coffeescript
     $ ->
-      $("form[data-model=muscle]").renderFormErrors(#{@muscle.errors.to_json.html_safe});
+      $("form[data-model=muscle]").renderFormErrors(#{@muscle.errors.to_json.html_safe})
