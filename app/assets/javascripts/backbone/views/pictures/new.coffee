@@ -4,15 +4,37 @@ class App.Views.Pictures.New extends App.View
 
   events:
     'click button.save' : 'create'
-    'change input[name=\'image\']': 'fileInputChange'
+    'change input[name=\'image\']': 'preview'
 
   initialize: ->
     @model = new App.Models.Picture()
     @model.collection = @collection
+    @progress = new App.Views.Shared.Progress()
+    @preview  = new App.Views.Shared.ImagePreview()
+
+  renderLayout: ->
+    @$el.html @template
+
+  renderProgress: ->
+    @$('#progress').empty().append(@progress.el)
+    @progress.hide()
+    @progress.render()
+
+  renderPreview: ->
+    @$('#preview').empty().append(@preview.el)
+    @preview.hide()
+    @preview.render()
 
   render: ->
-    @$el.html @template
+    @renderLayout()
+    @renderProgress()
+    @renderPreview()
     return @
+
+  remove: ->
+    @progress.remove()
+    @preview.remove()
+    super
 
   create: (e) ->
     e.preventDefault()
@@ -22,69 +44,27 @@ class App.Views.Pictures.New extends App.View
     formData.append("picture[image]", @$('input[name=\'image\']')[0].files[0])
 
     @model.saveFormData formData,
-      success: =>
-        @hideProgress()
-        @collection.add @model
-        messages.success I18n.t 'pictures.messages.save_successful'
-        app.navigate '',
-          trigger: true
+      prepare: => @_uploadPrepare()
+      progress: (prc) => @progress.progress(prc)
+      finish: => @progress.infinite('')
+      success: => @_uploadSuccess()
+      error: (model, response) => @_uploadUnsuccess(model, response)
 
-      error: (model, response) =>
-        @hideProgress()
-        ev = new App.Views.ErrorView
-          el: @el
-          errors: new App.ErrorList(response)
-        ev.render()
-        messages.danger I18n.t 'pictures.messages.save_unsuccessful'
+  preview: (e) ->
+    @preview.setFile(e.currentTarget.files[0])
 
-      xhr: =>
-        xhr = new window.XMLHttpRequest()
-        xhr.upload.addEventListener 'progress', ((e) =>
-          if (e.lengthComputable)
-            @setProgress(Math.round(100 * e.loaded / e.total))
-        ), false
-        xhr.upload.addEventListener 'load', ((e) =>
-          @setProgressInternal()
-        ), false
-        return xhr
+  _uploadPrepare: ->
+    @progress.show()
+    @progress.progress(0)
 
-      beforeSend: =>
-        @showProgress()
-        @setProgress(0)
+  _uploadSuccess: ->
+    @progress.hide()
+    @collection.add @model
+    messages.success I18n.t 'pictures.messages.save_successful'
+    app.navigate '', { trigger: true }
 
-  fileInputChange: (e) ->
-    file = e.currentTarget.files[0]
-
-    if (file)
-      reader = new FileReader()
-      reader.onloadend = =>
-        @updatePreview reader.result
-      reader.readAsDataURL file
-    else
-      @.updatePreview ''
-
-  updatePreview: (src) ->
-    if src? && src.length > 0
-      $('#preview', @$el).removeClass 'hide'
-      $('#preview-picture', @$el).attr 'src', src
-    else
-      $('#preview', @$el).addClass 'hide'
-
-  showProgress: ->
-    $('#progress', @$el).removeClass 'hide'
-
-  hideProgress: ->
-    $('#progress', @$el).addClass 'hide'
-
-  setProgress: (prc) ->
-    $('#progress .progress-bar', @$el)
-      .removeClass 'progress-bar-striped active'
-      .css 'width', prc+'%'
-      .attr 'aria-valuenow', prc
-      .html prc+'%'
-
-  setProgressInternal: ->
-    @setProgress 100
-    $('#progress .progress-bar', @$el)
-      .addClass 'progress-bar-striped active'
-      .html '...'
+  _uploadUnsuccess: (model, response) ->
+    @progress.hide()
+    ev = new App.Views.ErrorView { el: @el, errors: new App.ErrorList(response) }
+    ev.render()
+    messages.danger I18n.t 'pictures.messages.save_unsuccessful'

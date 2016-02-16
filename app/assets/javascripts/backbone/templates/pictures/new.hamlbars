@@ -12,13 +12,10 @@
     %span.help-block
 
   .row
-    .center-block.hide#preview{style: 'width: 150px; margin-bottom: 15px;'}
-      %img{src: '', id: 'preview-picture', width: 150}
+    .center-block#preview{style: 'width: 200px; margin-bottom: 15px;'}
 
   .row
-    .col-lg-12
-      .progress.hide#progress
-        .progress-bar{role: 'progressbar', aria: {valuenow: '0', valuemin: '0', valuemax: '100'}, style: 'width: 0%;'}
+    .col-lg-12#progress
 
   .form-group
     .row

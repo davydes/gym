@@ -31,5 +31,6 @@
   Routers: {}
   Views:
     Pictures: {}
+    Shared: {}
 
 _.extend App, Backbone.Events
