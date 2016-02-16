@@ -14,6 +14,12 @@ class App.Views.Pictures.New extends App.View
 
   renderLayout: ->
     @$el.html @template
+    @$(':file').filestyle
+      buttonName: "btn-primary"
+      buttonBefore: true
+      buttonText: I18n.t 'pictures.new.pick_file'
+      iconName: 'fa fa-folder-open'
+      placeholder: I18n.t 'pictures.new.file_placeholder'
 
   renderProgress: ->
     @$('#progress').empty().append(@progress.el)

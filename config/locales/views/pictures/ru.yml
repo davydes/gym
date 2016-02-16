@@ -14,6 +14,8 @@ ru:
     new:
       title: 'Загрузить изображение'
       preview: 'Предпросмотр'
+      pick_file: 'Выбрать файл'
+      file_placeholder: 'Выберите файл для загрузки'
 
     messages:
       save_successful: 'Успешно сохранено'

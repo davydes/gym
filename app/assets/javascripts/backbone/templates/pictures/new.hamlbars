@@ -12,7 +12,7 @@
     %span.help-block
 
   .row
-    .center-block#preview{style: 'width: 200px; margin-bottom: 15px;'}
+    .center-block#preview{style: 'width: 250px; margin-bottom: 15px;'}
 
   .row
     .col-lg-12#progress
