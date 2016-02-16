@@ -58,8 +58,8 @@
               .thumbnail
                 = link_to p.image_url, rel: 'lightbox', data: {lightbox: 'anatomy', title: p.name} do
                   = image_tag p.image_url(:small)
-              .caption
-                %h5 #{p.name}
+                .caption
+                  %strong #{p.name}
 
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog
