@@ -3,7 +3,8 @@ class PicturesController < ApplicationController
   respond_to :json
 
   before_action :authenticate_user!
-  load_and_authorize_resource except: [:create]
+  load_resource except: [:create]
+  authorize_resource
   before_action :load_parent, only: [:index, :create]
 
   def index

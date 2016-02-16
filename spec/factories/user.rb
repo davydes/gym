@@ -10,6 +10,9 @@ FactoryGirl.define do
     email { "#{name}@example.org" }
     password "secret88"
     password_confirmation "secret88"
-    admin true
+
+    factory :admin do
+      admin true
+    end
   end
 end

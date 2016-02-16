@@ -1,7 +1,8 @@
 class AnatomicController < ApplicationController
   respond_to :html
   before_action :authenticate_user!, except:[:show, :index]
-  load_and_authorize_resource except: [:create]
+  load_resource except: [:create]
+  authorize_resource
 
   def index
     objects = model_class.constantize.all

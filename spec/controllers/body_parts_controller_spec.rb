@@ -31,7 +31,7 @@ RSpec.describe BodyPartsController, type: :controller do
 
   describe "GET new" do
     describe "when user logged in" do
-      login_user
+      login_user(admin: true)
 
       it "renders the new template" do
         get :new
@@ -49,7 +49,7 @@ RSpec.describe BodyPartsController, type: :controller do
 
   describe "POST create" do
     describe "when user logged in" do
-      login_user
+      login_user(admin: true)
 
       let(:attr) do
         attributes_for(:body_part)
@@ -68,7 +68,7 @@ RSpec.describe BodyPartsController, type: :controller do
 
   describe "GET edit" do
     describe "when user logged in" do
-      login_user
+      login_user(admin: true)
 
       it "assigns @body_part" do
         get :edit, id: @body_part.id
@@ -91,7 +91,7 @@ RSpec.describe BodyPartsController, type: :controller do
 
   describe "PUT update" do
     describe "when user logged in" do
-      login_user
+      login_user(admin: true)
 
       let(:attr) do
         { :name => 'new name', :alias => 'new_alias' }
@@ -114,7 +114,7 @@ RSpec.describe BodyPartsController, type: :controller do
 
   describe "DELETE destroy" do
     describe "when user logged in" do
-      login_user
+      login_user(admin: true)
 
       before(:example) do
         @body_part = create(:body_part)
