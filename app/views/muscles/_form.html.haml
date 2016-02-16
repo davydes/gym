@@ -37,13 +37,6 @@
       %span.help-block
 
   .form-group
-    = f.fields_for :pictures do |p|
-      = f.label :pictures, class: 'col-sm-2 control-label'
-      .col-sm-10
-        = p.file_field :image, :multiple => true, name: 'pictures[image][]', class: 'form-control'
-        %span.help-block
-
-  .form-group
     %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
       = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
         %i.fa.fa-check
