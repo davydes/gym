@@ -6,7 +6,7 @@ class App.Views.Pictures.Item extends App.View
     @model.id
 
   events:
-    'click a.delete' : 'destroy'
+    'click a.delete' : 'destroyConfirmation'
     'click a.edit'   : 'edit'
 
   render: ->
@@ -17,6 +17,9 @@ class App.Views.Pictures.Item extends App.View
     @stopListening()
     $(@el).replaceWith(view.el)
     view.render()
+
+  destroyConfirmation: ->
+    @destroy() if confirm( I18n.t 'pictures.messages.confirm_delete', { name: @model.get('name') } )
 
   destroy: ->
     @model.destroy
