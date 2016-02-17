@@ -1,0 +1,18 @@
+ru:
+  welcome:
+    index:
+      muscles:
+        one: '%{count} мышце'
+        few: '%{count} мышцах'
+        many: '%{count} мышцах'
+        other: '%{count} мышцах'
+      categories:
+        one: '%{count} категории'
+        few: '%{count} категориях'
+        many: '%{count} категориях'
+        other: '%{count} категориях'
+      exercises:
+        one: '%{count} упражнение'
+        few: '%{count} упражнения'
+        many: '%{count} упражнений'
+        other: '%{count} упражнений'

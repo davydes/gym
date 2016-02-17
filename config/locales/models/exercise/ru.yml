@@ -4,8 +4,8 @@ ru:
       exercise:
         one: 'Упражнение'
         few: 'Упражнения'
-        many: 'Упражнения'
-        other: 'Упражнения'
+        many: 'Упражнений'
+        other: 'Упражнений'
     attributes:
       exercise:
         name: 'Название'
