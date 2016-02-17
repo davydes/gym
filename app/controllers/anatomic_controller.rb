@@ -1,5 +1,5 @@
 class AnatomicController < ApplicationController
-  respond_to :html
+  respond_to :html, :json
   before_action :authenticate_user!, except:[:show, :index]
   load_resource except: [:create]
   authorize_resource
@@ -7,9 +7,11 @@ class AnatomicController < ApplicationController
   def index
     objects = model_class.constantize.all
     instance_variable_set("@#{controller_name}", objects)
+    respond_with instance_variable_get("@#{controller_name}")
   end
 
   def show
+    respond_with instance_variable_get("@#{model_class.underscore}")
   end
 
   def new

@@ -2,6 +2,7 @@ class MusclesController < AnatomicController
   def index
     @body_parts = BodyPart.with_muscles.order(:name)
     @muscles = Muscle.no_bodypart
+    respond_with Muscle.all
   end
 
   private
