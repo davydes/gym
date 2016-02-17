@@ -5,7 +5,7 @@ ru:
         one: 'Упражнение'
         few: 'Упражнения'
         many: 'Упражнений'
-        other: 'Упражнений'
+        other: 'Упражнения'
     attributes:
       exercise:
         name: 'Название'

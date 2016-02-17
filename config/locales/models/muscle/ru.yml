@@ -5,7 +5,7 @@ ru:
         one: 'Мышца'
         few: 'Мышцы'
         many: 'Мышц'
-        other: 'Мышц'
+        other: 'Мышцы'
     attributes:
       muscle:
         name: 'Название'
