@@ -40,6 +40,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
+  gem 'yui-compressor'
 end
 
 group :development, :test do
