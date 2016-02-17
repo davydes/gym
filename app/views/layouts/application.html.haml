@@ -14,7 +14,7 @@
         I18n.locale = "#{I18n.locale}"
 
   %body
-    .page-container
+    #page-wrap
       .container
         = render partial: 'layouts/header'
       .container
@@ -27,3 +27,7 @@
             - if alert
               .alert.alert-danger.alert-3s{:role => "alert"}= alert
             = yield
+      #page-push
+    #page-footer
+      .container
+        = render partial: 'layouts/footer'
