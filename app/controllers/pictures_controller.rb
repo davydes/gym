@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   before_action :authenticate_user!
   load_resource except: [:create]
   authorize_resource
-  before_action :load_parent, only: [:index, :create]
+  before_action :load_parent, only: [:index, :create, :destroy]
 
   def index
     @pictures = @parent.pictures.all
@@ -13,9 +13,7 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.new(resource_params)
-    @picture.imageable = @parent
-    @picture.save
+    @picture = @parent.pictures.create(resource_params)
     respond_with @picture
   end
 
@@ -26,7 +24,7 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture.destroy!
-    respond_with @picture.imageable, @picture
+    respond_with @parent, @picture
   end
 
   private

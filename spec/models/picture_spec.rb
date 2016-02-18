@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Picture, type: :model do
   describe 'when save' do
     before (:each) do
-      @picture = build(:picture, imageable: create(:muscle))
+      @picture = build(:picture)
     end
 
     it 'should be valid with right attributes' do

@@ -5,9 +5,12 @@ namespace :pictures do
     pictures = Picture.all
     puts 'Recreate started... ' + pictures.size.to_s + ' count'
     pictures.each do |p|
-      puts 'Process: ' + p.id.to_s
-      p.image.recreate_versions!
-      p.save!
+      begin
+        puts 'Process: ' + p.id.to_s
+        p.image.recreate_versions!
+      rescue Exception => e
+        puts e.message
+      end
     end
   end
 

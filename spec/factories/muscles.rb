@@ -4,7 +4,6 @@ FactoryGirl.define do
     name 'Example Muscle'
     description 'Muscle Description'
     shape 'long'
-    pictures { build_list :picture, 3 }
 
     factory :muscle_with_body_part do
       after(:create) do |muscle|

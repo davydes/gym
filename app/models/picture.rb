@@ -2,7 +2,7 @@ require 'validators/file_size_validator'
 require 'validators/file_mime_type_validator'
 
 class Picture < ActiveRecord::Base
-  belongs_to :imageable, polymorphic: true
+  has_many :picture_links, dependent: :destroy
 
   mount_uploader :image, PictureUploader
 
@@ -12,5 +12,9 @@ class Picture < ActiveRecord::Base
     presence: true,
     file_size: { maximum: 1.megabytes.to_i },
     file_mime_type: { content_type: /image/ }
+
+  def pictureables
+    picture_links.map {|x| x.pictureable}
+  end
 
 end

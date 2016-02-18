@@ -11,5 +11,6 @@ class Muscle < ActiveRecord::Base
       where('id NOT IN (SELECT DISTINCT(muscle_id) FROM body_parts_muscles)')
   }
 
-  has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :picture_links, as: :pictureable, dependent: :destroy
+  has_many :pictures, through: :picture_links
 end

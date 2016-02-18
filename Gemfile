@@ -3,6 +3,7 @@ ruby '2.2.1'
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.5'
+gem 'composite_primary_keys', '~> 8.0'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'omniauth'
 gem 'omniauth-twitter'

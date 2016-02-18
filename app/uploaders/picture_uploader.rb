@@ -23,8 +23,12 @@ class PictureUploader < CarrierWave::Uploader::Base
     process convert: 'jpg'
   end
 
+  def md5
+    @md5 ||= Digest::MD5.hexdigest model.send(mounted_as).read.to_s
+  end
+
   def filename
-    @name ||= "#{model.imageable.class.name.downcase}_#{model.imageable.id}.jpg" if super
+    @name ||= "#{md5}.jpg"
   end
 
 end
