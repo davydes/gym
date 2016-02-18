@@ -2,7 +2,7 @@ ruby '2.2.1'
 
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '~> 4.2.5'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -24,7 +24,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'less-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 2.7'
 
 # Assests
 gem "i18n-js", ">= 3.0.0.rc11"
@@ -51,7 +51,6 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'web-console', '~> 2.0'
   gem 'byebug'
   gem 'binding_of_caller'
 end
