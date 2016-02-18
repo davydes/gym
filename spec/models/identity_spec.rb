@@ -1,22 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Identity, :type => :model do
-  describe 'when create' do
-    it 'should create a new instance given a valid attribute' do
-      expect{ create(:identity) }.to change { Identity.count }.by(1)
-    end
+  let (:identity) {build :identity}
 
-    describe 'should be invalid with' do
-      it 'duplicate' do
-        identity1 = create(:identity)
-        identity2 = build(:identity, :provider => identity1.provider, :uid => identity1.uid)
-        expect(identity2).to be_invalid
+  describe 'validation' do
+    it { expect(identity).to be_valid }
+
+    describe 'should be invalid' do
+      it 'when attribute pair [provider, uid] already exists' do
+        identity_ = create(:identity)
+        identity.provider, identity.uid = identity_.provider, identity_.uid
+        expect(identity).to be_invalid
       end
     end
   end
 
-  describe 'when find_for_oauth' do
-    it 'should find exists identity by provider&uid' do
+  describe '::find_for_oauth' do
+    it 'when find exists identity by provider&uid' do
       identity1 = create(:identity, email: 'example@ex.com')
       omniauth_hash = { 'provider' => identity1.provider,
                         'uid' => identity1.uid,
@@ -34,7 +34,7 @@ RSpec.describe Identity, :type => :model do
       expect(identity1.id).to be == identity2.id
     end
 
-    it 'should create new identity' do
+    it 'when create new identity' do
       identity1 = create(:identity, email: 'example@ex.com')
       omniauth_hash = { 'provider' => identity1.provider,
                         'uid' => identity1.uid+rand(5..10).to_s,

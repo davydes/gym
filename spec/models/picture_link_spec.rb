@@ -1,10 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe PictureLink, type: :model do
-  describe '.create' do
-    it 'should valid' do
-      pl = PictureLink.create(picture: create(:picture), pictureable: create(:muscle))
-      expect(pl).to be_valid
+  let (:picture) { create :picture }
+  let (:pictureable) { create :muscle }
+
+  describe 'validation:' do
+    it { expect(PictureLink.create picture: picture, pictureable: pictureable).to be_valid }
+
+    describe 'should be invalid' do
+      it 'with duplicate PrimaryKey' do
+        PictureLink.create picture: picture, pictureable: pictureable
+        expect(PictureLink.create picture: picture, pictureable: pictureable).to be_invalid
+      end
     end
   end
 end
