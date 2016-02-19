@@ -31,7 +31,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "GET new" do
     describe "when user logged in" do
-      login_user(admin: true)
+      login(admin: true)
 
       it "renders the new template" do
         get :new
@@ -49,7 +49,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "POST create" do
     describe "when user logged in" do
-      login_user(admin: true)
+      login(admin: true)
 
       let(:attr) do
         attributes_for(:exercise)
@@ -68,7 +68,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "GET edit" do
     describe "when user logged in" do
-      login_user(admin: true)
+      login(admin: true)
 
       it "assigns @exercise" do
         get :edit, id: @exercise.id
@@ -91,7 +91,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "PUT update" do
     describe "when user logged in" do
-      login_user(admin: true)
+      login(admin: true)
 
       let(:attr) do
         { :name => 'new name', :alias => 'new_alias' }
@@ -114,7 +114,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "DELETE destroy" do
     describe "when user logged in" do
-      login_user(admin: true)
+      login(admin: true)
 
       before(:example) do
         @exercise = create(:exercise)

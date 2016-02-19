@@ -29,9 +29,10 @@ RSpec.describe Muscle, type: :model do
   end
 
   it 'should raise ArgumentError with wrong shape' do
-    expect {
-      muscle = build(:muscle, shape: 'non-existing shape')
-    }.to raise_error(ArgumentError)
+    def build_resource
+      build :muscle, shape: 'non-existing shape'
+    end
+    expect { build_resource }.to raise_error(ArgumentError)
   end
 
   it 'should create body_part' do

@@ -1,10 +1,11 @@
 module ControllerMacros
-  def login_user(options = {})
+  def login(options = {})
     options[:admin] ||= false
 
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(options[:admin] ? :admin : :user)
+      role = options[:admin] ? :admin : :user
+      @request.env["devise.mapping"] = Devise.mappings[role]
+      user = FactoryGirl.create(role)
       user.confirmed_at = Time.zone.now
       user.save!
       sign_in user
