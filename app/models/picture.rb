@@ -2,6 +2,8 @@ require 'validators/file_size_validator'
 require 'validators/file_mime_type_validator'
 
 class Picture < ActiveRecord::Base
+  scope :lonely, -> { where.not(:id => PictureLink.select(:picture_id).uniq) }
+
   has_many :picture_links, dependent: :destroy
 
   mount_uploader :image, PictureUploader

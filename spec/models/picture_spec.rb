@@ -39,4 +39,13 @@ RSpec.describe Picture, type: :model do
       expect(picture.pictureables).to include pictureable
     end
   end
+
+  describe 'scope lonely' do
+    it 'should be [picture]' do
+      picture = create :picture
+      create :muscle, pictures: [create(:picture)]
+      expect(Picture.count).to eq 2
+      expect(Picture.lonely).to eq [picture]
+    end
+  end
 end
