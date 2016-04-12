@@ -30,7 +30,9 @@
   Collections: {}
   Routers: {}
   Views:
-    Pictures: {}
+    Pictures:
+      Manage: {}
+      Dialog: {}
     Shared: {}
 
 _.extend App, Backbone.Events

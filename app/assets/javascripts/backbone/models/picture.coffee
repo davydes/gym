@@ -1,9 +1,4 @@
 class App.Models.Picture extends App.Model
-
-  shallowApi: true
-
-  urlRoot: '/pictures'
-
   saveFormData: (formData, options) ->
     method = if @isNew() then 'POST' else 'PUT'
     model = @

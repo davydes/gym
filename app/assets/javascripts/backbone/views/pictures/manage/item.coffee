@@ -1,5 +1,5 @@
-class App.Views.Pictures.Item extends App.View
-  template: HandlebarsTemplates['pictures/item']
+class App.Views.Pictures.Manage.Item extends App.View
+  template: HandlebarsTemplates['pictures/manage/item']
   tagName: 'tr'
 
   id: ->
@@ -7,7 +7,6 @@ class App.Views.Pictures.Item extends App.View
 
   events:
     'click a.delete' : 'destroyConfirmation'
-    'click a.edit'   : 'edit'
 
   render: ->
     @$el.html @template @model.toJSON()
@@ -30,5 +29,5 @@ class App.Views.Pictures.Item extends App.View
         @remove()
         messages.info I18n.t 'pictures.messages.delete_successful'
 
-  edit: ->
-    @replaceWith(new App.Views.Pictures.Edit(model: @model))
+  leave: ->
+    @remove()

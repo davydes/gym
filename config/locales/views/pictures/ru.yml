@@ -1,7 +1,7 @@
 ru:
   pictures:
     actions:
-      new: "Загрузить"
+      new: "Добавить"
       edit: "Изменить"
       delete: "Удалить"
       save: "Сохранить"
@@ -11,11 +11,17 @@ ru:
       title: "Управление изображениями"
       actions: "Действия"
 
-    new:
+    uploader:
       title: 'Загрузить изображение'
       preview: 'Предпросмотр'
       pick_file: 'Выбрать файл'
       file_placeholder: 'Выберите файл для загрузки'
+      upload: 'Загрузить'
+
+    select_dialog: 'Загрузить/Выбрать изображение'
+
+    select:
+      title: 'Выбрать существующие'
 
     messages:
       save_successful: 'Успешно сохранено'

@@ -1,5 +1,5 @@
-class App.Views.Pictures.New extends App.View
-  template: HandlebarsTemplates['pictures/new']
+class App.Views.Pictures.Dialog.Uploader extends App.CompositeView
+  template: HandlebarsTemplates['pictures/dialog/uploader']
   id: 'pictures'
 
   events:
@@ -17,17 +17,19 @@ class App.Views.Pictures.New extends App.View
     @$(':file').filestyle
       buttonName: "btn-primary"
       buttonBefore: true
-      buttonText: I18n.t 'pictures.new.pick_file'
+      buttonText: I18n.t 'pictures.uploader.pick_file'
       iconName: 'fa fa-folder-open'
-      placeholder: I18n.t 'pictures.new.file_placeholder'
+      placeholder: I18n.t 'pictures.uploader.file_placeholder'
 
   renderProgress: ->
-    @$('#progress').empty().append(@progress.el)
+    container = @$('#progress')
+    @renderChildInto(@progress, container)
     @progress.hide()
     @progress.render()
 
   renderPreview: ->
-    @$('#preview').empty().append(@preview.el)
+    container = @$('#preview')
+    @renderChildInto(@preview, container)
     @preview.hide()
     @preview.render()
 
@@ -66,11 +68,9 @@ class App.Views.Pictures.New extends App.View
   _uploadSuccess: ->
     @progress.hide()
     @collection.add @model
-    messages.success I18n.t 'pictures.messages.save_successful'
-    app.navigate '', { trigger: true }
+    @trigger 'uploadedPicture', @model.id
 
   _uploadUnsuccess: (model, response) ->
     @progress.hide()
     ev = new App.Views.ErrorView { el: @el, errors: new App.ErrorList(response) }
     ev.render()
-    messages.danger I18n.t 'pictures.messages.save_unsuccessful'

@@ -36,3 +36,5 @@ ru:
       default: "%m/%d/%Y %H:%M"
       short: "%H:%M"
       notime: "%m/%d/%Y"
+
+  cancel: 'Отмена'

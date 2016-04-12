@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PicturesController, type: :controller do
-  let (:pictureable) { create(:muscle, pictures: create_list(:picture, 5)) }
+  let (:pictures) { create_list(:picture, 5) }
 
   context 'JSON' do
     before :each do
@@ -13,15 +13,16 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'GET #index' do
         it 'responds pictures as json' do
-          get :index, muscle_id: pictureable.id
+          count = pictures.count
+          get :index
           json = JSON.parse(response.body)
-          expect(json.length).to eq(pictureable.pictures.count)
+          expect(json.length).to eq(count)
         end
       end
 
       describe 'POST #create' do
         it 'increase pictures count' do
-          params = { muscle_id: pictureable.id, picture: attributes_for(:picture) }
+          params = { picture: attributes_for(:picture) }
           expect{ post :create, params }.to change { Picture.count }.by 1
           expect(response).to be_success
         end
@@ -29,7 +30,7 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'PUT #update' do
         it 'change name' do
-          picture = pictureable.pictures.first
+          picture = pictures.first
           params = { id: picture.id, picture: { name: 'new_name' } }
           put :update, params
           picture.reload
@@ -40,7 +41,7 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'DELETE #destroy' do
         it 'decrease pictures count' do
-          picture = pictureable.pictures.first
+          picture = pictures.first
           params = { id: picture.id }
           expect{ delete :destroy, params }.to change { Picture.count }.by -1
           expect(response).to be_success
@@ -53,20 +54,20 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'GET #index' do
         it {
-          expect { get :index, muscle_id: pictureable.id }.to raise_error CanCan::AccessDenied
+          expect { get :index }.to raise_error CanCan::AccessDenied
         }
       end
 
       describe 'POST #create' do
         it {
-          params = { muscle_id: pictureable.id, picture: attributes_for(:picture) }
+          params = { picture: attributes_for(:picture) }
           expect { post :create, params }.to raise_error CanCan::AccessDenied
         }
       end
 
       describe 'PUT #update' do
         it {
-          picture = pictureable.pictures.first
+          picture = pictures.first
           params = { id: picture.id, picture: { name: 'new_name' } }
           expect { put :update, params }.to raise_error CanCan::AccessDenied
         }
@@ -74,7 +75,7 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'DELETE #destroy' do
         it {
-          picture = pictureable.pictures.first
+          picture = pictures.first
           params = { id: picture.id }
           expect { delete :destroy, params }.to raise_error CanCan::AccessDenied
         }
@@ -87,7 +88,7 @@ RSpec.describe PicturesController, type: :controller do
     context 'when user not logged in' do
       describe 'GET #index' do
         it {
-          get :index, muscle_id: pictureable.id
+          get :index
           expect(response).to redirect_to '/users/sign_in'
         }
       end
@@ -97,26 +98,26 @@ RSpec.describe PicturesController, type: :controller do
       login(admin: false)
 
       describe 'GET #index' do
-        it { expect { get :index, muscle_id: pictureable.id }.to raise_error CanCan::AccessDenied }
+        it { expect { get :index }.to raise_error CanCan::AccessDenied }
       end
 
       describe 'POST #create' do
         it {
-          params = { muscle_id: pictureable.id, picture: attributes_for(:picture) }
+          params = { picture: attributes_for(:picture) }
           expect { post :create, params }.to raise_error CanCan::AccessDenied
         }
       end
 
       describe 'PUT #update' do
         it {
-          params = { id: pictureable.pictures.first.id, picture: attributes_for(:picture) }
+          params = { id: pictures.first.id, picture: attributes_for(:picture) }
           expect { put :update, params }.to raise_error CanCan::AccessDenied
         }
       end
 
       describe 'DELETE #destroy' do
         it {
-          params = { id: pictureable.pictures.first.id }
+          params = { id: pictures.first.id }
           expect { delete :destroy, params }.to raise_error CanCan::AccessDenied
         }
       end
@@ -127,33 +128,27 @@ RSpec.describe PicturesController, type: :controller do
 
       describe 'GET #index' do
         it {
-          get :index, muscle_id: pictureable.id
-          expect(response).to render_template('index')
+          expect { get :index }.to raise_error ActionController::UnknownFormat
         }
-
-        it 'assigns pictures' do
-          get :index, muscle_id: pictureable.id
-          expect(assigns(:pictures)).to eq(pictureable.pictures)
-        end
       end
 
       describe 'POST #create' do
         it {
-          params = { muscle_id: pictureable.id, picture: attributes_for(:picture) }
+          params = { picture: attributes_for(:picture) }
           expect { post :create, params }.to raise_error ActionController::UnknownFormat
         }
       end
 
       describe 'PUT #update' do
         it {
-          params = { id: pictureable.pictures.first.id, picture: attributes_for(:picture) }
+          params = { id: pictures.first.id, picture: attributes_for(:picture) }
           expect { put :update, params }.to raise_error ActionController::UnknownFormat
         }
       end
 
       describe 'DELETE #destroy' do
         it {
-          params = { id: pictureable.pictures.first.id }
+          params = { id: pictures.first.id }
           expect { delete :destroy, params }.to raise_error ActionController::UnknownFormat
         }
       end

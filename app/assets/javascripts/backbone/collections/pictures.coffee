@@ -2,7 +2,7 @@ class App.Collections.Pictures extends App.Collection
 
   model: App.Models.Picture
 
-  url: () ->
+  url: ->
     @baseUrl
 
   initialize: (models, options) ->

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   concern :pictureable do
-    resources :pictures, only: [:index, :create, :update, :destroy], shallow: true
+    resources :picture_links, only: [:index, :create, :destroy]
   end
 
   root 'welcome#index'
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :muscles, concerns: :pictureable
   resources :exercises
   resources :body_parts
+  resources :pictures, only: [:index, :create, :update, :destroy]
 end

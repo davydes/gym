@@ -1,5 +1,3 @@
-%h4 #{I18n.t 'pictures.new.title'}
-
 %form
   .form-group
     %label #{Picture.human_attribute_name 'name'}
@@ -19,7 +17,5 @@
 
   .form-group
     .row
-      .col-lg-3.col-lg-offset-3.col-md-4.col-md-offset-2.col-sm-6.col-xs-6
-        %button{class: 'save form-control btn btn-success'} #{I18n.t 'pictures.actions.new'}
-      .col-lg-3.col-md-4.col-sm-6.col-xs-6
-        %a{href: '#', class: 'cancel form-control btn btn-danger'} #{I18n.t 'pictures.actions.cancel'}
+      .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-12.col-xs-12
+        %button{class: 'save form-control btn btn-success'} #{I18n.t 'pictures.uploader.upload'}

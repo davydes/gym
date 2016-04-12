@@ -1,0 +1,24 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{type: "button", aria: {label: I18n.t('cancel')}}
+        %span{aria: {hidden: "true"}} &times
+      %h4.modal-title
+        #{I18n.t 'pictures.select_dialog'}
+    .modal-body
+      %ul.nav.nav-tabs
+        %li.active
+          %a{href: "#upload", data:{toggle: "tab"}} #{I18n.t 'pictures.uploader.title'}
+        %li
+          %a{href: "#select", data:{toggle: "tab"}} #{I18n.t 'pictures.select.title'}
+
+      .div.spacer
+
+      .tab-content
+        #upload.tab-pane.fade.in.active
+          #picture-uploader
+        #select.tab-pane.fade
+          #pictures-browser
+
+    .modal-footer
+      %button.btn.btn-default{type: "button", data: {dismiss: "modal"}} #{I18n.t 'cancel'}

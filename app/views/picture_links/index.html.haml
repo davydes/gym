@@ -9,8 +9,10 @@
 
 :coffeescript
   $ ->
-    window.app = new App.Routers.Pictures
+    window.app = new App.Routers.PicturesLinks
       pictures: #{json_for @pictures}
-      url: '#{ muscle_pictures_path(@parent) }'
+      url: '#{muscle_picture_links_path(@parent)}'
       el: '#pictures'
+      obj_type: '#{@parent.class.name}'
+      obj_id: '#{@parent.id}'
     Backbone.history.start()

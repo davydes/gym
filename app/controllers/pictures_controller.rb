@@ -1,19 +1,21 @@
 class PicturesController < ApplicationController
-  respond_to :html, only: [:index]
   respond_to :json
 
   before_action :authenticate_user!
   load_resource except: [:create]
   authorize_resource
-  before_action :load_parent, only: [:index, :create, :destroy]
 
   def index
-    @pictures = @parent.pictures.all
+    @pictures = Picture.all
+    if params[:obj_type] && params[:obj_id]
+      object = params[:obj_type].classify.constantize.find(params[:obj_id])
+      @pictures = @pictures - object.pictures
+    end
     respond_with @pictures
   end
 
   def create
-    @picture = @parent.pictures.create(resource_params)
+    @picture = Picture.create(resource_params)
     respond_with @picture
   end
 
@@ -24,17 +26,10 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture.destroy!
-    respond_with @parent, @picture
+    respond_with @picture
   end
 
   private
-
-  def load_parent
-    parent_klasses = %w[muscle]
-    if klass = parent_klasses.detect { |pk| params[:"#{pk}_id"].present? }
-      @parent = klass.camelize.constantize.find params[:"#{klass}_id"]
-    end
-  end
 
   def resource_params
     accessible = [ :name, :image, :description ]

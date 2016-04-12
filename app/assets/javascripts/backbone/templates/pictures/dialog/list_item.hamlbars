@@ -1,0 +1,5 @@
+.col-xs-3.col-md-3
+  %a{class: 'thumbnail'}
+    %img{src: hb('thumb')}
+    .caption
+      %strong #{hb('name')}
