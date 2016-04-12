@@ -25,7 +25,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'less-rails'
-gem 'uglifier', '~> 2.7'
+gem 'uglifier', '~> 3'
 gem 'sass-rails'
 
 # Assests
