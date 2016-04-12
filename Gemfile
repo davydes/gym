@@ -26,6 +26,7 @@ gem 'haml-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'less-rails'
 gem 'uglifier', '~> 2.7'
+gem 'sass-rails'
 
 # Assests
 gem "i18n-js", ">= 3.0.0.rc11"
