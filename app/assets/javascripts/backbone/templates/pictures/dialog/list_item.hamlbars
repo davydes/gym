@@ -1,5 +1,8 @@
-.col-xs-3.col-md-3
-  %a{class: 'thumbnail'}
-    %img{src: hb('thumb')}
-    .caption
-      %strong #{hb('name')}
+- options = {scope: 'pictures'}
+
+%td
+  = hb('id')
+%td
+  = hb('name')
+%td
+  %img{src: hb('thumb'), width: 50, height: 50}

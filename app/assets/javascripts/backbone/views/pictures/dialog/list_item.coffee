@@ -1,5 +1,7 @@
 class App.Views.Pictures.Dialog.ListItem extends App.View
   template: HandlebarsTemplates['pictures/dialog/list_item']
+  tagName: 'tr'
+  className: 'picture-item'
 
   events:
     'click' : 'onClick'

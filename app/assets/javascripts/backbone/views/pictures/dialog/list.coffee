@@ -6,7 +6,7 @@ class App.Views.Pictures.Dialog.List extends App.CompositeView
 
   renderItem: (item) ->
     view = new App.Views.Pictures.Dialog.ListItem({ model: item })
-    container = @$('.picture-list')
+    container = @$('#picture-list')
     @appendChildTo(view, container)
     @listenTo(view, 'clickPicture', @clickPicture)
 
