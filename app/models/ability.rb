@@ -8,6 +8,7 @@ class Ability
     else
       can :read, :all
       cannot :read, Picture
+      cannot :read, PictureLink
     end
   end
 end

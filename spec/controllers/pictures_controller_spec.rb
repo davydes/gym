@@ -18,6 +18,13 @@ RSpec.describe PicturesController, type: :controller do
           json = JSON.parse(response.body)
           expect(json.length).to eq(count)
         end
+
+        it 'responds pictures as json without muscle pictures' do
+          muscle = create(:muscle, pictures: [pictures.first])
+          get :index, {obj_type: 'Muscle', obj_id: muscle.id}
+          json = JSON.parse(response.body)
+          expect(json.length).to eq(pictures.count-muscle.pictures.count)
+        end
       end
 
       describe 'POST #create' do
