@@ -28,7 +28,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    @name ||= "#{md5}.jpg"
+    @name ||= "#{secure_token}.jpg"
   end
 
+  protected
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
 end
