@@ -36,7 +36,7 @@ gem 'handlebars_assets'
 gem 'hamlbars'
 gem 'rails-backbone'
 gem 'bootstrap-datepicker-rails'
-gem 'lightbox2-rails'
+gem 'lightbox2-rails', '~> 2.7.0'
 
 group :production do
   gem 'pg'
