@@ -3,6 +3,10 @@ require 'validators/file_mime_type_validator'
 
 class Picture < ActiveRecord::Base
   scope :lonely, -> { where.not(:id => PictureLink.select(:picture_id).uniq) }
+  scope :for_obj, -> (type, id) {
+    where.not(:id => PictureLink.select(:picture_id)
+                         .where(:pictureable_type => type, :pictureable_id => id).uniq)
+  }
 
   has_many :picture_links, dependent: :destroy
 

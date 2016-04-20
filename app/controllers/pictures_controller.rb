@@ -6,10 +6,10 @@ class PicturesController < ApplicationController
   authorize_resource
 
   def index
-    @pictures = Picture.all
     if params[:obj_type] && params[:obj_id]
-      object = params[:obj_type].classify.constantize.find(params[:obj_id])
-      @pictures = @pictures - object.pictures
+      @pictures = Picture.for_obj(params[:obj_type], params[:obj_id])
+    else
+      @pictures = Picture.all
     end
     respond_with @pictures
   end

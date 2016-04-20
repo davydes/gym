@@ -15,9 +15,9 @@ class App.Views.Pictures.Dialog.Finder extends App.CompositeView
     @$el.html @template
 
   renderBrowser: ->
-    pictures = new App.Collections.Pictures(null, url: '/pictures')
-    pictures.fetch(data: {obj_type: @obj_type, obj_id: @obj_id})
-    view = new App.Views.Pictures.Dialog.List(collection: pictures)
+    view = new App.Views.Pictures.Dialog.List
+      obj_type: @obj_type
+      obj_id: @obj_id
     container = @$('#pictures-browser')
     @renderChildInto(view, container)
     @listenTo view, 'pickPicture', @pickPicture
