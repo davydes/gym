@@ -1,6 +1,6 @@
 class App.Views.Pictures.Dialog.Finder extends App.CompositeView
   template: HandlebarsTemplates['pictures/dialog/finder']
-  className: 'modal fade'
+  className: 'modal fade picture-finder'
 
   events:
     'click button.close' : 'close'

@@ -1,7 +1,10 @@
-%table.table.table-striped
-  %thead
-    %tr
-      %th{width: '50px'} #{Picture.human_attribute_name 'id'}
-      %th #{Picture.human_attribute_name 'name'}
-      %th{width: '50px'} #{Picture.human_attribute_name 'image'}
-  %tbody#picture-list
+.scrolltable
+  %table.table.header
+    %thead
+      %tr
+        %th{width: '50px'} #{Picture.human_attribute_name 'id'}
+        %th #{Picture.human_attribute_name 'name'}
+        %th{width: '50px'} #{Picture.human_attribute_name 'image'}
+  .body
+    %table.table.table-striped
+      %tbody#picture-list
