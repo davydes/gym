@@ -4,6 +4,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     generic_callback 'vkontakte'
   end
 
+  def google_oauth2
+    generic_callback 'google_oauth2'
+  end
+
   def generic_callback( provider )
     @user = User.find_for_oauth(Utils::OAuth.normalize(env['omniauth.auth']), current_user)
 

@@ -12,15 +12,6 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
 
   %div.form-group
-    = f.label :name, class: 'col-sm-3 col-md-4 control-label'
-    %div.col-sm-7.col-md-5
-      %div.input-group.input-group-sm
-        %span.input-group-addon
-          %i.fa.fa-fw.fa-user
-        = f.text_field :name, class: 'form-control', placeholder: User.human_attribute_name('name')
-      %span.help-block
-
-  %div.form-group
     = f.label :first_name, class: 'col-sm-3 col-md-4 control-label'
     %div.col-sm-7.col-md-5
       %div.input-group.input-group-sm

@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
   validates_length_of :city, maximum: 100
   validates_length_of :country, maximum: 100
 
-  validates :name, presence: true, format: { with: /\A\w*\z/i },
-            length: { maximum: 50 },
-            uniqueness: { case_sensitive: false }
-
   validates :first_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
   validates :last_name,  format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
   validates :gender, inclusion: [:m, :f, 'm', 'f', nil]
@@ -25,7 +21,6 @@ class User < ActiveRecord::Base
 
   before_save {
     self.email = email.downcase if email
-    self.name = name.downcase if name
   }
 
   # associations
@@ -39,7 +34,6 @@ class User < ActiveRecord::Base
       if (data = session["devise.auth_data"])
         data = Utils::OAuth.normalize data
         user.email = data.info.email if user.email.blank?
-        user.name = data.info.nickname
       end
     end
   end
@@ -53,7 +47,6 @@ class User < ActiveRecord::Base
       user = User.new(
           email: identity.email,
           confirmed_at: DateTime.now,
-          name: identity.nickname,
           first_name: normalized_auth.info.first_name,
           last_name: normalized_auth.info.last_name,
           password: generated_password,

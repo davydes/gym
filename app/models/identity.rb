@@ -6,8 +6,7 @@ class Identity < ActiveRecord::Base
 
   def self.find_for_oauth(normalized_auth)
     auth = normalized_auth
-    identity = find_by(provider: auth.provider, uid: auth.uid)
-    identity = create(uid: auth.uid, provider: auth.provider) if identity.nil?
+    identity = find_or_create_by(provider: auth.provider, uid: auth.uid)
     identity.accesstoken = auth.credentials.token
     identity.refreshtoken = auth.credentials.refresh_token
     identity.name = auth.info.nickname

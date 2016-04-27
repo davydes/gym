@@ -1,6 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    sequence (:name) { |n| "user#{n}" }
+
+    transient do
+      sequence (:name) { |n| "user#{n}" }
+    end
+
     first_name { "firstname_#{name}" }
     last_name { "lastname_#{name}" }
     gender { [:f, :m].sample }

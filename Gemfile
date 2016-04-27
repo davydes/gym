@@ -10,6 +10,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
+gem "omniauth-google-oauth2"
 gem 'devise'
 gem 'cancan'
 gem 'fog'

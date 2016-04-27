@@ -3,6 +3,8 @@ module ApplicationHelper
     case provider.to_s
       when 'vkontakte'
         return 'vk';
+      when 'google_oauth2'
+        return 'google-plus';
       else
         return provider.to_s
     end

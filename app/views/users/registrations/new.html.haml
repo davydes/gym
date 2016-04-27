@@ -13,13 +13,6 @@
     %div.form-group
       %div.input-group
         %span.input-group-addon
-          %i.fa.fa-fw.fa-user
-        = f.text_field :name, autofocus: true, class: 'form-control', placeholder: t('.placeholder_name')
-      %span.help-block
-
-    %div.form-group
-      %div.input-group
-        %span.input-group-addon
           %i.fa.fa-fw.fa-lock
         = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: t('.placeholder_password')
       %span.help-block

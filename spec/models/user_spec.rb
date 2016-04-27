@@ -30,28 +30,6 @@ RSpec.describe User, :type => :model do
 
     describe 'should be invalid' do
       context 'when attribute' do
-        describe :name do
-          it 'is empty' do
-            user.name = ''
-            expect(user).to be_invalid
-          end
-
-          it 'too long' do
-            user.name = 'a'*100
-            expect(user).to be_invalid
-          end
-
-          it 'has wrong format' do
-            user.name = 'user#'
-            expect(user).to be_invalid
-          end
-
-          it 'already exists' do
-            user.name = create(:user).name
-            expect(user).to be_invalid
-          end
-        end
-
         describe :email do
           it 'is empty' do
             user.email = ''

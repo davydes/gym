@@ -266,5 +266,6 @@ Devise.setup do |config|
 
   # Providers
   config.omniauth :vkontakte, ENV['VK_KEY'], ENV['VK_SECRET'], scope: 'email'
+  config.omniauth :google_oauth2, ENV["GOOGLE_KEY"], ENV["GOOGLE_SECRET"], scope: 'email',  skip_jwt: true
 
 end
