@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       )
       user.skip_confirmation!
       user.save!
-      UserMailer.welcome(user, generated_password).deliver if user.persisted?
+      UserMailer.delay.welcome(user, generated_password) if user.persisted?
     end
 
     if user.persisted? && identity.user != user

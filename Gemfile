@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.5'
 gem 'puma'
+gem 'delayed_job_active_record'
 gem 'composite_primary_keys', '~> 8.0'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'omniauth'
