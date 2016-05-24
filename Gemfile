@@ -21,8 +21,6 @@ gem 'carrierwave'
 gem 'active_model_serializers', '0.10.0.rc4'
 gem 'redcarpet'
 gem 'mini_magick'
-#gem 'sdoc', '~> 0.4.0', group: :doc
-#gem 'bcrypt', '~> 3.1.7'
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
@@ -33,7 +31,7 @@ gem 'uglifier', '~> 3'
 gem 'sass-rails'
 
 # Assests
-gem "i18n-js", ">= 3.0.0.rc11"
+gem 'i18n-js', '>= 3.0.0.rc11'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'handlebars_assets'
@@ -63,6 +61,7 @@ end
 group :test do
   gem 'timecop'
   gem 'rspec-rails'
+  gem 'fakeredis'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
