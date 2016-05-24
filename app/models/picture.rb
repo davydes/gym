@@ -11,6 +11,7 @@ class Picture < ActiveRecord::Base
   has_many :picture_links, dependent: :destroy
 
   mount_uploader :image, PictureUploader
+  process_in_background :image
 
   validates :name, presence: true
 

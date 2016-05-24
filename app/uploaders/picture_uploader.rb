@@ -1,5 +1,5 @@
 class PictureUploader < CarrierWave::Uploader::Base
-
+  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
 
   def store_dir
@@ -35,6 +35,6 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   def secure_token
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
