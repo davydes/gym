@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   concern :pictureable do
     resources :picture_links, only: [:index, :create, :destroy]
@@ -16,4 +18,8 @@ Rails.application.routes.draw do
   resources :exercises
   resources :body_parts
   resources :pictures, only: [:index, :create, :update, :destroy]
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

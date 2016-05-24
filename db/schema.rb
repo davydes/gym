@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523103912) do
+ActiveRecord::Schema.define(version: 20160524104339) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -36,22 +36,6 @@ ActiveRecord::Schema.define(version: 20160523103912) do
 
   add_index "body_parts_muscles", ["body_part_id"], name: "index_body_parts_muscles_on_body_part_id"
   add_index "body_parts_muscles", ["muscle_id"], name: "index_body_parts_muscles_on_muscle_id"
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "exercises", force: :cascade do |t|
     t.string   "alias",       null: false
