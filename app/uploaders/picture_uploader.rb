@@ -23,18 +23,20 @@ class PictureUploader < CarrierWave::Uploader::Base
     process convert: 'jpg'
   end
 
-  def md5
-    @md5 ||= Digest::MD5.hexdigest model.send(mounted_as).read.to_s
-  end
-
   def filename
-    @name ||= "#{secure_token}.jpg"
+    if original_filename.present?
+      if model.respond_to?("#{mounted_as}_processing") && model.send("#{mounted_as}_processing")
+        @name ||= model.send("#{mounted_as}_identifier")
+      else
+        @name ||= "#{secure_token(8)}.jpg"
+      end
+    end
   end
 
   protected
 
-  def secure_token
+  def secure_token(length=16)
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
   end
 end

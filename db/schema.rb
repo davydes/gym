@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524104339) do
+ActiveRecord::Schema.define(version: 20160525095803) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -94,9 +94,10 @@ ActiveRecord::Schema.define(version: 20160524104339) do
   create_table "pictures", force: :cascade do |t|
     t.string   "image"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "name"
+    t.boolean  "image_processing", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
