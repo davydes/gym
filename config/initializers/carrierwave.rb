@@ -1,5 +1,11 @@
 CarrierWave.configure do |config|
-  if Rails.env.development? || Rails.env.test?
+
+  # Disable processing in tests
+  if  Rails.env.test? || Rails.env.cucumber?
+    config.enable_processing = false
+  end
+
+  if Rails.env.development? || Rails.env.test? || Rails.env.cucumber?
     config.storage = :file
   else
     config.storage = :fog
@@ -10,4 +16,5 @@ CarrierWave.configure do |config|
     }
     config.fog_directory = ENV['FOG_DIRECTORY']
   end
+
 end

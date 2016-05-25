@@ -4,12 +4,13 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'fakeredis/rspec'
-
 require 'devise'
+require "codeclimate-test-reporter"
+
 # Disable backgrounder proxy for tests
 Devise.mailer = Devise::Mailer
 
-require "codeclimate-test-reporter"
+
 CodeClimate::TestReporter.start
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
