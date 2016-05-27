@@ -6,8 +6,9 @@ class App.Views.Pictures.Dialog.Uploader extends App.CompositeView
     'click button.save' : 'create'
     'change input[name=\'image\']': 'preview'
 
-  initialize: ->
-    @model = @collection.create()
+  initialize: (options) ->
+    @model = new App.Models.Picture()
+    @model.collection = @collection
     @progress = new App.Views.Shared.Progress()
     @preview  = new App.Views.Shared.ImagePreview()
 

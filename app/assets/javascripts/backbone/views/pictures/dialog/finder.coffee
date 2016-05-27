@@ -10,21 +10,25 @@ class App.Views.Pictures.Dialog.Finder extends App.CompositeView
   initialize: (options) ->
     @obj_type = options.obj_type
     @obj_id = options.obj_id
+    @collection = new App.Collections.Pictures {},
+      url: '/pictures'
 
   renderLayout: ->
     @$el.html @template
 
   renderBrowser: ->
     view = new App.Views.Pictures.Dialog.List
+      collection: @collection
       obj_type: @obj_type
       obj_id: @obj_id
     container = @$('#pictures-browser')
     @renderChildInto(view, container)
     @listenTo view, 'pickPicture', @pickPicture
+    @loadPictures()
 
   renderUploader: ->
     view = new App.Views.Pictures.Dialog.Uploader
-      collection: new App.Collections.Pictures({}, url: '/pictures')
+      collection: @collection
     container = @$('#picture-uploader')
     @renderChildInto(view, container)
     @listenTo view, 'uploadedPicture', @pickPicture
@@ -44,5 +48,11 @@ class App.Views.Pictures.Dialog.Finder extends App.CompositeView
   pickPicture: (id) ->
     @trigger 'pickPicture', id
     @close()
+
+  loadPictures: ->
+    @collection.fetch
+      data:
+        obj_type: @obj_type
+        obj_id: @obj_id
 
 _.extend App.View, App.Mixins

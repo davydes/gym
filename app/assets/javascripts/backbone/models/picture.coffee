@@ -2,8 +2,6 @@ class App.Models.Picture extends App.Model
   defaults:
     'image_processing': false
 
-  log: (txt) -> console.log 'Picture ['+@id+'|'+@cid+']: '+txt
-
   saveFormData: (formData, options) ->
     method = if @isNew() then 'POST' else 'PUT'
 
