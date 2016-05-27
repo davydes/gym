@@ -4,11 +4,16 @@ class PictureLinksController < ApplicationController
 
   before_action :authenticate_user!
   authorize_resource
-  before_action :load_parent, only: [:index, :create, :destroy]
+  before_action :load_parent, only: [:index, :show, :create, :destroy]
 
   def index
     @pictures = @parent.pictures.all
     respond_with @pictures
+  end
+
+  def show
+    @picture = @parent.pictures.find(params[:id])
+    respond_with @picture
   end
 
   def create

@@ -9,7 +9,9 @@ class App.Views.Pictures.Manage.Item extends App.View
     'click a.delete' : 'destroyConfirmation'
 
   render: ->
-    @$el.html @template @model.toJSON()
+    el = @template @model.toJSON()
+    @$el.html el
+    @whileInProcessing() if @model.get('image_processing')
     return @
 
   replaceWith: (view) ->
@@ -28,6 +30,18 @@ class App.Views.Pictures.Manage.Item extends App.View
       success: =>
         @remove()
         messages.info I18n.t 'pictures.messages.delete_successful'
+
+  whileInProcessing: ->
+    @$el.find('img').attr('src', image_path('processing.gif'))
+    setTimeout(
+      timer = =>
+        @model.fetch(wait: true)
+        if @model.get('image_processing')
+          setTimeout timer, 2000
+        else
+          @$el.find('img').attr('src', @model.get('thumb'))
+      2000
+    )
 
   leave: ->
     @remove()

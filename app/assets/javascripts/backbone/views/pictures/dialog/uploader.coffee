@@ -7,8 +7,7 @@ class App.Views.Pictures.Dialog.Uploader extends App.CompositeView
     'change input[name=\'image\']': 'preview'
 
   initialize: ->
-    @model = new App.Models.Picture()
-    @model.collection = @collection
+    @model = @collection.create()
     @progress = new App.Views.Shared.Progress()
     @preview  = new App.Views.Shared.ImagePreview()
 
@@ -51,15 +50,22 @@ class App.Views.Pictures.Dialog.Uploader extends App.CompositeView
     formData.append("picture[name]", @$('input[name=\'name\']').val())
     formData.append("picture[image]", @$('input[name=\'image\']')[0].files[0])
 
-    @model.saveFormData formData,
-      prepare: => @_uploadPrepare()
-      progress: (prc) => @progress.progress(prc)
-      finish: => @progress.infinite('')
-      success: => @_uploadSuccess()
-      error: (model, response) => @_uploadUnsuccess(model, response)
+    @listenTo @model, 'upload:prepare', @_uploadPrepare
+    @listenTo @model, 'upload:progress', @_setProgress
+    @listenTo @model, 'upload:success', @_uploadSuccess
+    @listenTo @model, 'upload:finish', @_setFinish
+    @listenTo @model, 'upload:error', @_uploadUnsuccess
+
+    @model.saveFormData formData
 
   preview: (e) ->
     @preview.setFile(e.currentTarget.files[0])
+
+  _setProgress: (prc) ->
+    @progress.progress(prc)
+
+  _setFinish: ->
+    @progress.infinite('')
 
   _uploadPrepare: ->
     @progress.show()
@@ -67,7 +73,6 @@ class App.Views.Pictures.Dialog.Uploader extends App.CompositeView
 
   _uploadSuccess: ->
     @progress.hide()
-    @collection.add @model
     @trigger 'uploadedPicture', @model.id
 
   _uploadUnsuccess: (model, response) ->

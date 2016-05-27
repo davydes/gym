@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   concern :pictureable do
-    resources :picture_links, only: [:index, :create, :destroy]
+    resources :picture_links, only: [:index, :show, :create, :destroy], path: 'pictures'
   end
 
   root 'welcome#index'

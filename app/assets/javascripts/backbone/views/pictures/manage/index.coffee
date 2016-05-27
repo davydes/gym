@@ -6,7 +6,7 @@ class App.Views.Pictures.Manage.Index extends App.CompositeView
     'click a.add' : 'selectPicture'
 
   initialize: (options) ->
-    @listenTo @collection, "change reset remove add", @render
+    @listenTo @collection, "reset remove add", @render
     @obj_type = options.obj_type
     @obj_id = options.obj_id
 
