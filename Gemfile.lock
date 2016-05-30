@@ -514,3 +514,9 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (~> 3)
   yui-compressor
+
+RUBY VERSION
+   ruby 2.1.10p492
+
+BUNDLED WITH
+   1.12.5

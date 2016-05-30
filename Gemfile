@@ -1,4 +1,4 @@
-ruby '2.1.8'
+ruby '2.1.10'
 
 source 'https://rubygems.org'
 
@@ -50,7 +50,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'spring'
-  #gem 'capistrano-rails'
 end
 
 group :development do
