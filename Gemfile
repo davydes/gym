@@ -22,6 +22,8 @@ gem 'carrierwave_backgrounder'
 gem 'active_model_serializers', '0.10.0.rc4'
 gem 'redcarpet'
 gem 'mini_magick'
+gem 'foreman'
+gem 'figaro'
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
@@ -43,19 +45,28 @@ gem 'lightbox2-rails', '~> 2.7.0'
 
 group :production do
   gem 'pg'
+end
+
+group :production, :staging do
   gem 'rails_12factor'
   gem 'yui-compressor'
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'spring'
 end
+
+gem 'sqlite3', group: [:test, :development, :staging]
 
 group :development do
   gem 'better_errors'
   gem 'byebug'
   gem 'binding_of_caller'
+
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rvm'
 end
 
 group :test do
