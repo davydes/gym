@@ -43,20 +43,16 @@ gem 'rails-backbone'
 gem 'bootstrap-datepicker-rails'
 gem 'lightbox2-rails', '~> 2.7.0'
 
-group :production do
-  gem 'pg'
-end
-
 group :production, :staging do
+  gem 'pg'
   gem 'rails_12factor'
   gem 'yui-compressor'
 end
 
 group :development, :test do
   gem 'spring'
+  gem 'sqlite3'
 end
-
-gem 'sqlite3', group: [:test, :development, :staging]
 
 group :development do
   gem 'better_errors'

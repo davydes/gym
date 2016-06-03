@@ -17,6 +17,7 @@
 /tmp
 /coverage
 /shared
+/config/application.yml
 /public/system
 /public/uploads
 /public/picture

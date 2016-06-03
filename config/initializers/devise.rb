@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = ENV['MAILER_FROM']
+  config.mailer_sender = Rails.application.secrets.mail_from
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -266,7 +266,13 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # Providers
-  config.omniauth :vkontakte, ENV['VK_KEY'], ENV['VK_SECRET'], scope: 'email'
-  config.omniauth :google_oauth2, ENV["GOOGLE_KEY"], ENV["GOOGLE_SECRET"], scope: 'email',  skip_jwt: true
+  config.omniauth :vkontakte,
+                  Rails.application.secrets.vk_key,
+                  Rails.application.secrets.vk_secret,
+                  scope: 'email'
+  config.omniauth :google_oauth2,
+                  Rails.application.secrets.googleplus_key,
+                  Rails.application.secrets.googleplus_secret,
+                  scope: 'email',  skip_jwt: true
 
 end

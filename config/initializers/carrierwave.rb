@@ -10,11 +10,11 @@ CarrierWave.configure do |config|
   else
     config.storage = :fog
     config.fog_credentials = {
-        :provider                         => ENV['FOG_PROVIDER'],
-        :google_storage_access_key_id     => ENV['FOG_ACCESSKEY'],
-        :google_storage_secret_access_key => ENV['FOG_SECRETKEY']
+        :provider                         => 'Google',
+        :google_storage_access_key_id     => Rails.application.secrets.fog_accesskey,
+        :google_storage_secret_access_key => Rails.application.secrets.fog_secretkey
     }
-    config.fog_directory = ENV['FOG_DIRECTORY']
+    config.fog_directory = Rails.application.secrets.fog_directory
   end
 
 end

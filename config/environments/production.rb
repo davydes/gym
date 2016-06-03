@@ -81,14 +81,16 @@ Rails.application.configure do
   # E-mail
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'loggym.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.hostname }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: '587',
-    enable_starttls_auto: true,
-    user_name: ENV['GMAIL_USER'],
-    password: ENV['GMAIL_PWD'],
-    authentication: :plain
+      tls: true,
+      address: 'smtp.yandex.ru',
+      port: '465',
+      authentication: :plain,
+      domain: Rails.application.secrets.hostname,
+      enable_starttls_auto: true,
+      user_name: Rails.application.secrets.mail_user,
+      password: Rails.application.secrets.mail_password
   }
 
   # gzip compression
