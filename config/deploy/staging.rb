@@ -1,7 +1,8 @@
 set :rails_env, 'staging'
 set :rake_env,  'staging'
 set :user, 'deploy'
+ask :server, 'logym.ru'
 
-server 'dev.logym.ru:2200',
-  user: "#{fetch(:user)}", 
-  roles: %w{app db web}
+server fetch(:server),
+       user: "#{fetch(:user)}",
+       roles: %w{app db web}

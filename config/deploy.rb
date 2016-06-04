@@ -9,7 +9,7 @@ set :format, :airbrussh
 set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 set :pty, true
 set :keep_releases, 3
-set :linked_files, fetch(:linked_files, []).push('config/puma.rb', 'config/application.yml')
+set :linked_files, fetch(:linked_files, []).push('config/puma.rb', 'config/application.yml', 'config/sidekiq.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
@@ -21,6 +21,30 @@ set :rvm_ruby_version, '2.1.10'
 set :rvm_custom_path, '~/.rvm'
 
 ################################################################################
+
+namespace :app do
+  desc 'Stop Application'
+  task :stop do
+    on roles(:web) do
+      # Do stop
+      sudo "systemctl stop #{fetch :application}-web@#{fetch :stage}"
+      sudo "systemctl stop #{fetch :application}-worker@#{fetch :stage}"
+    end
+  end
+
+  desc 'Start Application'
+  task :start do
+    on roles(:web) do
+      sudo "systemctl start #{fetch :application}-web@#{fetch :stage}"
+      sudo "systemctl start #{fetch :application}-worker@#{fetch :stage}"
+    end
+  end
+
+  desc 'Restart Application'
+  task :restart
+  before :restart, :stop
+  before :restart, :start
+end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
@@ -41,8 +65,11 @@ namespace :deploy do
       execute "mkdir -p #{shared_path}/config"
       upload! "shared/application.#{fetch :stage}.yml", "#{shared_path}/config/application.yml"
       upload! "shared/puma.rb", "#{shared_path}/config/puma.rb"
+      upload! "shared/sidekiq.yml", "#{shared_path}/config/sidekiq.yml"
     end
   end
+
+  after :publishing, 'app:restart'
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do

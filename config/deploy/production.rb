@@ -1,7 +1,8 @@
 set :rails_env, 'production'
 set :rake_env,  'production'
 set :user, 'deploy'
+ask :server, 'logym.ru'
 
-server 'logym.ru:2200',
+server fetch(:server),
        user: "#{fetch(:user)}",
        roles: %w{app db web}
