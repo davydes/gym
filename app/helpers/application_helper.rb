@@ -46,7 +46,8 @@ module ApplicationHelper
 
   def page_title
     title = content_for?(:title) ? yield(:title) : I18n.t(:sitename)
-    title = 'Dev: ' + title if Rails.env.development?
+    title = '[DEVELOP] ' + title if Rails.env.development?
+    title = '[STAGING] ' + title if Rails.env.staging?
     title
   end
 

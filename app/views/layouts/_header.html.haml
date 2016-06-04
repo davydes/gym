@@ -8,6 +8,7 @@
     %a.navbar-brand{href: root_path}
       Gym
       #{'<sup><strong class="alert-info">dev</strong></sup>'.html_safe if Rails.env.development?}
+      #{'<sup><strong class="alert-info">staging</strong></sup>'.html_safe if Rails.env.staging?}
       #{'<sup><strong class="alert-danger">admin</strong></sup>'.html_safe if admin?}
   .collapse.navbar-collapse
     %ul.nav.navbar-nav.navbar-right
