@@ -10,7 +10,7 @@ set :format_options, command_output: true, log_file: 'log/capistrano.log', color
 set :pty, true
 set :keep_releases, 3
 set :linked_files, fetch(:linked_files, []).push('config/puma.rb', 'config/application.yml', 'config/sidekiq.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'tmp/cache', 'vendor/bundle', 'public/system', 'public/uploads')
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # RVM
