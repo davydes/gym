@@ -64,7 +64,7 @@ namespace :deploy do
     on roles(:web) do
       execute "mkdir -p #{shared_path}/config"
       upload! "shared/application.#{fetch :stage}.yml", "#{shared_path}/config/application.yml"
-      upload! "shared/puma.rb", "#{shared_path}/config/puma.rb"
+      upload! "shared/puma.#{fetch :stage}.rb", "#{shared_path}/config/puma.rb"
       upload! "shared/sidekiq.yml", "#{shared_path}/config/sidekiq.yml"
     end
   end

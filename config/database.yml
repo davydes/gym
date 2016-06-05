@@ -11,11 +11,10 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-staging:
-  <<: *default
-  database: db/staging.sqlite3
+production: &production
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DATABASE_POOL"] || 5 %>
+  timeout: 1000
 
-production:
-  <<: *default
-  adapter: postgresql
-  database: loggym
+staging:
+  <<: *production
