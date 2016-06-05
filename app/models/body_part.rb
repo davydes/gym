@@ -5,8 +5,6 @@ class BodyPart < ActiveRecord::Base
   has_and_belongs_to_many :exercises
 
   scope :with_muscles, -> {
-      joins(:muscles).
-      group('body_parts.id').
-      having('count(body_part_id) > 0')
+    includes(:muscles).where.not(muscles: { id: nil })
   }
 end
