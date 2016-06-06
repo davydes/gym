@@ -1,18 +1,19 @@
-%h3 Добро пожаловать на ресурс
+- cache 'welcome#index', :expires_in => 5.minutes do
+  %h3 Добро пожаловать на ресурс
 
-%p
-  На данный момент справочник содержит информацию о
-  %strong #{t '.muscles', count: @muscle_count}
-  распределнных в
-  %strong #{t '.categories', count: @body_part_count} частей тела.
+  %p
+    На данный момент справочник содержит информацию о
+    %strong #{t '.muscles', count: Muscle.count}
+    распределнных в
+    %strong #{t '.categories', count: BodyPart.count} частей тела.
 
-%p
-  Также справочник насчитывает
-  %strong #{t '.exercises', count: @exercise_count}.
+  %p
+    Также справочник насчитывает
+    %strong #{t '.exercises', count: Exercise.count}.
 
-%p
-  Зарегестрированных пользователей в системе:
-  %strong #{@user_count}
+  %p
+    Зарегестрированных пользователей в системе:
+    %strong #{User.count}
 
 %p
   Текущее системное время
