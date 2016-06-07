@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525095803) do
+ActiveRecord::Schema.define(version: 20160607131217) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -129,5 +129,21 @@ ActiveRecord::Schema.define(version: 20160525095803) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "workout_items", force: :cascade do |t|
+    t.integer "workout_id",  null: false
+    t.integer "exercise_id", null: false
+    t.text    "description"
+    t.text    "sets",        null: false
+    t.integer "pos",         null: false
+  end
+
+  add_index "workout_items", ["workout_id", "pos"], name: "index_workout_items_on_workout_id_and_pos", unique: true
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "alias",       null: false
+    t.string "name",        null: false
+    t.text   "description"
+  end
 
 end
