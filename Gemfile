@@ -24,6 +24,7 @@ gem 'redcarpet'
 gem 'mini_magick'
 gem 'foreman'
 gem 'figaro'
+gem "unicorn-rails"
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
