@@ -9,7 +9,7 @@ set :format, :airbrussh
 set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 set :pty, true
 set :keep_releases, 3
-set :linked_files, fetch(:linked_files, []).push('config/puma.rb', 'config/application.yml', 'config/sidekiq.yml')
+set :linked_files, fetch(:linked_files, []).push('config/application.yml', 'config/unicorn.rb', 'config/sidekiq.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'tmp/cache', 'vendor/bundle', 'public/system', 'public/uploads')
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
@@ -64,7 +64,8 @@ namespace :deploy do
     on roles(:web) do
       execute "mkdir -p #{shared_path}/config"
       upload! "shared/application.#{fetch :stage}.yml", "#{shared_path}/config/application.yml"
-      upload! "shared/puma.#{fetch :stage}.rb", "#{shared_path}/config/puma.rb"
+      #upload! "shared/puma.#{fetch :stage}.rb", "#{shared_path}/config/puma.rb"
+      upload! "shared/unicorn.#{fetch :stage}.rb", "#{shared_path}/config/unicorn.rb"
       upload! "shared/sidekiq.yml", "#{shared_path}/config/sidekiq.yml"
     end
   end
