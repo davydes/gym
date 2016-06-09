@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607131217) do
+ActiveRecord::Schema.define(version: 20160609083043) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -70,6 +70,23 @@ ActiveRecord::Schema.define(version: 20160607131217) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "journal_items", force: :cascade do |t|
+    t.integer  "journal_id",  null: false
+    t.integer  "workout_id",  null: false
+    t.datetime "executed_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "journal_items", ["journal_id"], name: "index_journal_items_on_journal_id"
+  add_index "journal_items", ["workout_id"], name: "index_journal_items_on_workout_id"
+
+  create_table "journals", force: :cascade do |t|
+    t.integer "user_id"
+  end
+
+  add_index "journals", ["user_id"], name: "index_journals_on_user_id"
 
   create_table "muscles", force: :cascade do |t|
     t.string   "alias",       null: false
@@ -138,7 +155,9 @@ ActiveRecord::Schema.define(version: 20160607131217) do
     t.integer "pos",         null: false
   end
 
+  add_index "workout_items", ["exercise_id"], name: "index_workout_items_on_exercise_id"
   add_index "workout_items", ["workout_id", "pos"], name: "index_workout_items_on_workout_id_and_pos", unique: true
+  add_index "workout_items", ["workout_id"], name: "index_workout_items_on_workout_id"
 
   create_table "workouts", force: :cascade do |t|
     t.string "alias",       null: false

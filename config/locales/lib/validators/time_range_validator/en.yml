@@ -1,0 +1,6 @@
+en:
+  errors:
+    messages:
+      wrong_time: "is the wrong time (should be %{time})"
+      too_early_time: "is too early time (should be at later %{time})"
+      too_later_time: "is too later (should be at early %{time})"
