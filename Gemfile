@@ -4,14 +4,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.5'
 gem 'sinatra', :require => nil
-gem 'puma'
 gem 'sidekiq'
 gem 'composite_primary_keys', '~> 8.0'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
+#gem 'omniauth-twitter'
+#gem 'omniauth-facebook'
+#gem 'omniauth-linkedin'
 gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2'
 gem 'devise'
@@ -22,9 +21,8 @@ gem 'carrierwave_backgrounder'
 gem 'active_model_serializers', '0.10.0.rc4'
 gem 'redcarpet'
 gem 'mini_magick'
-gem 'foreman'
 gem 'figaro'
-gem "unicorn-rails"
+gem 'unicorn-rails'
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
@@ -59,7 +57,8 @@ group :development do
   gem 'better_errors'
   gem 'byebug'
   gem 'binding_of_caller'
-
+  gem 'foreman'
+  gem 'puma'
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1.2'
