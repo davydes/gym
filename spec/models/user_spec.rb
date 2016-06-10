@@ -108,6 +108,20 @@ RSpec.describe User, :type => :model do
     end
   end
 
+  describe '#journal' do
+    before :all do
+      @user = create(:user)
+    end
+
+    it 'should create Journal model when it doesn\'t exists' do
+      expect{@user.journal}.to change{Journal.count}.by(1)
+    end
+
+    it 'should not create Journal model when it exists' do
+      expect{@user.journal}.to change{Journal.count}.by(0)
+    end
+  end
+
   describe '::find_for_oauth' do
     it 'find existing user by identity' do
       user1 = create(:user)

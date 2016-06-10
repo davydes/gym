@@ -26,8 +26,20 @@ class User < ActiveRecord::Base
   # associations
 
   has_many :identities, :dependent => :delete_all
+  has_one  :journal
 
   #methods
+  
+  # use lazy user journal creation
+  alias :original_journal_method :journal
+  def journal
+    if original_journal_method.nil? 
+      Rails.logger.warn "Create journal for user_id #{self.id}"
+      Journal.create(user: self)
+    else
+      original_journal_method
+    end
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
