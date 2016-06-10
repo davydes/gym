@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   resources :body_parts
   resources :pictures, only: [:index, :create, :update, :destroy]
 
+  namespace :journal do
+    resources :items
+  end
+  get :journal, to: 'journal/items#index'
+
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
