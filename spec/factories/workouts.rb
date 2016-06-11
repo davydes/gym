@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :workout do
-    sequence (:alias) { |n| "workout#{n}" }
     name 'Example Workout'
     description 'Workout Description'
 

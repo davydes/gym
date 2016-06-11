@@ -1,7 +1,5 @@
 require 'rails_helper'
 RSpec.describe Workout, type: :model do
-  it_behaves_like 'anatomic'
-
   let (:workout) { create :workout }
 
   describe 'ordering items' do
