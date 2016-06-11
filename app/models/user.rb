@@ -8,12 +8,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates_length_of :email, maximum: 100
-  validates_length_of :city, maximum: 100
-  validates_length_of :country, maximum: 100
-
-  validates :first_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
-  validates :last_name,  format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
+  validates :email, :city, :country, length: { maximum: 100 }
+  validates :first_name, :last_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
   validates :gender, inclusion: [:m, :f, 'm', 'f', nil]
   validate :at_least_18
 
