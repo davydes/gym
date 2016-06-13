@@ -4,7 +4,12 @@ class Journal::ItemsController < ApplicationController
   respond_to :json
 
   def index
-    @items = current_user.journal.items
+    @items = current_user.journal.items.eager_load(workout: [items: [:exercise]])
     respond_with @items
+  end
+
+  def show
+    @item = current_user.journal.items.eager_load(workout: [items: [:exercise]]).find(params[:id])
+    respond_with @item
   end
 end
