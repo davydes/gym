@@ -45,4 +45,8 @@ class App.CompositeView extends Backbone.View
   _removeChild: (view) ->
     @children.splice(@children.indexOf(view), 1)
 
+  onShow: ->
+    @children.chain().clone().each (view) ->
+      view.onShow() if view.onShow
+
 _.extend App.View, App.Mixins

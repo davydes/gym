@@ -1,0 +1,9 @@
+ru:
+  journal:
+    items:
+      actions:
+        add: "Добавить тренеровку"
+        save: "Сохранить"
+        cancel: "Отменить"
+      wo_items: 'количество упражнений'
+      you_havent_any_records: 'У вас нет не одной записи в журнале'

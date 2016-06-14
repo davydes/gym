@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :pictures, only: [:index, :create, :update, :destroy]
 
   namespace :journal do
-    resources :items, only: [:index, :show]
+    resources :items
   end
 
   authenticate :user, lambda { |u| u.admin? } do

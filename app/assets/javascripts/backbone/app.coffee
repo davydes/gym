@@ -32,7 +32,8 @@
     Journal: {}
   Routers: {}
   Views:
-    Journal: {}
+    Journal:
+      Items: {}
     Pictures:
       Manage: {}
       Dialog: {}

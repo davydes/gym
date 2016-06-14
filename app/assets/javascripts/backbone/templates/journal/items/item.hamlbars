@@ -1,0 +1,8 @@
+.row
+  .col-md-3.col-sm-5.col-xs-5
+    %span.fa.fa-clock-o
+    #{hb 'executed_at'}
+  .col-md-8.col-sm-5.col-xs-5
+    #{hb 'workout_name'}
+  .col-md-1.col-sm-2.col-xs-2
+    .badge #{hb('count')}

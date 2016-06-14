@@ -7,9 +7,21 @@ class App.Routers.Journal extends App.Router
 
   routes:
     '' : 'index'
+    'add' : 'add'
+    'show/:id' : 'show'
 
   index: ->
-    view = new App.Views.Journal.Index
+    view = new App.Views.Journal.Items.Index
       collection: @items
-      el: @el
+    @swapView(view)
+
+  add: ->
+    view = new App.Views.Journal.Items.New
+      collection: @items
+    @swapView(view)
+
+  show: (id) ->
+    console.log 'Journal.Router#show '+id
+    view = new App.Views.Journal.Items.Show
+      collection: @items
     @swapView(view)

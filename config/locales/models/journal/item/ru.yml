@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    models:
+      journal/item: 'Запись журнала'
+    attributes:
+      journal/item:
+        executed_at: 'Время выполнения'

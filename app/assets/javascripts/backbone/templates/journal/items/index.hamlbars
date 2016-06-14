@@ -1,0 +1,11 @@
+%h3
+  #{Journal.model_name.human}
+  %a.btn.btn-sm.btn-success.pull-right{href: '#add'} #{I18n.t 'journal.items.actions.add'}
+
+%br
+
+= hb 'if hasAny' do
+  .list-group
+
+  =hb 'else'
+  .well.text-center #{I18n.t 'journal.items.you_havent_any_records'}

@@ -1,0 +1,4 @@
+ru:
+  activerecord:
+    models:
+      journal: 'Журнал тренеровок'

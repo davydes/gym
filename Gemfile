@@ -39,7 +39,9 @@ gem 'twitter-bootstrap-rails'
 gem 'handlebars_assets'
 gem 'hamlbars'
 gem 'rails-backbone'
+gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'lightbox2-rails', '~> 2.7.0'
 
 group :production, :staging do

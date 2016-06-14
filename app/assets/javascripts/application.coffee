@@ -8,6 +8,9 @@
 #= require bootstrap-multiselect
 #= require bootstrap-datepicker/core
 #= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
+#= require moment
+#= require moment/ru
+#= require bootstrap-datetimepicker
 #= require bootstrap-filestyle
 #= require backbone/app
 #= require lightbox
