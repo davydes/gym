@@ -1,5 +1,5 @@
-class App.Views.Journal.Items.Item extends App.CompositeView
-  template: HandlebarsTemplates['journal/items/item']
+class App.Views.Journals.Items.Item extends App.CompositeView
+  template: HandlebarsTemplates['journals/items/item']
   className: 'list-group-item'
   tagName: 'a'
 

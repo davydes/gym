@@ -1,5 +1,5 @@
-class App.Views.Journal.Items.Show extends App.CompositeView
-  template: HandlebarsTemplates['journal/items/show']
+class App.Views.Journals.Items.Show extends App.CompositeView
+  template: HandlebarsTemplates['journals/items/show']
 
   initialize: (options) ->
     @listenTo @model, "change", @render

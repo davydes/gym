@@ -1,5 +1,5 @@
-class App.Views.Journal.Items.New extends App.CompositeView
-  template: HandlebarsTemplates['journal/items/new']
+class App.Views.Journals.Items.New extends App.CompositeView
+  template: HandlebarsTemplates['journals/items/new']
   className: 'journal-item-new'
 
   initialize: ->

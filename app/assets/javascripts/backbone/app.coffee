@@ -32,7 +32,7 @@
     Journal: {}
   Routers: {}
   Views:
-    Journal:
+    Journals:
       Items: {}
     Pictures:
       Manage: {}

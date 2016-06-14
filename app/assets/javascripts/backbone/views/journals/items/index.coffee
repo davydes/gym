@@ -1,5 +1,5 @@
-class App.Views.Journal.Items.Index extends App.CompositeView
-  template: HandlebarsTemplates['journal/items/index']
+class App.Views.Journals.Items.Index extends App.CompositeView
+  template: HandlebarsTemplates['journals/items/index']
   className: 'index'
 
   initialize: (options) ->
@@ -12,6 +12,6 @@ class App.Views.Journal.Items.Index extends App.CompositeView
     @$el.html @template @params()
     c = @$('.list-group')
     @collection.each (item) =>
-      view = new App.Views.Journal.Items.Item({ model: item })
+      view = new App.Views.Journals.Items.Item({ model: item })
       @appendChildTo(view, c)
     return @
