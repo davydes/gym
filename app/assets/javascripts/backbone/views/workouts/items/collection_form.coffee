@@ -31,4 +31,6 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
     @collection.add(new App.Models.WorkoutItem())
 
   getFormData: ->
-    []
+    _.each @children, (item) ->
+      console.log item
+    return []
