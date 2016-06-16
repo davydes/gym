@@ -2,13 +2,14 @@ class App.Routers.Journal extends App.Router
 
   initialize: (options) ->
     @el = options.el
-    @items = new App.Collections.Journal.Items options.items,
+    @items = new App.Collections.JournalItemCollection options.items,
       url: options.url
 
   routes:
     '' : 'index'
     'add' : 'add'
     'show/:id' : 'show'
+    '404' : 'notFound'
 
   index: ->
     view = new App.Views.Journals.Items.Index
@@ -21,7 +22,15 @@ class App.Routers.Journal extends App.Router
     @swapView(view)
 
   show: (id) ->
-    console.log 'Journal.Router#show '+id
-    view = new App.Views.Journals.Items.Show
-      collection: @items
-    @swapView(view)
+    item = App.Models.JournalItem.findOrCreate(id: id)
+    item.collection = @items
+    item.fetch
+      success: (model, response) =>
+        view = new App.Views.Journals.Items.Show
+          model: model
+        @swapView(view)
+      error: =>
+        app.navigate '404', {trigger:true, replace:true}
+
+  notFound: ->
+    @swapView(new  App.Views.Shared.NotFound())

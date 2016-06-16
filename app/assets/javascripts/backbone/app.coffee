@@ -26,13 +26,13 @@
 
 @App  =
   Mixins: {}
-  Models:
-    Journal: {}
-  Collections:
-    Journal: {}
+  Models: {}
+  Collections: {}
   Routers: {}
   Views:
     Journals:
+      Items: {}
+    Workouts:
       Items: {}
     Pictures:
       Manage: {}

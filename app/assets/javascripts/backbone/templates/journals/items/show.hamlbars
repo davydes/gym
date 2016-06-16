@@ -1,1 +1,3 @@
-%h3 #{Workout.model_name.human}
+%h3 Jornal record at #{hb 'executed_at'}
+
+.workout

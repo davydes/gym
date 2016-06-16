@@ -13,8 +13,8 @@ class App.Views.Journals.Items.Item extends App.CompositeView
   params: ->
     id: @model.get('id')
     executed_at: moment.unix(@model.get('executed_at')).format('YYYY.MM.DD HH:MM')
-    count: @model.get('workout').items.length
-    workout_name: @model.get('workout').name
+    count: @model.get('workout').get('items').length
+    workout_name: @model.get('workout').get('name')
 
   render: ->
     @$el.html @template @params()
