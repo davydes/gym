@@ -37,6 +37,7 @@
     Pictures:
       Manage: {}
       Dialog: {}
-    Shared: {}
+    Shared:
+      Components: {}
 
 _.extend App, Backbone.Events

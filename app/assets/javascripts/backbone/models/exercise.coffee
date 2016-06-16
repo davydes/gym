@@ -1,0 +1,1 @@
+class App.Models.Exercise extends App.Model

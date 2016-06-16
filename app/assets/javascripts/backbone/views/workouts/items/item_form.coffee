@@ -1,13 +1,20 @@
 class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   template: HandlebarsTemplates['workouts/items/item_form']
   tagName: 'li'
-  className: 'workouts-items-item_form'
 
   events:
     'click a.delete' : 'destroy'
 
-  render: ->
+  renderLayout: ->
     @$el.html @template
+
+  renderExerciseBox: ->
+    @appendChild(new App.Views.Shared.Components.ExerciseBox())
+
+  render: ->
+    @renderLayout()
+    @renderExerciseBox()
+    return @
 
   destroy: ->
     @model.destroy
