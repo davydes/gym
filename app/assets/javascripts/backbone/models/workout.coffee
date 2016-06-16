@@ -8,3 +8,5 @@ class App.Models.Workout extends App.RelationalModel
     relatedModel: 'App.Models.WorkoutItem'
     relatedCollection: 'App.Collections.WorkoutItemCollection'
   }]
+
+  sync: -> false

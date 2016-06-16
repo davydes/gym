@@ -12,7 +12,7 @@
 
   .form-group
     %h4.col-lg-12.text-center #{Workout.model_name.human}
-    .workout-area
+    .workout-form
 
   .form-group
     .row

@@ -1,6 +1,6 @@
 class App.Views.Workouts.Form extends App.CompositeView
   template: HandlebarsTemplates['workouts/form']
-  className: 'workout-form'
+  className: 'workouts-form'
 
   initialize: ->
     @model = new App.Models.Workout()
@@ -12,13 +12,13 @@ class App.Views.Workouts.Form extends App.CompositeView
   renderLayout: ->
     @$el.html @template @params()
 
-  renderItems: ->
-    container = @$('.workout-items')
+  renderCollectionForm: ->
+    container = @$('.workout-items-collection-form')
     @appendChildTo(@itemsView, container)
 
   render: ->
     @renderLayout()
-    @renderItems()
+    @renderCollectionForm()
     return @
 
   getFormData: ->

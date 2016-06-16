@@ -5,7 +5,7 @@ class App.Views.Journals.Items.New extends App.CompositeView
   initialize: ->
     @model = new App.Models.JournalItem()
     @model.collection = @collection
-    @workoutView = new App.Views.Workouts.Form()
+    @workoutFormView = new App.Views.Workouts.Form()
 
   events:
     'click .save' : 'save'
@@ -15,13 +15,13 @@ class App.Views.Journals.Items.New extends App.CompositeView
     @$el.html @template
     @_dateTimePicker('input[name=executed_at]', @model.get('executed_at'))
 
-  renderWorkout: ->
-    container = @$('.workout-area')
-    @appendChildTo(@workoutView, container)
+  renderWorkoutForm: ->
+    container = @$('.workout-form')
+    @appendChildTo(@workoutFormView, container)
 
   render: ->
     @renderLayout()
-    @renderWorkout()
+    @renderWorkoutForm()
     return @
 
   cancel: (e) ->
@@ -29,7 +29,7 @@ class App.Views.Journals.Items.New extends App.CompositeView
 
   save: (e) ->
     @model.set 'executed_at', @$('input[name=executed_at]').data("DateTimePicker").date().unix()
-    @model.set 'workout', @workoutView.getFormData()
+    @model.set 'workout', @workoutFormView.getFormData()
     console.log @model.get('workout')
     @model.save()
 
