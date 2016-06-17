@@ -1,4 +1,4 @@
-class App.Collections.JournalItemCollection extends App.Collection
+class App.Collections.JournalItem extends App.Collection
   model: App.Models.JournalItem
 
   url: ->

@@ -2,7 +2,7 @@ class App.Routers.Journal extends App.Router
 
   initialize: (options) ->
     @el = options.el
-    @items = new App.Collections.JournalItemCollection options.items,
+    @items = new App.Collections.JournalItem options.items,
       url: options.url
 
   routes:

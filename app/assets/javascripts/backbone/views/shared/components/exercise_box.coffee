@@ -5,12 +5,13 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
   events:
     'change select' : '_selected'
 
-  initialize: ->
+  initialize: (options) ->
     if !App.reference_exercises?
       App.reference_exercises = new App.Collections.Exercise({}, { url: '/exercises' })
       App.reference_exercises.fetch()
     @collection = App.reference_exercises
     @listenTo(@collection, 'sync', @render)
+    @name = if options? && options.name? then options.name else 'exercise_id'
 
   params: ->
     options:
@@ -19,6 +20,7 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
         name: item.get('name')
 
   renderLayout: ->
+    @$el.attr('name', @name)
     @$el.html @template @params()
 
   render: ->

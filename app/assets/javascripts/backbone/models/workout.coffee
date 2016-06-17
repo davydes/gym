@@ -6,7 +6,7 @@ class App.Models.Workout extends App.RelationalModel
     type: 'HasMany'
     key: 'items'
     relatedModel: 'App.Models.WorkoutItem'
-    relatedCollection: 'App.Collections.WorkoutItemCollection'
+    relatedCollection: 'App.Collections.WorkoutItem'
   }]
 
   sync: -> false

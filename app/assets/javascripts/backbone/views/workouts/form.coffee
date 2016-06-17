@@ -6,7 +6,7 @@ class App.Views.Workouts.Form extends App.CompositeView
   initialize: ->
     items = @model.get('items')
     if !items?
-      items = new App.Collections.JournalItemCollection()
+      items = new App.Collections.JournalItem()
       @model.set('items', items)
     @itemsView = new App.Views.Workouts.Items.CollectionForm(collection: items)
 
