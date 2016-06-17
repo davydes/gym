@@ -1,2 +1,3 @@
-%select
-  %option ---
+%option{value: -1} ---
+= hb 'each options' do
+  %option{value: hb('id')} #{hb('name')}

@@ -1,7 +1,7 @@
 class App.CompositeView extends Backbone.View
 
   constructor: ->
-    @children = _([])
+    @cleanChildren()
     super
 
   leave: ->
@@ -34,6 +34,9 @@ class App.CompositeView extends Backbone.View
   prependChildTo: (view, container) ->
     @renderChild(view)
     $(container).prepend(view.el)
+
+  cleanChildren: ->
+    @children = _([])
 
   _leaveChildren: ->
     @children.chain().clone().each (view) ->

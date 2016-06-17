@@ -1,3 +1,3 @@
 %strong Item
-
+.exercises_box
 %a.delete.btn.btn-xs.btn-danger Del

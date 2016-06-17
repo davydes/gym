@@ -5,7 +5,9 @@ class App.Views.Journals.Items.New extends App.CompositeView
   initialize: ->
     @model = new App.Models.JournalItem()
     @model.collection = @collection
-    @workoutFormView = new App.Views.Workouts.Form()
+    workout = new App.Models.Workout()
+    @model.set 'workout', workout
+    @workoutFormView = new App.Views.Workouts.Form(model: workout)
 
   events:
     'click .save' : 'save'
@@ -29,8 +31,7 @@ class App.Views.Journals.Items.New extends App.CompositeView
 
   save: (e) ->
     @model.set 'executed_at', @$('input[name=executed_at]').data("DateTimePicker").date().unix()
-    @model.set 'workout', @workoutFormView.getFormData()
-    console.log @model.get('workout')
+    @workoutFormView.fetchForm()
     @model.save()
 
   _dateTimePicker: (selector, date) ->

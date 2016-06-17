@@ -3,8 +3,11 @@ class App.Views.Workouts.Form extends App.CompositeView
   className: 'workouts-form'
 
   initialize: ->
-    @model = new App.Models.Workout()
-    @itemsView = new App.Views.Workouts.Items.CollectionForm()
+    items = @model.get('items')
+    if !items?
+      items = new App.Collections.JournalItemCollection()
+      @model.set('items', items)
+    @itemsView = new App.Views.Workouts.Items.CollectionForm(collection: items)
 
   params: ->
     @model.toJSON()
@@ -21,6 +24,6 @@ class App.Views.Workouts.Form extends App.CompositeView
     @renderCollectionForm()
     return @
 
-  getFormData: ->
-    name: @$('input[name=\'workout[name]\']').val()
-    items: @itemsView.getFormData()
+  fetchForm: ->
+    @model.set('name', @$('input[name=\'workout[name]\']').val())
+    @itemsView.fetchForm()

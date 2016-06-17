@@ -3,7 +3,7 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   tagName: 'li'
 
   events:
-    'click a.delete' : 'destroy'
+    'click a.delete' : 'onDestroy'
 
   initialize: ->
     @exercise_box = new App.Views.Shared.Components.ExerciseBox()
@@ -12,17 +12,17 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     @$el.html @template
 
   renderExerciseBox: ->
-    @appendChild @exercise_box
+    @appendChildTo(@exercise_box, @$('.exercises_box'))
+    value = @model.get('exercise_id')
+    @exercise_box.setValue(value) if value
 
   render: ->
     @renderLayout()
     @renderExerciseBox()
     return @
 
-  getFormData: ->
-    exercise_id: @exercise_box.getValue()
+  onDestroy: ->
+    @model.destroy()
 
-  destroy: ->
-    @model.destroy
-      success: =>
-        @leave
+  fetchForm: ->
+    @model.set('exercise_id', @exercise_box.getValue())

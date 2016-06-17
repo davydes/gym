@@ -6,7 +6,6 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
     'click a.add-item' : 'addItem'
 
   initialize: ->
-    @collection = new App.Collections.WorkoutItemCollection()
     @listenTo(@collection, 'add', @renderItem)
     @listenTo(@collection, 'reset remove', @render)
 
@@ -19,6 +18,7 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
     @appendChildTo(view, container)
 
   renderCollection: ->
+    @cleanChildren()
     @collection.each (item) =>
       @renderItem item
 
@@ -30,7 +30,6 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
   addItem: ->
     @collection.add(new App.Models.WorkoutItem())
 
-  getFormData: ->
-    _.each @children, (item) ->
-      console.log item
-    return []
+  fetchForm: ->
+    @children.each (child) ->
+      child.fetchForm()
