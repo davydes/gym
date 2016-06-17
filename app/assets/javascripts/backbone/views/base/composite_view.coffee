@@ -15,13 +15,17 @@ class App.CompositeView extends Backbone.View
     @children.push(view)
     view.parent = @
 
+  renderChildInstead: (view, container) ->
+    @renderChild(view)
+    $(container).replaceWith(view.el)
+
   renderChildInto: (view, container) ->
     @renderChild(view)
     $(container).empty().append(view.el)
 
   appendChild: (view) ->
     @renderChild(view)
-    $(@el).append(view.el)
+    @$el.append(view.el)
 
   appendChildTo: (view, container) ->
     @renderChild(view)
@@ -29,7 +33,7 @@ class App.CompositeView extends Backbone.View
 
   prependChild: (view) ->
     @renderChild(view)
-    $(@el).prepend(view.el)
+    @$el.prepend(view.el)
 
   prependChildTo: (view, container) ->
     @renderChild(view)

@@ -1,7 +1,6 @@
-%form
-  %label Workout name:
-  %input{name: 'workout[name]', value: "#{hb 'name'}"}
+%label Workout name:
+%input{name: 'workout[name]', value: "#{hb 'name'}"}
 
-  %br
+%br
 
-  .workout-items-collection-form
+.workout-items
