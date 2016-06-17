@@ -1,9 +1,11 @@
 class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   template: HandlebarsTemplates['workouts/items/item_form']
   tagName: 'li'
+  id: -> @model.cid
 
   events:
     'click a.delete' : 'onDestroy'
+    'drop' : 'drop'
 
   initialize: ->
     @exercise_box = new App.Views.Shared.Components.ExerciseBox()
@@ -20,6 +22,10 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     @renderLayout()
     @renderExerciseBox()
     return @
+
+  drop: (event, index) ->
+    console.log index
+    @$el.trigger('update-sort', [@model, index])
 
   onDestroy: ->
     @model.destroy()

@@ -15,6 +15,7 @@
 #= require bootstrap-filestyle
 #= require backbone/app
 #= require lightbox
+#= require Sortable
 #= require_tree .
 
 window.console = { log: -> } if !window.console

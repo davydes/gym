@@ -4,6 +4,7 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
 
   events:
     'click a.add-item' : 'addItem'
+    'update-sort': 'updateSort'
 
   initialize: ->
     @listenTo(@collection, 'add', @renderItem)
@@ -11,6 +12,10 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
 
   renderLayout: ->
     @$el.html @template
+    new Sortable @$('ul.items').get(0),
+      onEnd: (event) ->
+        console.log $(event.item)
+        $(event.item).trigger('drop', event.newIndex)
 
   renderItem: (item) ->
     container = @$('ul.items')
@@ -26,6 +31,18 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
     @renderLayout()
     @renderCollection()
     return @
+
+  updateSort: (event, model, position) ->
+    @collection.remove(model)
+    @collection.each (model, index) ->
+      pos = index
+      if (index >= position)
+        pos += 1
+        model.set('pos', pos)
+
+    model.set('pos', position)
+    @collection.add(model, {at: position})
+    @render()
 
   addItem: ->
     @collection.add(new App.Models.WorkoutItem())
