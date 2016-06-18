@@ -3,7 +3,7 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
   tagName: 'select'
 
   events:
-    'change select' : '_selected'
+    'change' : '_selected'
 
   initialize: (options) ->
     if !App.reference_exercises?
@@ -22,17 +22,22 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
   renderLayout: ->
     @$el.attr('name', @name)
     @$el.html @template @params()
+    @_select()
 
   render: ->
     @renderLayout()
     return @
 
   getValue: ->
-    value = @$el.val()
-    return if (value? && value > 0) then value else null
+    return if (@value? && @value > 0) then @value else null
 
   setValue: (value) ->
-    @$('option[value="'+value+'"]').attr('selected', 'selected')
+    @value = value
+    @_select()
+
+  _select: ->
+    @$('option[value="'+@value+'"]').attr('selected', 'selected') if @value?
 
   _selected: ->
+    @value = @$el.val()
     @trigger('selected', @getValue())

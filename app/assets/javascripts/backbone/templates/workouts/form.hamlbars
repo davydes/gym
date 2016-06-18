@@ -1,6 +1,5 @@
-%label Workout name:
-%input{name: 'workout[name]', value: "#{hb 'name'}"}
-
-%br
+%label.control-label.col-md-3 Название
+.col-md-8
+  %input.form-control{name: 'workout[name]', value: "#{hb 'name'}"}
 
 .workout-items

@@ -12,10 +12,9 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
 
   renderLayout: ->
     @$el.html @template
-    new Sortable @$('ul.items').get(0),
-      onEnd: (event) ->
-        console.log $(event.item)
-        $(event.item).trigger('drop', event.newIndex)
+    @$('ul.items').sortable
+      stop: (event, ui) ->
+        ui.item.trigger('drop', ui.item.index())
 
   renderItem: (item) ->
     container = @$('ul.items')
@@ -30,19 +29,25 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
   render: ->
     @renderLayout()
     @renderCollection()
+    @restoreScrollPosition()
     return @
 
   updateSort: (event, model, position) ->
+    @saveScrollPosition()
+    @fetchForm()
     @collection.remove(model)
-    @collection.each (model, index) ->
-      pos = index
-      if (index >= position)
-        pos += 1
-        model.set('pos', pos)
-
-    model.set('pos', position)
     @collection.add(model, {at: position})
     @render()
+
+  numerate: ->
+    @collection.each (model, index) ->
+      model.set('pos', index+1)
+
+  restoreScrollPosition: ->
+    $(window).scrollTop(@current_pos) if @current_pos
+
+  saveScrollPosition: ->
+    @current_pos = $(window).scrollTop()
 
   addItem: ->
     @collection.add(new App.Models.WorkoutItem())
@@ -50,3 +55,4 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
   fetchForm: ->
     @children.each (child) ->
       child.fetchForm()
+    @numerate()

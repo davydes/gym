@@ -6,19 +6,21 @@ class App.Routers.Journal extends App.Router
       url: options.url
 
   routes:
-    '' : 'index'
-    'add' : 'add'
+    ''         : 'index'
+    'new'      : 'new'
     'show/:id' : 'show'
-    '404' : 'notFound'
+    'edit/:id' : 'edit'
+    '404'      : 'notFound'
 
   index: ->
     view = new App.Views.Journals.Items.Index
       collection: @items
     @swapView(view)
 
-  add: ->
-    view = new App.Views.Journals.Items.New
-      collection: @items
+  new: ->
+    item = new App.Models.JournalItem()
+    item.collection = @items
+    view = new App.Views.Journals.Items.Form(model: item)
     @swapView(view)
 
   show: (id) ->
@@ -27,6 +29,17 @@ class App.Routers.Journal extends App.Router
     item.fetch
       success: (model, response) =>
         view = new App.Views.Journals.Items.Show
+          model: model
+        @swapView(view)
+      error: =>
+        app.navigate '404', {trigger:true, replace:true}
+
+  edit: (id) ->
+    item = App.Models.JournalItem.findOrCreate(id: id)
+    item.collection = @items
+    item.fetch
+      success: (model, response) =>
+        view = new App.Views.Journals.Items.Form
           model: model
         @swapView(view)
       error: =>

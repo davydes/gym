@@ -1,4 +1,8 @@
-%strong Exercises:
-%a.btn.btn-xs.btn-primary.add-item Add
+.row
+  .col-sm-12.text-center
+    %h4
+      Упражнения
+      %a.btn.btn-xs.btn-primary.add-item.pull-right
+        %span.fa.fa-plus
 
-%ul.items
+%ul.items.list-group

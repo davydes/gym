@@ -1,13 +1,10 @@
-class App.Views.Journals.Items.New extends App.CompositeView
-  template: HandlebarsTemplates['journals/items/new']
-  className: 'journal-item-new'
+class App.Views.Journals.Items.Form extends App.CompositeView
+  template: HandlebarsTemplates['journals/items/form']
+  className: 'journal-item-form'
 
   initialize: ->
-    @model = new App.Models.JournalItem()
-    @model.collection = @collection
-    workout = new App.Models.Workout()
-    @model.set 'workout', workout
-    @workoutFormView = new App.Views.Workouts.Form(model: workout)
+    @model.set('workout', new App.Models.Workout()) if !@model.get('workout')?
+    @workoutFormView = new App.Views.Workouts.Form(model: @model.get('workout'))
 
   events:
     'click .save' : 'save'
@@ -19,7 +16,7 @@ class App.Views.Journals.Items.New extends App.CompositeView
 
   renderWorkoutForm: ->
     container = @$('.workout-form')
-    @appendChildTo(@workoutFormView, container)
+    @renderChildInstead(@workoutFormView, container)
 
   render: ->
     @renderLayout()

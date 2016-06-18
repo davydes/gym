@@ -1,6 +1,6 @@
 %h3
   #{Journal.model_name.human}
-  %a.btn.btn-sm.btn-success.pull-right{href: '#add'} #{I18n.t 'journal.items.actions.add'}
+  %a.btn.btn-sm.btn-success.pull-right{href: '#new'} #{I18n.t 'journal.items.actions.add'}
 
 %br
 

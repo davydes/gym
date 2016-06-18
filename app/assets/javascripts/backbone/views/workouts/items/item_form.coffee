@@ -1,6 +1,7 @@
 class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   template: HandlebarsTemplates['workouts/items/item_form']
   tagName: 'li'
+  className: 'list-group-item'
   id: -> @model.cid
 
   events:
@@ -8,7 +9,7 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     'drop' : 'drop'
 
   initialize: ->
-    @exercise_box = new App.Views.Shared.Components.ExerciseBox()
+    @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control'})
 
   renderLayout: ->
     @$el.html @template
@@ -16,7 +17,7 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   renderExerciseBox: ->
     @appendChildTo(@exercise_box, @$('.exercises_box'))
     value = @model.get('exercise_id')
-    @exercise_box.setValue(value) if value
+    @exercise_box.setValue(value) if value?
 
   render: ->
     @renderLayout()
@@ -24,7 +25,6 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     return @
 
   drop: (event, index) ->
-    console.log index
     @$el.trigger('update-sort', [@model, index])
 
   onDestroy: ->

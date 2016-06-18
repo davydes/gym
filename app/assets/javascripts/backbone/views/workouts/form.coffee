@@ -1,7 +1,6 @@
 class App.Views.Workouts.Form extends App.CompositeView
   template: HandlebarsTemplates['workouts/form']
-  className: 'workout'
-  tagName: 'form'
+  className: 'workout-form'
 
   initialize: ->
     items = @model.get('items')
