@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611085817) do
+ActiveRecord::Schema.define(version: 20160620110952) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "alias",       null: false
@@ -73,14 +73,12 @@ ActiveRecord::Schema.define(version: 20160611085817) do
 
   create_table "journal_items", force: :cascade do |t|
     t.integer  "journal_id",  null: false
-    t.integer  "workout_id",  null: false
     t.datetime "executed_at", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "journal_items", ["journal_id"], name: "index_journal_items_on_journal_id"
-  add_index "journal_items", ["workout_id"], name: "index_journal_items_on_workout_id"
 
   create_table "journals", force: :cascade do |t|
     t.integer "user_id"
@@ -162,10 +160,14 @@ ActiveRecord::Schema.define(version: 20160611085817) do
   add_index "workout_items", ["workout_id"], name: "index_workout_items_on_workout_id"
 
   create_table "workouts", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",             null: false
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "workoutable_id"
+    t.string   "workoutable_type"
   end
+
+  add_index "workouts", ["workoutable_type", "workoutable_id"], name: "index_workouts_on_workoutable_type_and_workoutable_id"
 
 end
