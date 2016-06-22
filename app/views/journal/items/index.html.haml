@@ -3,7 +3,6 @@
 :coffeescript
   $ ->
     window.app = new App.Routers.Journal
-      items: #{json_for @items}
       url: '#{journal_items_path}'
       el: '#journal-items'
     Backbone.history.start()

@@ -8,4 +8,4 @@
   .list-group
 
   =hb 'else'
-  .well.text-center #{I18n.t 'journal.items.you_havent_any_records'}
+  .well.text-center #{I18n.t 'journal.items.no_records'}

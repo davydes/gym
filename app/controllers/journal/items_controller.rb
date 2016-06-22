@@ -12,4 +12,21 @@ class Journal::ItemsController < ApplicationController
     @item = current_user.journal.items.eager_load(workout: [items: [:exercise]]).find(params[:id])
     respond_with @item
   end
+
+  def update
+    @item = current_user.journal.items.eager_load(workout: [items: [:exercise]]).find(params[:id])
+    @item.workout.name = params[:workout][:name]
+    @item.workout.save()
+    @item.save()
+    respond_with @item
+  end
+
+  def create
+    @item = current_user.journal.items.create(
+        executed_at: Time.at(params[:executed_at]),
+        workout: Workout.new(name: params[:workout][:name])
+    )
+    respond_with @item
+  end
+
 end

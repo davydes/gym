@@ -29,7 +29,9 @@ class App.Views.Journals.Items.Form extends App.CompositeView
   save: (e) ->
     @model.set 'executed_at', @$('input[name=executed_at]').data("DateTimePicker").date().unix()
     @workoutFormView.fetchForm()
-    @model.save()
+    @model.save {},
+      success: ->
+        app.navigate '', trigger: true
 
   _dateTimePicker: (selector, date) ->
     @$(selector).datetimepicker

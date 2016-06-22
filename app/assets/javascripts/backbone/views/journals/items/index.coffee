@@ -6,7 +6,8 @@ class App.Views.Journals.Items.Index extends App.CompositeView
     @listenTo @collection, "reset remove add", @render
 
   params: ->
-    hasAny: @collection.size() > 0
+    hasAny: =>
+      @collection.size() > 0
 
   render: ->
     @$el.html @template @params()
