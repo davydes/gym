@@ -3,7 +3,6 @@
 #= require jquery_ujs
 #= require underscore
 #= require backbone
-#= require backbone-relational
 #= require handlebars
 #= require twitter/bootstrap
 #= require bootstrap-multiselect

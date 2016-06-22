@@ -5,4 +5,4 @@ class App.Collections.JournalItem extends App.Collection
     @baseUrl
 
   initialize: (models, options) ->
-    @baseUrl = options.url
+    @baseUrl = options.url if options? && options.url?

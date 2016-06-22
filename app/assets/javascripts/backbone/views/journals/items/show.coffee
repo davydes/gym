@@ -9,5 +9,5 @@ class App.Views.Journals.Items.Show extends App.CompositeView
 
   render: ->
     @$el.html @template @params()
-    @appendChildTo(new App.Views.Workouts.Show({ model: @model.get('workout') }), @$('.workout'))
+    @appendChildTo(new App.Views.Workouts.Show({ model: @model.workout }), @$('.workout'))
     return @

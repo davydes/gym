@@ -24,7 +24,7 @@ class App.Routers.Journal extends App.Router
     @swapView(view)
 
   show: (id) ->
-    item = App.Models.JournalItem.findOrCreate(id: id)
+    item = new App.Models.JournalItem({id: id})
     item.collection = @items
     item.fetch
       success: (model, response) =>
@@ -35,7 +35,7 @@ class App.Routers.Journal extends App.Router
         app.navigate '404', {trigger:true, replace:true}
 
   edit: (id) ->
-    item = App.Models.JournalItem.findOrCreate(id: id)
+    item = new App.Models.JournalItem(id: id)
     item.collection = @items
     item.fetch
       success: (model, response) =>

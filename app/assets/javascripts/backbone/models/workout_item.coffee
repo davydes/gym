@@ -1,2 +1,2 @@
-class App.Models.WorkoutItem extends App.RelationalModel
+class App.Models.WorkoutItem extends App.Model
   sync: -> false

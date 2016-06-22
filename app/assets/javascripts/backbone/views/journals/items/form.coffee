@@ -3,8 +3,7 @@ class App.Views.Journals.Items.Form extends App.CompositeView
   className: 'journal-item-form'
 
   initialize: ->
-    @model.set('workout', new App.Models.Workout()) if !@model.get('workout')?
-    @workoutFormView = new App.Views.Workouts.Form(model: @model.get('workout'))
+    @workoutFormView = new App.Views.Workouts.Form(model: @model.workout)
 
   events:
     'click .save' : 'save'
