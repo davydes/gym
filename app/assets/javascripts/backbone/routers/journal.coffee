@@ -2,7 +2,7 @@ class App.Routers.Journal extends App.Router
 
   initialize: (options) ->
     @el = options.el
-    @items = new App.Collections.JournalItem null, {url: options.url}
+    @items = new App.Collections.JournalItem([], {url: options.url})
 
   routes:
     ''         : 'index'
@@ -14,8 +14,9 @@ class App.Routers.Journal extends App.Router
   index: ->
     view = new App.Views.Journals.Items.Index
       collection: @items
-    @items.fetch()
-    @swapView(view)
+    @items.fetch
+      success: =>
+        @swapView(view)
 
   new: ->
     item = new App.Models.JournalItem()
