@@ -1,40 +1,40 @@
-= hb 'if hasAny' do
-  .panel.panel-default.panel-table
-    .panel-heading
-      .row
-        .col.col-xs-6
-          %h3.panel-title #{Journal.model_name.human}
-        .col.col-xs-6.text-right
-          %a.btn.btn-sm.btn-primary.btn-create{href: '#new'} #{I18n.t 'journal.items.actions.add'}
-    .panel-body
-      %table.table.table-striped.table-bordered.table-list
-        %thead
-          %tr
-            %th{width: '33%'}
-              %span.fa.fa-clock-o
-              Time
-            %th{width: '33%'}
-              Name
-            %th
-              Count
-            %th{style: 'text-align: center'}
-              %em.fa.fa-cog
-        %tbody.journal-items
-    .panel-footer
-      .row
-        .col.col-xs-4
-          Page 1 of 5
-        .col.col-xs-8
-          %ul.pagination.hidden-xs.pull-right
-            %li
-              %a{href:"#"} 1
-            %li
-              %a{href:"#"} 2
-          %ul.pagination.visible-xs.pull-right
-            %li
-              %a{href:"#"} «
-            %li
-              %a{href:"#"} »
-
-  = hb 'else'
-  .well.text-center #{I18n.t 'journal.items.no_records'}
+.panel.panel-default.panel-table
+  .panel-heading
+    .row
+      .col.col-xs-6
+        %h3.panel-title #{Journal.model_name.human}
+      .col.col-xs-6.text-right
+        %a.btn.btn-sm.btn-primary.btn-create{href: '#new'} #{I18n.t 'journal.items.actions.add'}
+  .panel-body
+    %table.table.table-striped.table-bordered.table-list
+      %thead
+        %tr
+          %th{width: '33%'}
+            %span.fa.fa-clock-o
+            Time
+          %th{width: '33%'}
+            Name
+          %th
+            Count
+          %th{style: 'text-align: center'}
+            %em.fa.fa-cog
+      %tbody.journal-items
+      = hb 'unless hasAny' do
+        %tr
+          %td{colspan: '100%'}
+            .well.text-center #{I18n.t 'journal.items.no_records'}
+  .panel-footer
+    .row
+      .col.col-xs-4
+        Page 1 of 5
+      .col.col-xs-8
+        %ul.pagination.hidden-xs.pull-right
+          %li
+            %a{href:"#"} 1
+          %li
+            %a{href:"#"} 2
+        %ul.pagination.visible-xs.pull-right
+          %li
+            %a{href:"#"} «
+          %li
+            %a{href:"#"} »
