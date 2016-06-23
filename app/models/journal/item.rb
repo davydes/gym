@@ -9,5 +9,5 @@ class Journal::Item < ActiveRecord::Base
              dependent: :destroy
 
   validates :journal, :workout, :executed_at, presence: true
-  validates :executed_at, time_range: { maximum: Time.now }
+  validates :executed_at, time_range: { maximum: -> { Time.now } }
 end

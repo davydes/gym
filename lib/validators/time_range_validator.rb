@@ -24,8 +24,8 @@ class TimeRangeValidator < ActiveModel::EachValidator
     keys.each do |key|
       value = options[key]
 
-      unless value.is_a?(Time)
-        raise ArgumentError, ":#{key} must be a Time instead #{value.class}"
+      unless (value.is_a?(Time) || value.is_a?(Proc))
+        raise ArgumentError, ":#{key} must be a Time or Proc instead #{value.class}"
       end
     end
 
@@ -39,7 +39,7 @@ class TimeRangeValidator < ActiveModel::EachValidator
     raise(ArgumentError, "'A Time object was expected instead #{value.class}") unless value.kind_of? Time
 
     CHECKS.each do |key, validity_check|
-      next unless check_value = options[key]
+      next unless check_value = (options[key].is_a?(Proc) ? options[key].call : options[key])
       next if value.send(validity_check, check_value)
 
       errors_options = options.except(*RESERVED_OPTIONS)
