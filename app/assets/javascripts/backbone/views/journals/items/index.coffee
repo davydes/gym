@@ -11,7 +11,7 @@ class App.Views.Journals.Items.Index extends App.CompositeView
 
   render: ->
     @$el.html @template @params()
-    c = @$('.list-group')
+    c = @$('.journal-items')
     @collection.each (item) =>
       view = new App.Views.Journals.Items.Item({ model: item })
       @appendChildTo(view, c)

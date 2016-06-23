@@ -1,10 +1,11 @@
 class App.Views.Journals.Items.Item extends App.CompositeView
   template: HandlebarsTemplates['journals/items/item']
-  className: 'list-group-item'
-  tagName: 'a'
+  tagName: 'tr'
 
   events:
-    'click' : 'onClick'
+    'click a.delete' : 'destroy'
+    'click a.show' : 'show'
+    'click a.edit' : 'edit'
 
   initialize: (options) ->
     @id = @model.get('id')
@@ -20,5 +21,17 @@ class App.Views.Journals.Items.Item extends App.CompositeView
     @$el.html @template @params()
     return @
 
-  onClick: ->
+  show: ->
     app.navigate "show/#{@id}", trigger: true
+
+  edit: ->
+    app.navigate "edit/#{@id}", trigger: true
+
+  destroy: ->
+    @model.destroy
+      wait: true
+      error: =>
+        messages.danger I18n.t 'journal.messages.delete_unsuccessful'
+      success: =>
+        @leave()
+        messages.info I18n.t 'journal.messages.delete_successful'

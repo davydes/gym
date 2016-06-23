@@ -1,0 +1,51 @@
+.panel-table {
+
+  .panel-body{
+    padding:0;
+
+    .table-bordered {
+      border-style: none;
+      margin:0;
+
+      > thead > tr > th:last-of-type,
+      > tbody > tr > td:last-of-type {
+        border-right: 0;
+      }
+
+      > thead > tr > th:first-of-type,
+      > tbody > tr > td:first-of-type {
+        border-left: 0;
+      }
+
+      > tbody > tr:first-of-type > td {
+        border-bottom: 0;
+      }
+
+      > thead > tr:first-of-type > th {
+        border-top: 0;
+      }
+
+      > tbody > tr > td {
+        line-height: 34px;
+      }
+    }
+  }
+
+  .panel-footer {
+    .pagination {
+      margin: 0;
+    }
+    .col{
+      line-height: 34px;
+      height: 34px;
+    }
+  }
+
+  .panel-heading {
+    .col h3 {
+      line-height: 30px;
+      height: 30px;
+    }
+  }
+
+}
