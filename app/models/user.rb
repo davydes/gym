@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # associations
 
   has_many :identities, :dependent => :delete_all
-  has_one  :journal
+  has_one  :journal, dependent: :destroy
 
   #methods
   
