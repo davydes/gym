@@ -9,13 +9,6 @@ RSpec.describe Workout::Item, type: :model do
 
     describe 'should be invalid' do
       describe 'when attribute' do
-        context 'workout' do
-          it 'is nil' do
-            item.workout = nil
-            expect(item).to_not be_valid
-          end
-        end
-
         context 'exercise' do
           it 'is nil' do
             item.exercise = nil
