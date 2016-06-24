@@ -11,8 +11,11 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
   initialize: ->
     @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control'})
 
+  params: ->
+    cid: @model.cid
+
   renderLayout: ->
-    @$el.html @template
+    @$el.html @template @params()
 
   renderExerciseBox: ->
     @appendChildTo(@exercise_box, @$('.exercises_box'))
