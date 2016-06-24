@@ -7,6 +7,7 @@ class Journal::Item < ActiveRecord::Base
              autosave: true,
              validate: true,
              dependent: :destroy
+  accepts_nested_attributes_for :workout
 
   validates :journal, :workout, :executed_at, presence: true
   validates :executed_at, time_range: { maximum: -> { Time.now } }

@@ -1,7 +1,7 @@
 class WorkoutSerializer < ActiveModel::Serializer
-  attributes :id, :name, :items
+  attributes :name, :items_attributes
 
-  def items
+  def items_attributes
     ActiveModelSerializers::SerializableResource.new(object.items)
   end
 end

@@ -3,13 +3,13 @@ class App.Models.JournalItem extends App.Model
     executed_at: moment().unix()
 
   initialize: ->
-    @on('change:workout', @parseWorkout)
+    @on('change:workout_attributes', @parseWorkout)
     @parseWorkout()
 
   parseWorkout: ->
-    @workout = new App.Models.Workout(@get('workout'))
+    @workout = new App.Models.Workout(@get('workout_attributes'))
 
   toJSON: ->
     json = _.clone(@attributes)
-    json.workout = @workout.toJSON()
+    json.workout_attributes = @workout.toJSON()
     return json

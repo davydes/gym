@@ -5,14 +5,14 @@ class App.Models.Workout extends App.Model
   sync: -> false
 
   initialize: ->
-    @on('change:items', @parseItems)
+    @on('change:items_attributes', @parseItems)
     @parseItems()
 
   parseItems: ->
-    @items = new App.Collections.WorkoutItem(@get('items'))
+    @items = new App.Collections.WorkoutItem(@get('items_attributes'))
 
   toJSON: ->
     json = _.clone(@attributes)
-    json.items = @items.map (item) ->
+    json.items_attributes = @items.map (item) ->
       item.toJSON()
     return json

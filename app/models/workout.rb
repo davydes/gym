@@ -5,6 +5,7 @@ class Workout < ActiveRecord::Base
            autosave: true,
            validate: true,
            dependent: :destroy
+  accepts_nested_attributes_for :items
 
   validates :name, presence: true, length: { maximum: 250 }
   validates :description, length: { maximum: 8000 }

@@ -15,25 +15,13 @@ class Journal::ItemsController < ApplicationController
 
   def update
     @item = current_user.journal.items.eager_load(workout: [items: [:exercise]]).find(params[:id])
-    @item.workout.name = params[:workout][:name]
+    @item.update(item_params)
     @item.save
     respond_with @item
   end
 
   def create
-    @item = current_user.journal.items.new(
-        executed_at: Time.at(params[:executed_at]),
-        workout: Workout.new(
-            name: params[:workout][:name],
-            items: (params[:workout][:items] || []).map do |i|
-              Workout::Item.new(
-                  exercise_id: i[:exercise_id],
-                  pos: i[:pos],
-                  sets: [[]]
-              )
-            end
-        )
-    )
+    @item = current_user.journal.items.new(item_params)
     @item.save
     respond_with @item
   end
@@ -42,5 +30,26 @@ class Journal::ItemsController < ApplicationController
     @item = current_user.journal.items.find(params[:id])
     @item.destroy!
     respond_with @item
+  end
+
+  private
+
+  def item_params
+    res = params.permit(
+        :executed_at,
+        workout_attributes: [
+            :name,
+            items_attributes: [
+                :exercise_id,
+                :pos,
+                :sets
+            ]
+        ]
+    )
+    res[:executed_at] = Time.at(res[:executed_at])
+    res[:workout_attributes][:items_attributes].each do |i|
+      i[:sets] = [[]]
+    end
+    res
   end
 end
