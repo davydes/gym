@@ -42,14 +42,11 @@ class Journal::ItemsController < ApplicationController
             items_attributes: [
                 :exercise_id,
                 :pos,
-                :sets
+                sets: [:weight, :repeats]
             ]
         ]
     )
     res[:executed_at] = Time.at(res[:executed_at])
-    res[:workout_attributes][:items_attributes].each do |i|
-      i[:sets] = [[]]
-    end
     res
   end
 end

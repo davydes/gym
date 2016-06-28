@@ -12,5 +12,4 @@
 .row
   .col-sm-12
     %div.collapse{id: "sets-#{hb 'cid'}"}
-      .well
-        Sets
+      .well.sets
