@@ -44,8 +44,22 @@ module Gym
     config.autoload_paths << Rails.root.join('lib')
 
     # Mailer
-    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-    config.action_mailer.delivery_method = :test
-    config.action_mailer.perform_deliveries = false
+    config.action_mailer.preview_path = 'spec/mailers/previews'
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.default_url_options = { host: Rails.application.secrets.hostname }
+    config.action_mailer.smtp_settings = {
+        tls: true,
+        address: 'smtp.yandex.ru',
+        port: '465',
+        authentication: :plain,
+        domain: Rails.application.secrets.hostname,
+        enable_starttls_auto: true,
+        user_name: Rails.application.secrets.mail_user,
+        password: Rails.application.secrets.mail_password
+    }
+
+    # ActiveJob Backend
+    config.active_job.queue_adapter = :sidekiq
   end
 end

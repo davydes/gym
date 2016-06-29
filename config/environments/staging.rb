@@ -77,21 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # E-mail
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: Rails.application.secrets.hostname }
-  config.action_mailer.smtp_settings = {
-      tls: true,
-      address: 'smtp.yandex.ru',
-      port: '465',
-      authentication: :plain,
-      domain: Rails.application.secrets.hostname,
-      enable_starttls_auto: true,
-      user_name: Rails.application.secrets.mail_user,
-      password: Rails.application.secrets.mail_password
-  }
-
   # gzip compression
   config.middleware.use Rack::Deflater
 end
