@@ -11,11 +11,9 @@
         %tr
           %th{width: '33%'}
             %span.fa.fa-clock-o
-            Time
+            #{Journal::Item.human_attribute_name 'executed_at'}
           %th{width: '33%'}
-            Name
-          %th
-            Count
+            #{Journal::Item.human_attribute_name 'workout'}
           %th{style: 'text-align: center'}
             %em.fa.fa-cog
       %tbody.journal-items

@@ -2,3 +2,7 @@ ru:
   activerecord:
     models:
       workout: 'Тренеровка'
+    attributes:
+      workout:
+        name: 'Название'
+        items: 'Упражнения'

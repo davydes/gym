@@ -1,7 +1,7 @@
 .row
   .col-sm-12.text-center
     %h4
-      Упражнения
+      #{Workout.human_attribute_name 'items'}
       %a.btn.btn-xs.btn-primary.add-item.pull-right
         %span.fa.fa-plus
 

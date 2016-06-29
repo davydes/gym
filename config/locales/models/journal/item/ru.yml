@@ -5,3 +5,4 @@ ru:
     attributes:
       journal/item:
         executed_at: 'Время выполнения'
+        workout: 'Тренеровка'

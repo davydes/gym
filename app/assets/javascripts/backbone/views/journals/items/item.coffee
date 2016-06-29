@@ -4,7 +4,7 @@ class App.Views.Journals.Items.Item extends App.CompositeView
 
   events:
     'click a.delete' : 'destroy'
-    'click a.show' : 'show'
+    'click a.detail' : 'show'
     'click a.edit' : 'edit'
 
   initialize: (options) ->
