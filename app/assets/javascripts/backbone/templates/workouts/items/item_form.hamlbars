@@ -8,7 +8,8 @@
       %span.fa.fa-trash
 .row
   .col-sm-12.text-center
-    %a.caret{role: 'button', data: {toggle: 'collapse', target: "#sets-#{hb 'cid'}"}, area: {expanded: false, controls: "sets-#{hb 'cid'}"}}
+    %a.btn-caret{role: 'button', data: {toggle: 'collapse', target: "#sets-#{hb 'cid'}"}, area: {expanded: false, controls: "sets-#{hb 'cid'}"}}
+      %em.caret
 .row
   .col-sm-12
     %div.collapse{id: "sets-#{hb 'cid'}"}

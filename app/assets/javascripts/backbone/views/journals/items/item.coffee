@@ -28,10 +28,11 @@ class App.Views.Journals.Items.Item extends App.CompositeView
     app.navigate "edit/#{@id}", trigger: true
 
   destroy: ->
-    @model.destroy
-      wait: true
-      error: =>
-        messages.danger I18n.t 'journal.messages.delete_unsuccessful'
-      success: =>
-        @leave()
-        messages.info I18n.t 'journal.messages.delete_successful'
+    if confirm( I18n.t 'journal.messages.confirm_delete', { name: @model.workout.get('name') } )
+      @model.destroy
+        wait: true
+        error: =>
+          messages.danger I18n.t 'journal.messages.delete_unsuccessful'
+        success: =>
+          @leave()
+          messages.info I18n.t 'journal.messages.delete_successful'
