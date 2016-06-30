@@ -6,3 +6,6 @@ ru:
       workout:
         name: 'Название'
         items: 'Упражнения'
+      workout/sets:
+        weight: 'Вес'
+        repeats: 'Повторения'

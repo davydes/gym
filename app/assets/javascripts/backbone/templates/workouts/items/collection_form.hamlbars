@@ -1,7 +1,7 @@
 .row
   .col-sm-12.text-center
     %h4
-      #{Workout.human_attribute_name 'items'}
+      #{I18n.t 'activerecord.attributes.workout.items'}
       %a.btn.btn-xs.btn-primary.add-item.pull-right
         %span.fa.fa-plus
 

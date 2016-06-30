@@ -1,3 +1,3 @@
-%a.add-set.btn.btn-primary.form-control Добавить Сет
+%a.add-set.btn.btn-primary.form-control #{I18n.t 'workout.actions.add_set'}
 
 %ul.sets.list-group
