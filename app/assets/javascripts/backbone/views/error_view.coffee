@@ -15,5 +15,5 @@ class App.Views.ErrorView extends App.View
         input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '))
 
   fieldFor: (attribute) ->
-    @$el.find('input[name="' + attribute + '"]').first()
+    @$el.find('[name="' + attribute + '"]')
     #todo: need to make the finder method more universal

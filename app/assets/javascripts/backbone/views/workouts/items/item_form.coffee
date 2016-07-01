@@ -9,7 +9,7 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     'drop' : 'drop'
 
   initialize: ->
-    @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control'})
+    @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control', name: 'workout.items.exercise'})
     @setsView = new App.Views.Workouts.SetCollectionForm({ collection: @model.sets })
 
   params: ->

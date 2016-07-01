@@ -10,8 +10,7 @@
               %span.fa.fa-calendar
           %span.help-block
 
-      .form-group
-        .workout-form
+      .workout-form
 
       .form-group
         .row

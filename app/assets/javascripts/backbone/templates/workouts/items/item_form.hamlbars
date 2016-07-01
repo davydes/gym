@@ -1,8 +1,9 @@
-.row
+.form-group
   .col-sm-1
     %label.fa.fa-bars.control-label
   .col-sm-9
     .exercises_box
+    %span.help-block
   .col-sm-2
     %a.delete.btn.btn-danger.form-control
       %span.fa.fa-trash

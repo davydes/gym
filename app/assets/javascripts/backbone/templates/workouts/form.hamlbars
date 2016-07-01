@@ -1,5 +1,7 @@
-%label.control-label.col-md-3 #{Workout.human_attribute_name 'name'}
-.col-md-8
-  %input.form-control{name: 'workout[name]', value: "#{hb 'name'}"}
+.form-group
+  %label.control-label.col-md-3 #{Workout.human_attribute_name 'name'}
+  .col-md-8
+    %input.form-control{name: 'workout.name', value: "#{hb 'name'}"}
+    %span.help-block
 
 .workout-items

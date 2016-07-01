@@ -11,7 +11,7 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
       App.reference_exercises.fetch()
     @collection = App.reference_exercises
     @listenTo(@collection, 'sync', @render)
-    @name = if options? && options.name? then options.name else 'exercise_id'
+    @name = if options? && options.name? then options.name else 'exercise'
 
   params: ->
     options:

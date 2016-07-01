@@ -1,10 +1,10 @@
 .row
   %label.col-md-2.control-label #{Workout.human_attribute_name 'sets.weight'}
   .col-md-2
-    %input.form-control{name: 'workout.item.set.weight', value: hb('weight')}
+    %input.form-control{name: 'workout.items.set.weight', value: hb('weight')}
   %label.col-md-2.control-label #{Workout.human_attribute_name 'sets.repeats'}
   .col-md-2
-    %input.form-control{name: 'workout.item.set.repeats', value: hb('repeats')}
+    %input.form-control{name: 'workout.items.set.repeats', value: hb('repeats')}
   .col-md-2.col-md-offset-2
     %a.delete-set.btn.btn-danger
       %em.fa.fa-trash
