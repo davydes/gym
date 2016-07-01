@@ -21,5 +21,5 @@ class App.Views.Workouts.SetForm extends App.CompositeView
     @model.destroy()
 
   fetchForm: ->
-    @model.set 'weight', @$('input[name=\'workout.item.sets.weight\']').val()
-    @model.set 'repeats', @$('input[name=\'workout.item.sets.repeats\']').val()
+    @model.set 'weight', @$('input[name=\'workout.items.set.weight\']').val()
+    @model.set 'repeats', @$('input[name=\'workout.items.set.repeats\']').val()
