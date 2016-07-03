@@ -1,0 +1,7 @@
+= hb 'pos'
+.exercise
+%ul.sets
+  = hb 'each sets' do
+    %li
+      = hb 'repeats'
+      = hb 'weight'

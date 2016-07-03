@@ -6,7 +6,7 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
     'change' : '_selected'
 
   initialize: (options) ->
-    if !App.reference_exercises?
+    unless App.reference_exercises?
       App.reference_exercises = new App.Collections.Exercise({}, { url: '/exercises' })
       App.reference_exercises.fetch()
     @collection = App.reference_exercises

@@ -1,5 +1,7 @@
 ru:
   journal:
+    title: "Запись тренеровочного журнала от %{time}"
+
     items:
       actions:
         add: "Добавить тренеровку"
