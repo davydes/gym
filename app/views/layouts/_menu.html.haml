@@ -16,6 +16,9 @@
       %span.badge.badge-info #{BodyPart.count}
 
   - if current_user
+    = menu_link_to journal_items_path do
+      %i.fa.fa-fw.fa-book
+      = Journal.model_name.human
     = menu_link_to user_path(current_user) do
       %i.fa.fa-fw.fa-home
       = t 'users.home'
