@@ -1,9 +1,6 @@
 class App.Views.Workouts.Show extends App.CompositeView
   template: HandlebarsTemplates['workouts/show']
 
-  initialize: ->
-    @itemsView = new App.Views.Workouts.Item()
-
   params: ->
     name: @model.get('name')
 
@@ -12,7 +9,7 @@ class App.Views.Workouts.Show extends App.CompositeView
 
   renderItems: ->
     @model.items.each (item) =>
-      @appendChildTo(new App.Views.Workouts.Item(model: item), @$('ul.items'))
+      @appendChildTo(new App.Views.Workouts.Items.Item(model: item), @$('ol.items'))
 
   render: ->
     @renderLayout()

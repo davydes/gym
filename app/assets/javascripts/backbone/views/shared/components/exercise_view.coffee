@@ -7,19 +7,17 @@ class App.Views.Shared.Components.ExerciseView extends App.View
       App.reference_exercises.fetch()
     @collection = App.reference_exercises
     @listenTo(@collection, 'sync', @render)
-    @name = if options? && options.name? then options.name else 'exercise'
-
+    @exercise_id = options.exercise_id
 
   params: ->
-    model = @collection.get(id: @modelId)
-    return {
-
-    }
+    model = @collection.get(@exercise_id)
+    if model?
+      { name: model.get('name') }
+    else
+      { name: 'unknow' }
 
   renderLayout: ->
-    @$el.attr('name', @name)
     @$el.html @template @params()
-    @_select()
 
   render: ->
     @renderLayout()

@@ -2,4 +2,4 @@
 #{hb 'name'}
 %br
 %strong #{Workout.human_attribute_name 'items'}:
-%ul.items
+%ol.items{type: '1'}

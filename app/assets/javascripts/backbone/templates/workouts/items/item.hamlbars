@@ -1,0 +1,5 @@
+.exercise
+%ul.sets
+  = hb 'each sets' do
+    %li
+      #{hb 'repeats'} x #{hb 'weight'}
