@@ -4,7 +4,7 @@ class Journal::ItemsController < ApplicationController
   respond_to :json
 
   def index
-    @items = current_user.journal.items.eager_load(workout: [items: [:exercise]])
+    @items = current_user.journal.items.eager_load(workout: [items: [:exercise]]) if request.format == :json
     respond_with @items
   end
 
@@ -42,14 +42,11 @@ class Journal::ItemsController < ApplicationController
             items_attributes: [
                 :exercise_id,
                 :pos,
-                :sets
+                sets: [:weight, :repeats]
             ]
         ]
     )
-    res[:executed_at] = Time.at(res[:executed_at])
-    res[:workout_attributes][:items_attributes].each do |i|
-      i[:sets] = [[]]
-    end
+    res[:executed_at] = Time.at(res[:executed_at].to_i) if res[:executed_at]
     res
   end
 end

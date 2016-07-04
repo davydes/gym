@@ -2,12 +2,11 @@
   #{hb 'executed_at'}
 %td
   #{hb 'workout_name'}
-%td
-  %a.show.btn.btn-primary.btn-block
-    Подробнее
-    .badge #{hb('count')}
+  .badge #{hb('count')}
 %td{align:'center'}
-  %a.edit.btn.btn-default
+  %a.detail.btn.btn-primary
+    #{I18n.t 'journal.items.actions.detail'}
+  %a.edit.btn.btn-success
     %em.fa.fa-edit
   %a.delete.btn.btn-danger
     %em.fa.fa-trash

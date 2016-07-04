@@ -1,1 +1,5 @@
-%strong Workout: #{hb 'name'}
+%strong #{Workout.human_attribute_name 'name'}:
+#{hb 'name'}
+%br
+%strong #{Workout.human_attribute_name 'items'}:
+%ol.items{type: '1'}
