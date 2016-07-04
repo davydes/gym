@@ -1,6 +1,4 @@
-class UserMailer < ActionMailer::Base
-  default from: Rails.application.secrets.mail_from
-
+class UserMailer < ApplicationMailer
   def welcome(user_id, generated_password)
     @user = User.find(user_id)
     @password = generated_password
