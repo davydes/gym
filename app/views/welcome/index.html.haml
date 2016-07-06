@@ -3,13 +3,13 @@
 
   %p
     На данный момент справочник содержит информацию о
-    %strong #{t '.muscles', count: Muscle.count}
+    %strong #{t '.muscles', count: References::Muscle.count}
     распределнных в
-    %strong #{t '.categories', count: BodyPart.count} частей тела.
+    %strong #{t '.categories', count: References::BodyPart.count} частей тела.
 
   %p
     Также справочник насчитывает
-    %strong #{t '.exercises', count: Exercise.count}.
+    %strong #{t '.exercises', count: References::Exercise.count}.
 
   %p
     Зарегестрированных пользователей в системе:

@@ -21,7 +21,7 @@ RSpec.describe PicturesController, type: :controller do
 
         it 'responds pictures as json without muscle pictures' do
           muscle = create(:muscle, pictures: [pictures.first])
-          get :index, {obj_type: 'Muscle', obj_id: muscle.id}
+          get :index, {obj_type: 'References::Muscle', obj_id: muscle.id}
           json = JSON.parse(response.body)
           expect(json.length).to eq(pictures.count-muscle.pictures.count)
         end

@@ -1,0 +1,79 @@
+- model_name = 'muscle'
+= form_for(@muscle, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+      %span.help-block
+
+  .form-group
+    = f.label :alias, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :alias, class: 'form-control'
+      %span.help-block
+
+  .form-group
+    = f.label :shape, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select :shape, Muscles::Shape.values, :value, :human_name, {}, {class: 'form-control'}
+      %span.help-block
+
+  .form-group
+    = f.label :description, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_area :description, {class: 'form-control'}
+      %span.help-block
+
+  .form-group
+    = f.label :body_parts, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select(:body_part_ids, References::BodyPart.all, :id, :name, {:selected => f.object.body_part_ids}, {id:"#{model_name}_body_parts", class:'multi form-control', :multiple => true})
+      %span.help-block
+
+  .form-group
+    = f.label :exercises, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select(:exercise_ids, References::Exercise.all, :id, :name, {:selected => f.object.exercise_ids}, {id:"#{model_name}_exercises", class:'multi form-control', :multiple => true})
+      %span.help-block
+
+  .form-group
+    %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
+      = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
+        %i.fa.fa-check
+        = t 'muscles.actions.save'
+
+:coffeescript
+  $ ->
+    $('select.multi').multiselect(
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      filterBehavior: 'both',
+      buttonContainer: '<div class="btn-group" />',
+      buttonWidth: '100%',
+      templates:
+        button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> <b class="caret"></b></button>',
+        ul: '<ul class="multiselect-container dropdown-menu"></ul>',
+        filter: '<li class="multiselect-item filter"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
+        filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="fa fa-times-circle"></i></button></span>',
+        li: '<li><a tabindex="0"><label></label></a></li>',
+        divider: '<li class="multiselect-item divider"></li>',
+        liGroup: '<li class="multiselect-item multiselect-group"><label></label></li>'
+    )
+
+    unsaved = false
+
+    $('button[type=\'submit\']').click ->
+      unsaved = false
+      return true
+
+    $('#content').on 'change', ':input', ->
+      unsaved = true
+
+    $(window).bind 'beforeunload', ->
+      if unsaved
+        return "#{t 'unsaved_alert'}"
+
+- if @muscle.errors.any?
+  :coffeescript
+    $ ->
+      $("form[data-model=muscle]").renderFormErrors(#{@muscle.errors.to_json.html_safe})

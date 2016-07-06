@@ -1,19 +1,19 @@
 %ul.nav.nav-pills.nav-stacked
-  = menu_link_to muscles_path do
+  = menu_link_to references_muscles_path do
     %i.fa.fa-fw.fa-book
-    = Muscle.model_name.human(count: '')
+    = References::Muscle.model_name.human(count: '')
     - cache 'muscles_count', :expires_in => 5.minutes do
-      %span.badge.badge-info #{Muscle.count}
-  = menu_link_to exercises_path do
+      %span.badge.badge-info #{References::Muscle.count}
+  = menu_link_to references_exercises_path do
     %i.fa.fa-fw.fa-book
-    = Exercise.model_name.human(count: '')
+    = References::Exercise.model_name.human(count: '')
     - cache 'exercises_count', :expires_in => 5.minutes do
-      %span.badge.badge-info #{Exercise.count}
-  = menu_link_to body_parts_path do
+      %span.badge.badge-info #{References::Exercise.count}
+  = menu_link_to references_body_parts_path do
     %i.fa.fa-fw.fa-book
-    = BodyPart.model_name.human(count: '')
+    = References::BodyPart.model_name.human(count: '')
     - cache 'body_parts_count', :expires_in => 5.minutes do
-      %span.badge.badge-info #{BodyPart.count}
+      %span.badge.badge-info #{References::BodyPart.count}
 
   - if current_user
     = menu_link_to journal_items_path do

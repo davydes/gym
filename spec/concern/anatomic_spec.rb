@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 shared_examples_for 'anatomic' do
-  let(:model) { described_class.to_s.underscore.to_sym } # the class that includes the concern
+  let(:model) { described_class.to_s.split('::').last.underscore.to_sym } # the class that includes the concern
   let(:anatomic) { build(model) }
 
   describe 'validation:' do
