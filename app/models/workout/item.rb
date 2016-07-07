@@ -1,6 +1,6 @@
 class Workout::Item < ActiveRecord::Base
   belongs_to :workout
-  belongs_to :exercise
+  belongs_to :exercise, class_name: 'References::Exercise'
 
   serialize :sets, Array
 

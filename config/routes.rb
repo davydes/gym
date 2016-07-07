@@ -2,10 +2,6 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
-  concern :pictureable do
-    resources :picture_links, only: [:index, :show, :create, :destroy], path: 'pictures'
-  end
-
   root 'welcome#index'
   get 'welcome/index'
 
@@ -15,9 +11,17 @@ Rails.application.routes.draw do
                :registrations => 'users/registrations'
              }
   resources :users
-  resources :muscles, concerns: :pictureable
-  resources :exercises
-  resources :body_parts
+
+  namespace :references do
+    concern :pictureable do
+      resources :pictures, only: [:index, :show, :create, :destroy]
+    end
+
+    resources :muscles, concerns: :pictureable
+    resources :exercises
+    resources :body_parts
+  end
+
   resources :pictures, only: [:index, :create, :update, :destroy]
 
   namespace :journal do

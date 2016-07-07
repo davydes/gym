@@ -1,0 +1,25 @@
+ru:
+  activerecord:
+    models:
+      references/muscle:
+        one: 'Мышца'
+        few: 'Мышцы'
+        many: 'Мышц'
+        other: 'Мышцы'
+    attributes:
+      references/muscle:
+        name: 'Название'
+        alias: 'Строковый ид.'
+        latin: 'Лат.'
+        shape: 'Форма'
+        body_parts: 'Элементы тела'
+        exercises: 'Упражнения'
+        description: 'Описание'
+        pictures: 'Изображения'
+      muscle/shape:
+        long: 'Длинная'
+        short: 'Короткая'
+        wide: 'Широкая'
+        diamond: 'Ромбовидная'
+        square: 'Квадратная'
+        circle: 'Куглая'

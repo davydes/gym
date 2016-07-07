@@ -11,47 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620110952) do
-
-  create_table "body_parts", force: :cascade do |t|
-    t.string "alias",       null: false
-    t.string "name",        null: false
-    t.text   "description"
-  end
-
-  add_index "body_parts", ["alias"], name: "index_body_parts_on_alias", unique: true
-
-  create_table "body_parts_exercises", id: false, force: :cascade do |t|
-    t.integer "body_part_id"
-    t.integer "exercise_id"
-  end
-
-  add_index "body_parts_exercises", ["body_part_id"], name: "index_body_parts_exercises_on_body_part_id"
-  add_index "body_parts_exercises", ["exercise_id"], name: "index_body_parts_exercises_on_exercise_id"
-
-  create_table "body_parts_muscles", id: false, force: :cascade do |t|
-    t.integer "body_part_id"
-    t.integer "muscle_id"
-  end
-
-  add_index "body_parts_muscles", ["body_part_id"], name: "index_body_parts_muscles_on_body_part_id"
-  add_index "body_parts_muscles", ["muscle_id"], name: "index_body_parts_muscles_on_muscle_id"
-
-  create_table "exercises", force: :cascade do |t|
-    t.string   "alias",       null: false
-    t.string   "name",        null: false
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "exercises_muscles", id: false, force: :cascade do |t|
-    t.integer "exercise_id"
-    t.integer "muscle_id"
-  end
-
-  add_index "exercises_muscles", ["exercise_id"], name: "index_exercises_muscles_on_exercise_id"
-  add_index "exercises_muscles", ["muscle_id"], name: "index_exercises_muscles_on_muscle_id"
+ActiveRecord::Schema.define(version: 20160706115531) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -86,17 +46,6 @@ ActiveRecord::Schema.define(version: 20160620110952) do
 
   add_index "journals", ["user_id"], name: "index_journals_on_user_id"
 
-  create_table "muscles", force: :cascade do |t|
-    t.string   "alias",       null: false
-    t.string   "name",        null: false
-    t.text     "description"
-    t.string   "shape"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "muscles", ["alias"], name: "index_muscles_on_alias", unique: true
-
   create_table "picture_links", id: false, force: :cascade do |t|
     t.integer "picture_id"
     t.integer "pictureable_id"
@@ -114,6 +63,57 @@ ActiveRecord::Schema.define(version: 20160620110952) do
     t.string   "name"
     t.boolean  "image_processing", default: false, null: false
   end
+
+  create_table "references_body_parts", force: :cascade do |t|
+    t.string "alias",       null: false
+    t.string "name",        null: false
+    t.text   "description"
+  end
+
+  add_index "references_body_parts", ["alias"], name: "index_references_body_parts_on_alias", unique: true
+
+  create_table "references_body_parts_exercises", id: false, force: :cascade do |t|
+    t.integer "body_part_id"
+    t.integer "exercise_id"
+  end
+
+  add_index "references_body_parts_exercises", ["body_part_id"], name: "index_references_body_parts_exercises_on_body_part_id"
+  add_index "references_body_parts_exercises", ["exercise_id"], name: "index_references_body_parts_exercises_on_exercise_id"
+
+  create_table "references_body_parts_muscles", id: false, force: :cascade do |t|
+    t.integer "body_part_id"
+    t.integer "muscle_id"
+  end
+
+  add_index "references_body_parts_muscles", ["body_part_id"], name: "index_references_body_parts_muscles_on_body_part_id"
+  add_index "references_body_parts_muscles", ["muscle_id"], name: "index_references_body_parts_muscles_on_muscle_id"
+
+  create_table "references_exercises", force: :cascade do |t|
+    t.string   "alias",       null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "references_exercises_muscles", id: false, force: :cascade do |t|
+    t.integer "exercise_id"
+    t.integer "muscle_id"
+  end
+
+  add_index "references_exercises_muscles", ["exercise_id"], name: "index_references_exercises_muscles_on_exercise_id"
+  add_index "references_exercises_muscles", ["muscle_id"], name: "index_references_exercises_muscles_on_muscle_id"
+
+  create_table "references_muscles", force: :cascade do |t|
+    t.string   "alias",       null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.string   "shape"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "references_muscles", ["alias"], name: "index_references_muscles_on_alias", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                            default: "",    null: false

@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def index_of_model_path(model)
-    send(model.class.to_s.underscore.pluralize+'_path')
+    send(model.class.to_s.underscore.tr('/','_').pluralize+'_path')
   end
 
   def markdown(text)

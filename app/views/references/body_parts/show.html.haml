@@ -1,0 +1,52 @@
+%h2
+  = link_to References::BodyPart.model_name.human(count: ''), references_body_parts_path
+  \\
+  #{@body_part.name}
+
+  - if can? :manage, @body_part
+    .dropdown.pull-right
+      %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
+        %i.fa.fa-cog
+        %span.caret
+      %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
+        %li
+          = link_to edit_references_body_part_path(@body_part) do
+            %i.fa.fa-edit
+            = t '.actions.edit'
+        %li
+          = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
+            %i.fa.fa-trash-o
+            = t '.actions.delete'
+
+%strong #{References::BodyPart.human_attribute_name 'alias'}:
+= @body_part.alias.humanize
+
+%br
+
+%strong #{References::BodyPart.human_attribute_name 'exercises'}:
+= @body_part.exercises.map{ |e| link_to(e.name, e) }.join(', ').html_safe
+
+%br
+
+%strong #{References::BodyPart.human_attribute_name 'muscles'}:
+= @body_part.muscles.map{ |m| link_to(m.name, m) }.join(', ').html_safe
+
+%br
+
+%strong #{References::BodyPart.human_attribute_name 'description'}:
+%br
+= @body_part.description
+
+.modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
+        %h4.modal-title#myModalLabel #{t '.modal_delete.title'}
+      .modal-body
+        = t '.modal_delete.body'
+      .modal-footer
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t '.modal_delete.cancel'}
+        = link_to @body_part, class: "btn btn-danger btn-ok", method: 'delete' do
+          %i.fa.fa-trash-o
+          = t '.actions.delete'
