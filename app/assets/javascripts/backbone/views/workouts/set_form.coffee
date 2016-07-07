@@ -5,6 +5,7 @@ class App.Views.Workouts.SetForm extends App.CompositeView
 
   events:
     'click a.delete-set' : 'onDestroy'
+    'change input': 'fetchForm'
 
   params: ->
     weight: @model.get('weight')
