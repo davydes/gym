@@ -1,5 +1,5 @@
 - model_name = 'muscle'
-= form_for(@muscle, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
+= form_for(@muscle, as: model_name, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
   .form-group
     = f.label :name, class: 'col-sm-2 control-label'
     .col-sm-10

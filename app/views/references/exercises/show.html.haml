@@ -1,5 +1,5 @@
 %h2
-  = link_to Exercise.model_name.human(count: ''), exercises_path
+  = link_to References::Exercise.model_name.human(count: ''), references_exercises_path
   \\
   #{@exercise.name}
 
@@ -10,7 +10,7 @@
         %span.caret
       %ul.dropdown-menu{aria:{labelledby:"dropdownMenu1"}}
         %li
-          = link_to edit_exercise_path(@exercise) do
+          = link_to edit_references_exercise_path(@exercise) do
             %i.fa.fa-edit
             = t 'exercises.actions.edit'
         %li
@@ -18,22 +18,22 @@
             %i.fa.fa-trash-o
             = t 'exercises.actions.delete'
 
-%strong #{Exercise.human_attribute_name 'alias'}:
+%strong #{References::Exercise.human_attribute_name 'alias'}:
 = @exercise.alias.humanize
 
 %br
 
-%strong #{Exercise.human_attribute_name 'body_parts'}:
-= @exercise.body_parts.map{ |b| link_to(b.name, body_part_path(b)) }.join(', ').html_safe
+%strong #{References::Exercise.human_attribute_name 'body_parts'}:
+= @exercise.body_parts.map{ |b| link_to(b.name, b) }.join(', ').html_safe
 
 %br
 
-%strong #{Exercise.human_attribute_name 'muscles'}:
-= @exercise.muscles.map{ |m| link_to(m.name, muscle_path(m)) }.join(', ').html_safe
+%strong #{References::Exercise.human_attribute_name 'muscles'}:
+= @exercise.muscles.map{ |m| link_to(m.name, m) }.join(', ').html_safe
 
 %br
 
-%strong #{Exercise.human_attribute_name 'description'}:
+%strong #{References::Exercise.human_attribute_name 'description'}:
 %br
 = @exercise.description
 
@@ -47,6 +47,6 @@
         = t 'exercises.modal_delete.body'
       .modal-footer
         %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t 'exercises.modal_delete.cancel'}
-        = link_to exercise_path(@exercise), class: "btn btn-danger btn-ok", method: 'delete' do
+        = link_to @exercise, class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
           = t 'exercises.actions.delete'

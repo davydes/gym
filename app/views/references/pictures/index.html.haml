@@ -11,7 +11,7 @@
   $ ->
     window.app = new App.Routers.PicturesLinks
       pictures: #{json_for @pictures}
-      url: '#{muscle_picture_links_path(@parent)}'
+      url: '#{references_muscle_pictures_path(@parent)}'
       el: '#pictures'
       obj_type: '#{@parent.class.name}'
       obj_id: '#{@parent.id}'

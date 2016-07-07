@@ -1,5 +1,5 @@
 - model_name = 'body_part'
-= form_for(@body_part, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
+= form_for(@body_part, as: model_name, html: {class: 'form-horizontal', data: {model: model_name}}) do |f|
   .form-group
     = f.label :name, class: 'col-sm-2 control-label'
     .col-sm-10
@@ -21,13 +21,13 @@
   .form-group
     = f.label :exercises, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select(:exercise_ids, Exercise.all, :id, :name, {:selected => f.object.exercise_ids}, {id:"#{model_name}_exercises", class:'multi form-control', :multiple => true})
+      = f.collection_select(:exercise_ids, References::Exercise.all, :id, :name, {:selected => f.object.exercise_ids}, {id:"#{model_name}_exercises", class:'multi form-control', :multiple => true})
       %span.help-block
 
   .form-group
     = f.label :muscles, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select(:muscle_ids, Muscle.all, :id, :name, {:selected => f.object.muscle_ids}, {id:"#{model_name}_muscles", class:'multi form-control', :multiple => true})
+      = f.collection_select(:muscle_ids, References::Muscle.all, :id, :name, {:selected => f.object.muscle_ids}, {id:"#{model_name}_muscles", class:'multi form-control', :multiple => true})
       %span.help-block
 
   .form-group
