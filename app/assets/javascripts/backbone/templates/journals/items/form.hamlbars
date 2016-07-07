@@ -3,15 +3,14 @@
     %form.form-horizontal
       .form-group
         %label.col-md-3.control-label #{Journal::Item.human_attribute_name 'executed_at'}
-        .col-md-3
+        .col-md-6
           .input-group.data
             %input.form-control{type: 'text', name: 'executed_at'}
             %span.input-group-addon
               %span.fa.fa-calendar
           %span.help-block
 
-      .form-group
-        .workout-form
+      .workout-form
 
       .form-group
         .row

@@ -9,19 +9,27 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
     'drop' : 'drop'
 
   initialize: ->
-    @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control'})
+    @exercise_box = new App.Views.Shared.Components.ExerciseBox({className: 'form-control', name: 'workout.items.exercise'})
+    @setsView = new App.Views.Workouts.SetCollectionForm({ collection: @model.sets })
+
+  params: ->
+    cid: @model.cid
 
   renderLayout: ->
-    @$el.html @template
+    @$el.html @template @params()
 
   renderExerciseBox: ->
     @appendChildTo(@exercise_box, @$('.exercises_box'))
     value = @model.get('exercise_id')
     @exercise_box.setValue(value) if value?
 
+  renderSets: ->
+    @appendChildTo(@setsView, @$('.well.sets'))
+
   render: ->
     @renderLayout()
     @renderExerciseBox()
+    @renderSets()
     return @
 
   drop: (event, index) ->
@@ -32,3 +40,4 @@ class App.Views.Workouts.Items.ItemForm extends App.CompositeView
 
   fetchForm: ->
     @model.set('exercise_id', @exercise_box.getValue())
+    @setsView.fetchForm()

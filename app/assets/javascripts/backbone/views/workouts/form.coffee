@@ -21,5 +21,5 @@ class App.Views.Workouts.Form extends App.CompositeView
     return @
 
   fetchForm: ->
-    @model.set('name', @$('input[name=\'workout[name]\']').val())
+    @model.set('name', @$('input[name=\'workout.name\']').val())
     @itemsView.fetchForm()

@@ -1,0 +1,4 @@
+statistics:
+  cron: "0 10 * * *"
+  class: "SendStatisticsJob"
+  queue: default

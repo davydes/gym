@@ -1,0 +1,10 @@
+%h3 #{References::Exercise.model_name.human(count: '')}
+%ul
+- @exercises.each do |exercise|
+  %li #{link_to exercise.name, exercise}
+
+- if can? :manage, References::Exercise
+  .row
+    .col-sm-4.col-sm-offset-4
+      .btn-group-justified
+        = link_to t('.actions.new'), new_references_exercise_path, class: 'btn btn-primary'

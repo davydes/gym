@@ -1,0 +1,11 @@
+<% header = "Statisitic at #{Time.now} about #{Rails.env}" %>
+<%= header %>
+<%= '='*header.size %>
+
+Users: <%= @stats[:users] %>
+Exercises: <%= @stats[:exercises] %>
+Muscles: <%= @stats[:muscles] %>
+BodyParts: <%= @stats[:body_parts] %>
+JournalItems: <%= @stats[:journal_items] %>
+Workouts: <%= @stats[:workouts] %>
+WorkoutItems: <%= @stats[:workout_items] %>

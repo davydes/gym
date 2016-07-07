@@ -1,0 +1,21 @@
+ru:
+  references:
+    body_parts:
+      index:
+        actions:
+          new: "Добавить"
+      show:
+        actions:
+          edit: "Изменить"
+          delete: "Удалить"
+        modal_delete:
+          title: "Подтвердите удаление"
+          body: "Вы хотите удалить элемент из справочника. Действие нельзя отменить. Продолжить?"
+          cancel: "Отмена"
+      new:
+        title: "Новый элемент"
+      edit:
+        title: "Изменить элемент"
+      form:
+        actions:
+          save: "Сохранить"
