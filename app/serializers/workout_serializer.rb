@@ -1,4 +1,4 @@
-class References::WorkoutSerializer < ActiveModel::Serializer
+class WorkoutSerializer < ActiveModel::Serializer
   attributes :name, :items_attributes
 
   def items_attributes
