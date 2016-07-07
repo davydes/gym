@@ -8,15 +8,15 @@
         %li
           = link_to edit_references_muscle_path(@muscle) do
             %i.fa.fa-edit
-            = t 'muscles.actions.edit'
+            = t '.actions.edit'
         %li
           = link_to references_muscle_pictures_path(@muscle) do
             %i.fa.fa-file-image-o
-            = t 'muscles.actions.pictures_manage'
+            = t '.actions.pictures_manage'
         %li
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
-            = t 'muscles.actions.delete'
+            = t '.actions.delete'
 
   %div{style: 'margin-right: 50px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'}
     = link_to References::Muscle.model_name.human(count: ''), references_muscles_path
@@ -66,11 +66,11 @@
     .modal-content
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
-        %h4.modal-title#myModalLabel #{t 'muscles.modal_delete.title'}
+        %h4.modal-title#myModalLabel #{t '.modal_delete.title'}
       .modal-body
-        #{t 'muscles.modal_delete.body'}
+        #{t '.modal_delete.body'}
       .modal-footer
-        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t 'muscles.modal_delete.cancel'}
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t '.modal_delete.cancel'}
         = link_to @muscle, class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
-          = t 'muscles.actions.delete'
+          = t '.actions.delete'

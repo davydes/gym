@@ -12,11 +12,11 @@
         %li
           = link_to edit_references_exercise_path(@exercise) do
             %i.fa.fa-edit
-            = t 'exercises.actions.edit'
+            = t '.actions.edit'
         %li
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
-            = t 'exercises.actions.delete'
+            = t '.actions.delete'
 
 %strong #{References::Exercise.human_attribute_name 'alias'}:
 = @exercise.alias.humanize
@@ -42,11 +42,11 @@
     .modal-content
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
-        %h4.modal-title#myModalLabel #{t 'exercises.modal_delete.title'}
+        %h4.modal-title#myModalLabel #{t '.modal_delete.title'}
       .modal-body
-        = t 'exercises.modal_delete.body'
+        = t '.modal_delete.body'
       .modal-footer
-        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t 'exercises.modal_delete.cancel'}
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t '.modal_delete.cancel'}
         = link_to @exercise, class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
-          = t 'exercises.actions.delete'
+          = t '.actions.delete'

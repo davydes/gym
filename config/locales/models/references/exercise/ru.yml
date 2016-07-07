@@ -1,13 +1,13 @@
 ru:
   activerecord:
     models:
-      exercise:
+      references/exercise:
         one: 'Упражнение'
         few: 'Упражнения'
         many: 'Упражнений'
         other: 'Упражнения'
     attributes:
-      exercise:
+      references/exercise:
         name: 'Название'
         alias: 'Строковый ид.'
         latin: 'Лат.'

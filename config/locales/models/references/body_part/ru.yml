@@ -1,13 +1,13 @@
 ru:
   activerecord:
     models:
-      body_part:
+      references/body_part:
         one: 'Элемент тела'
         few: 'Элемента тела'
         many: 'Элементов тела'
         other: 'Элементы тела'
     attributes:
-      body_part:
+      references/body_part:
         name: 'Название'
         alias: 'Строковый ид.'
         latin: 'Лат.'

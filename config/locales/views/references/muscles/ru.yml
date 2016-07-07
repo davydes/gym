@@ -1,0 +1,23 @@
+ru:
+  references:
+    muscles:
+      index:
+        no_group: "Вне групп"
+        actions:
+          new: "Добавить"
+      show:
+        actions:
+          edit: "Изменить"
+          delete: "Удалить"
+          pictures_manage: "Управление изображениями"
+        modal_delete:
+          title: "Подтвердите удаление"
+          body: "Вы хотите удалить мышцу из справочника. Действие нельзя отменить. Продолжить?"
+          cancel: "Отмена"
+      new:
+        title: "Новая мышца"
+      edit:
+        title: "Изменить мышцу"
+      form:
+        actions:
+          save: "Сохранить"

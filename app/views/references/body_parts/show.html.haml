@@ -12,11 +12,11 @@
         %li
           = link_to edit_references_body_part_path(@body_part) do
             %i.fa.fa-edit
-            = t 'body_parts.actions.edit'
+            = t '.actions.edit'
         %li
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
-            = t 'body_parts.actions.delete'
+            = t '.actions.delete'
 
 %strong #{References::BodyPart.human_attribute_name 'alias'}:
 = @body_part.alias.humanize
@@ -42,11 +42,11 @@
     .modal-content
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}, aria: {hidden: "true"}} &times;
-        %h4.modal-title#myModalLabel #{t 'muscles.modal_delete.title'}
+        %h4.modal-title#myModalLabel #{t '.modal_delete.title'}
       .modal-body
-        = t 'body_parts.modal_delete.body'
+        = t '.modal_delete.body'
       .modal-footer
-        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t 'body_parts.modal_delete.cancel'}
+        %button{type: "button", class: "btn btn-default", data: {dismiss: "modal"}} #{t '.modal_delete.cancel'}
         = link_to @body_part, class: "btn btn-danger btn-ok", method: 'delete' do
           %i.fa.fa-trash-o
-          = t 'body_parts.actions.delete'
+          = t '.actions.delete'

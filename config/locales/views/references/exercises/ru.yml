@@ -1,0 +1,21 @@
+ru:
+  references:
+    exercises:
+      index:
+        actions:
+          new: "Добавить"
+      show:
+        actions:
+          edit: "Изменить"
+          delete: "Удалить"
+        modal_delete:
+          title: "Подтвердите удаление"
+          body: "Вы хотите удалить упражнение из справочника. Действие нельзя отменить. Продолжить?"
+          cancel: "Отмена"
+      new:
+        title: "Новое упражнение"
+      edit:
+        title: "Изменить упражнение"
+      form:
+        actions:
+          save: "Сохранить"

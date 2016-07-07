@@ -1,13 +1,13 @@
 ru:
   activerecord:
     models:
-      muscle:
+      references/muscle:
         one: 'Мышца'
         few: 'Мышцы'
         many: 'Мышц'
         other: 'Мышцы'
     attributes:
-      muscle:
+      references/muscle:
         name: 'Название'
         alias: 'Строковый ид.'
         latin: 'Лат.'
