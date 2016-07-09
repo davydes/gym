@@ -12,9 +12,10 @@ class App.Views.Shared.Components.ExerciseView extends App.View
   params: ->
     model = @collection.get(@exercise_id)
     if model?
-      { name: model.get('name') }
+      url: model.url()
+      name: model.get('name')
     else
-      { name: 'unknow' }
+      name: 'unknow'
 
   renderLayout: ->
     @$el.html @template @params()
