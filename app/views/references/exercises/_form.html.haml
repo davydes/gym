@@ -31,6 +31,12 @@
       %span.help-block
 
   .form-group
+    = f.label :equipments, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select(:equipment_ids, References::Equipment.all, :id, :name, {:selected => f.object.equipment_ids}, {id:"#{model_name}_equipments", class:'multi form-control', :multiple => true})
+      %span.help-block
+
+  .form-group
     %div.col-sm-offset-5.col-sm-4.col-md-offset-5.col-md-4
       = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
         %i.fa.fa-check

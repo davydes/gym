@@ -33,6 +33,11 @@
 
 %br
 
+%strong #{References::Exercise.human_attribute_name 'equipments'}:
+= @exercise.equipments.map{ |m| m.name }.join(', ').html_safe
+
+%br
+
 %strong #{References::Exercise.human_attribute_name 'description'}:
 %br
 = @exercise.description

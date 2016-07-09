@@ -12,5 +12,6 @@ ru:
         alias: 'Строковый ид.'
         latin: 'Лат.'
         body_parts: 'Элементы тела'
+        equipments: 'Снаряды'
         muscles: 'Мышцы'
         description: 'Описание'
