@@ -2,6 +2,7 @@ ru:
   references:
     exercises:
       index:
+        title: "Каталог упражнений"
         actions:
           new: "Добавить"
       show:
