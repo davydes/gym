@@ -5,7 +5,7 @@
 :coffeescript
   $ ->
     window.app = new App.Routers.Exercises
-      exercises: #{json_for @exercises}
+      exercises: #{json_for @exercises, each_serializer: References::ExerciseShortSerializer}
       url: '#{references_exercises_path}'
       el: '#exercises_view'
     Backbone.history.start()

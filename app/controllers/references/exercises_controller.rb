@@ -1,4 +1,10 @@
 class References::ExercisesController < AnatomicController
+
+  def index
+    @exercises = References::Exercise.all
+    respond_with @exercises, each_serializer: References::ExerciseShortSerializer
+  end
+
   private
 
   def resource_params
