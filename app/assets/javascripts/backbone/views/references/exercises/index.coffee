@@ -2,13 +2,13 @@
 #todo: grouping models
 #todo: sorting models
 
-class App.Views.References.Exercises.Index extends App.FilterableView
+class App.Views.References.Exercises.Index extends App.CompositeView
   template: HandlebarsTemplates['references/exercises/index']
 
   initialize: ->
-    super
-    @listenTo(@filteredCollection, 'add', 'renderItem')
-    @listenTo(@filteredCollection, 'reset remove', 'render')
+    @filteredCollection = @collection.filtered(@filterFunction)
+    @sortedCollection = @filteredCollection.byName()
+    @listenTo(@sortedCollection, 'change', @render)
 
   renderLayout: ->
     @$el.html @template
@@ -25,7 +25,8 @@ class App.Views.References.Exercises.Index extends App.FilterableView
     @appendChildTo(view, container)
 
   renderItems: ->
-    @filteredCollection.each (item) =>
+    @$('ul').html('')
+    @sortedCollection.each (item) =>
       @renderItem(item)
 
   render: ->
@@ -33,6 +34,13 @@ class App.Views.References.Exercises.Index extends App.FilterableView
     @renderFilter()
     @renderItems()
     return @
+
+  applyFilter: (options) ->
+    @sortedCollection.stopListening()
+    @filteredCollection.stopListening()
+    @filteredCollection = @collection.filtered(@filterFunction(options))
+    @sortedCollection = @filteredCollection.byName()
+    @renderItems()
 
   filterFunction: (options) =>
     return (model) =>

@@ -3,9 +3,10 @@ App.Mixins.FilterableCollection =
     filteredCollection = @clone()
 
     applyFilter = =>
-      filteredCollection.reset(@select(criteriaFunction))
+      filteredCollection.reset(@select(criteriaFunction), silent: true)
+      filteredCollection.trigger('change')
 
-    @listenTo(@, "add change remove", applyFilter)
+    filteredCollection.listenTo(@, "add remove change", applyFilter)
     applyFilter()
 
     return filteredCollection
