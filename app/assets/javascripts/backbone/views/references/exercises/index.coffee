@@ -5,19 +5,14 @@
 class App.Views.References.Exercises.Index extends App.CompositeView
   template: HandlebarsTemplates['references/exercises/index']
 
-  initialize: ->
-    @filteredCollection = @collection.filtered(@filterFunction)
-    @sortedCollection = @filteredCollection.byName()
-    @listenTo(@sortedCollection, 'change', @render)
-
   renderLayout: ->
     @$el.html @template
 
   renderFilter: ->
     container = @$('.filter')
-    view = new App.Views.References.Exercises.Filter()
-    @renderChildInstead(view, container)
-    @listenTo(view, 'filter', @applyFilter)
+    @filterView = new App.Views.References.Exercises.Filter()
+    @renderChildInstead(@filterView, container)
+    @listenTo(@filterView, 'filter', @applyFilter)
 
   renderItem: (item) ->
     container = @$('ul')
@@ -32,16 +27,26 @@ class App.Views.References.Exercises.Index extends App.CompositeView
   render: ->
     @renderLayout()
     @renderFilter()
-    @renderItems()
+    @applyFilter(@filterView.getFilterData())
     return @
 
   applyFilter: (options) ->
-    @sortedCollection.stopListening()
-    @filteredCollection.stopListening()
+    if @sortedCollection?
+      @stopListening(@sortedCollection)
+      @sortedCollection.stopListening()
+    if @filteredCollection?
+      @filteredCollection.stopListening()
     @filteredCollection = @collection.filtered(@filterFunction(options))
     @sortedCollection = @filteredCollection.byName()
+    @listenTo(@sortedCollection, 'change', @renderItems)
     @renderItems()
 
   filterFunction: (options) =>
+    options = {} unless options?
     return (model) =>
-      !options.name || model.get('name').indexOf(options.name) > -1
+      result = true
+      if options.equipment?
+        result = result && (model.equipments.map((eq)-> eq.get('id')).includes(options.equipment))
+      if options.body_part?
+        result = result && (model.body_parts.map((eq)-> eq.get('id')).includes(options.body_part))
+      result

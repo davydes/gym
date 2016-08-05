@@ -1,8 +1,11 @@
 class References::ExercisesController < AnatomicController
 
   def index
-    @exercises = References::Exercise.all
-    respond_with @exercises, each_serializer: References::ExerciseShortSerializer
+    @exercises = References::Exercise.all.eager_load(:equipments, :body_parts, :muscles)
+    respond_with @exercises,
+                 each_serializer: request.format == :json && params[:short] ?
+                     References::ExerciseShortSerializer :
+                     References::ExerciseSerializer
   end
 
   private

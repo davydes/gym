@@ -1,2 +1,2 @@
 .filter
-%ul
+%ul.list-group

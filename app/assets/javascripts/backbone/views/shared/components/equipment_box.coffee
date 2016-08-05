@@ -1,17 +1,17 @@
-class App.Views.Shared.Components.ExerciseBox extends App.View
-  template: HandlebarsTemplates['shared/components/exercise_box']
+class App.Views.Shared.Components.EquipmentBox extends App.View
+  template: HandlebarsTemplates['shared/components/equipment_box']
   tagName: 'select'
 
   events:
     'change' : '_selected'
 
   initialize: (options) ->
-    unless App.reference_exercises?
-      App.reference_exercises = new App.Collections.Exercise({}, { url: '/references/exercises?short=1' })
-      App.reference_exercises.fetch()
-    @collection = App.reference_exercises
+    unless App.reference_equipments?
+      App.reference_equipments = new App.Collections.Equipment({}, { url: '/references/equipments' })
+      App.reference_equipments.fetch()
+    @collection = App.reference_equipments
     @listenTo(@collection, 'sync', @render)
-    @name = if options? && options.name? then options.name else 'exercise'
+    @name = if options? && options.name? then options.name else 'equipment'
 
   params: ->
     options:
@@ -29,7 +29,7 @@ class App.Views.Shared.Components.ExerciseBox extends App.View
     return @
 
   getValue: ->
-    return if (@value? && @value > 0) then @value else null
+    return if (@value? && @value > 0) then parseInt(@value) else null
 
   setValue: (value) ->
     @value = value

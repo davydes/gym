@@ -1,2 +1,7 @@
-%input{type: 'text'}
-%a.btn.btn-default.filter Filter!
+.row
+  .col-sm-6.form-group
+    %label= References::Equipment.model_name.human
+    .equipment_box
+  .col-sm-6.form-group
+    %label= References::BodyPart.model_name.human
+    .body_part_box
