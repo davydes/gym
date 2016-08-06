@@ -1,7 +1,7 @@
 class App.Models.Exercise extends App.Model
 
   initialize: ->
-    @on('change:equipments', @parseEquipments)
+    @listenTo(@,'change:equipments', @parseEquipments)
     @parseEquipments()
     @parseBodyParts()
 

@@ -5,7 +5,7 @@ class App.Models.Workout extends App.Model
   sync: -> false
 
   initialize: ->
-    @on('change:items_attributes', @parseItems)
+    @listenTo(@,'change:items_attributes', @parseItems)
     @parseItems()
 
   parseItems: ->

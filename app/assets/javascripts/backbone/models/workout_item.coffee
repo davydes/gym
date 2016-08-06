@@ -2,7 +2,7 @@ class App.Models.WorkoutItem extends App.Model
   sync: -> false
 
   initialize: ->
-    @on('change:sets', @parseSets)
+    @listenTo(@,'change:sets', @parseSets)
     @parseSets()
 
   parseSets: ->
