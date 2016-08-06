@@ -7,8 +7,8 @@ class App.Views.Shared.Components.BodyPartBox extends App.View
 
   initialize: (options) ->
     unless App.reference_body_parts?
-      App.reference_body_parts= new App.Collections.BodyPart({}, { url: '/references/body_parts?short=1' })
-      App.reference_body_parts.fetch()
+      App.reference_body_parts= new App.Collections.BodyPart({}, { url: '/references/body_parts' })
+      App.reference_body_parts.fetch({data:{short:1}})
     @collection = App.reference_body_parts
     @listenTo(@collection, 'sync', @render)
     @name = if options? && options.name? then options.name else 'body_part'
