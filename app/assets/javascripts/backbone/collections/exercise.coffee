@@ -6,3 +6,7 @@ class App.Collections.Exercise extends App.Collection
 
   initialize: (models, options) ->
     @baseUrl = options.url
+
+  byName: ->
+    @sortedBy (ex) ->
+      ex.get 'name'

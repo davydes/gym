@@ -4,7 +4,7 @@ class App.Views.Shared.Components.ExerciseView extends App.View
   initialize: (options) ->
     unless App.reference_exercises?
       App.reference_exercises = new App.Collections.Exercise({}, { url: '/references/exercises' })
-      App.reference_exercises.fetch()
+      App.reference_exercises.fetch({data:{short:1}})
     @collection = App.reference_exercises
     @listenTo(@collection, 'sync', @render)
     @exercise_id = options.exercise_id

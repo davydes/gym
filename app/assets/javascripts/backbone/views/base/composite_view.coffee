@@ -1,4 +1,4 @@
-class App.CompositeView extends Backbone.View
+class App.CompositeView extends App.View
 
   constructor: ->
     @cleanChildren()
@@ -51,5 +51,3 @@ class App.CompositeView extends Backbone.View
 
   _removeChild: (view) ->
     @children.splice(@children.indexOf(view), 1)
-
-_.extend App.View, App.Mixins

@@ -30,6 +30,8 @@
   Collections: {}
   Routers: {}
   Views:
+    References:
+      Exercises: {}
     Journals:
       Items: {}
     Workouts:
