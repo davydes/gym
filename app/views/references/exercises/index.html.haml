@@ -1,4 +1,7 @@
-%h3 #{t '.title'}
+%h3
+  #{t '.title'}
+  - if can? :manage, References::Exercise
+    = link_to t('.actions.new'), new_references_exercise_path, class: 'btn btn-sm btn-primary pull-right'
 
 #exercises_view
 
