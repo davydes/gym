@@ -1,4 +1,4 @@
-lock '3.5.0'
+lock '3.6.0'
 
 set :application, 'gym'
 set :repo_url, 'git@github.com:davydes/gym.git'
