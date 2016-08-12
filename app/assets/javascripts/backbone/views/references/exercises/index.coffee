@@ -46,7 +46,7 @@ class App.Views.References.Exercises.Index extends App.CompositeView
     return (model) =>
       result = true
       if options.equipment?
-        result = result && (model.equipments.map((eq)-> eq.get('id')).includes(options.equipment))
+        result = result && (model.equipments.map((eq)-> eq.get('id')).indexOf(options.equipment) != -1)
       if options.body_part?
-        result = result && (model.body_parts.map((eq)-> eq.get('id')).includes(options.body_part))
+        result = result && (model.body_parts.map((eq)-> eq.get('id')).indexOf(options.body_part) != -1)
       result
