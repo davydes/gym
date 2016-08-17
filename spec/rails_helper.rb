@@ -39,3 +39,5 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
   config.extend FeatureMacros, :type => :feature
 end
+
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.retrieve_connection
