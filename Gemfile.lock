@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: fa5dd6108472d8dc434a11c0f17c56ab26bf1494
+  revision: 2d6f95811158d8c20f077d4ef8c2e3f6328b94c7
   branch: 0.11-stable
   specs:
     carrierwave (0.11.2)
@@ -416,7 +416,7 @@ GEM
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
-    responders (2.2.0)
+    responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
@@ -437,7 +437,7 @@ GEM
     rspec-support (3.5.0)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
-    rufus-scheduler (3.2.1)
+    rufus-scheduler (3.2.2)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)

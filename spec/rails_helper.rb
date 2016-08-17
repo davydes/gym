@@ -3,15 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'fakeredis/rspec'
-require 'devise'
-require "codeclimate-test-reporter"
-
-# Disable backgrounder proxy for tests
-Devise.mailer = Devise::Mailer
-
-
-CodeClimate::TestReporter.start
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -44,5 +35,4 @@ RSpec.configure do |config|
 
   config.extend ControllerMacros, :type => :controller
   config.include Devise::Test::ControllerHelpers, :type => :controller
-  config.include Requests::JsonHelpers, :type => :request
 end
