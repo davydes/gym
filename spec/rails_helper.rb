@@ -38,6 +38,7 @@ end
 RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
   config.extend FeatureMacros, :type => :feature
+  config.include ResponsiveHelpers, :type => :feature
 end
 
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.retrieve_connection
