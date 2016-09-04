@@ -20,7 +20,6 @@ gem 'fog'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave', branch: '0.11-stable'
 gem 'carrierwave_backgrounder'
 gem 'active_model_serializers', '~> 0.10'
-gem 'redcarpet'
 gem 'mini_magick'
 gem 'figaro'
 gem 'unicorn-rails'
@@ -32,6 +31,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'less-rails'
 gem 'uglifier', '~> 3'
 gem 'sass-rails'
+gem 'redcarpet' # Markdown
 
 # Assests
 gem 'i18n-js', '>= 3.0.0.rc11'
