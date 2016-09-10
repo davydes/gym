@@ -57,6 +57,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails'
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'byebug'
   gem 'binding_of_caller'
