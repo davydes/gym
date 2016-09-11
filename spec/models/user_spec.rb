@@ -9,23 +9,6 @@ RSpec.describe User, :type => :model do
       it 'by default' do
         expect(user).to be_valid
       end
-
-      context 'when attribute' do
-        it ' first_name and last_name is undefined' do
-          user.first_name = user.last_name = nil
-          expect(user).to be_valid
-        end
-
-        it 'age is undefined' do
-          user.date_of_birth = nil
-          expect(user).to be_valid
-        end
-
-        it 'gender is undefined' do
-          user.gender = nil
-          expect(user).to be_valid
-        end
-      end
     end
 
     describe 'should be invalid' do
@@ -69,40 +52,6 @@ RSpec.describe User, :type => :model do
             user = build(:user, :password_confirmation => '')
             expect(user).to be_invalid
           end
-        end
-
-        describe :first_name do
-          it 'has wrong format' do
-            user.first_name = 'Wrong@Name'
-            expect(user).to be_invalid
-          end
-
-          it 'too long' do
-            user.first_name = 'N'*51
-            expect(user).to be_invalid
-          end
-        end
-
-        describe :last_name do
-          it 'has wrong format' do
-            user.last_name = 'Wrong@Name'
-            expect(user).to be_invalid
-          end
-
-          it 'too long' do
-            user.last_name = 'N'*51
-            expect(user).to be_invalid
-          end
-        end
-
-        it 'gender has invalid value' do
-          user = build(:user, :gender => 'i')
-          expect(user).to be_invalid
-        end
-
-        it 'age least 18' do
-          user = build(:user, :date_of_birth => 5.years.ago)
-          expect(user).to be_invalid
         end
       end
     end

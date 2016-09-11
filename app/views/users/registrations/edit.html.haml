@@ -1,0 +1,62 @@
+%h3.text-center #{t '.title'}
+
+= devise_error_messages!
+%div.user_form
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal', data: {model: resource_name}, method: :put }) do |f|
+
+    %div.form-group
+      = f.label :email, class: 'col-sm-3 col-md-4 control-label'
+      %div.col-sm-7.col-md-5
+        %div.input-group.input-group-sm
+          %span.input-group-addon
+            %i.fa.fa-fw.fa-envelope
+          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "e-mail"
+        %span.help-block
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+    %div.form-group
+      = f.label :password, class: 'col-sm-3 col-md-4 control-label'
+      %div.col-sm-7.col-md-5
+        %div.input-group.input-group-sm
+          %span.input-group-addon
+            %i.fa.fa-fw.fa-lock
+          = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: User.human_attribute_name('password')
+        %span.help-block
+
+    %div.form-group
+      = f.label :password_confirmation, class: 'col-sm-3 col-md-4 control-label'
+      %div.col-sm-7.col-md-5
+        %div.input-group.input-group-sm
+          %span.input-group-addon
+            %i.fa.fa-fw.fa-lock
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: User.human_attribute_name('password_confirmation')
+        %span.help-block
+
+    - if resource.encrypted_password.present?
+      %div.form-group
+        = f.label :current_password, class: 'col-sm-3 col-md-4 control-label'
+        %div.col-sm-7.col-md-5
+          %div.input-group.input-group-sm
+            %span.input-group-addon
+              %i.fa.fa-fw.fa-lock
+            = f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: User.human_attribute_name('current_password')
+          %span.help-block
+
+    %div.form-group
+      %div.col-sm-offset-7.col-sm-3.col-md-offset-6.col-md-3
+        = button_tag(type: 'submit', class: "btn-block btn btn btn-success") do
+          %i.fa.fa-check
+          = t '.save'
+
+%div.row
+  %div.col-sm-offset-3.col-sm-7.col-md-5.col-md-offset-4
+    = link_to registration_path(resource_name), class: "btn-block btn btn btn-danger",  data: { confirm: "Are you sure?" }, method: :delete do
+      %i.fa.fa-trash-o
+      = t '.drop_acct'
+
+- if resource.errors.any?
+  :coffeescript
+    $ ->
+      $("form[data-model=#{resource_name}]").renderFormErrors(#{resource.errors.to_json.html_safe});

@@ -1,4 +1,4 @@
-Welcome, <%= @user.first_name %>
+Welcome, <%= @user.profile.try(:first_name) %>
 ===============================================
 
 You have successfully signed up your:

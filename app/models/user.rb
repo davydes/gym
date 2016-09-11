@@ -1,17 +1,9 @@
 class User < ActiveRecord::Base
 
-  # validations
-
-  # REGEX
-  REAL_NAME_REGEX = /\A[\da-zа-яё ,.'\-_]*\z/i
-
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates :email, :city, :country, length: { maximum: 100 }
-  validates :first_name, :last_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
-  validates :gender, inclusion: [:m, :f, 'm', 'f', nil]
-  validate :at_least_18
+  validates :email, length: { maximum: 100 }
 
   #callbacks
 
@@ -19,14 +11,18 @@ class User < ActiveRecord::Base
     self.email = email.downcase if email
   }
 
+  after_create :create_profile
+
   # associations
 
   has_many :identities, :dependent => :delete_all
   has_one  :journal, dependent: :destroy
+  has_one  :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
 
   #methods
   
-  # use lazy user journal creation
+  # создаем журнал, если не создан
   alias :original_journal_method :journal
   def journal
     if original_journal_method.nil? 
@@ -55,13 +51,15 @@ class User < ActiveRecord::Base
       user = User.new(
           email: identity.email,
           confirmed_at: DateTime.now,
-          first_name: normalized_auth.info.first_name,
-          last_name: normalized_auth.info.last_name,
           password: generated_password,
           password_confirmation: generated_password
       )
       user.skip_confirmation!
       user.save!
+      user.profile.update_attributes(
+        first_name: normalized_auth.info.first_name,
+        last_name: normalized_auth.info.last_name 
+      )
       UserMailer.delay.welcome(user.id, generated_password) if user.persisted?
     end
 
@@ -75,9 +73,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def at_least_18
-    if self.date_of_birth
-      errors.add(:date_of_birth, I18n.t('users.error.too_young')) if self.date_of_birth >= 18.years.ago
-    end
+  def create_profile
+    Profile.create(user: self) unless profile
   end
 end

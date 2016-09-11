@@ -1,11 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  # GET /resource/change_general
-  def edit
-    render get_action
-  end
-
-  # PUT /resource
   # We need to use a copy of the resource because we don't want to change
   # the current user in place.
   def update
@@ -20,34 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
             :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
-      sign_in resource_name, resource, bypass: true
-      respond_with resource do |format|
-        format.html {render :action => get_action}
-      end
+      bypass_sign_in resource, scope: resource_name
     else
       clean_up_passwords resource
-      respond_with resource, :action => get_action
     end
-  end
-
-  protected
-
-  def get_action
-    case params['act']
-      when 'password'
-        return :change_password
-      when 'contacts'
-        return :change_contacts
-      else
-        return :change_general
-    end
-  end
-
-  def update_resource(resource, params)
-    if params['password'] || params['current_password']
-      resource.update_with_password(params)
-    else
-      resource.update_without_password(params)
-    end
+    respond_with resource
   end
 end

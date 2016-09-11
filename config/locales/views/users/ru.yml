@@ -34,11 +34,8 @@ ru:
         placeholder_password: 'пароль'
         placeholder_confirmation: 'подтверждение'
       edit:
-        general_information: 'Общая информация'
-        contacts: 'Контакты'
-        password: 'Пароль'
+        title: 'Управление учетной записью'
         save: 'Сохранить'
-      change_general:
         drop_acct: 'Удалить уч. запись'
 
     shared:
