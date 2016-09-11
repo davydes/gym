@@ -22,4 +22,6 @@
 /public/uploads
 /public/picture
 tags
+.*~
 dump.rdb
+/ssl/
