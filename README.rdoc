@@ -2,6 +2,15 @@
 
 Project based on Ruby on Rails.
 
+Core:
+  - Ruby 2.1.10
+  - Rails 4.2
+
+Softwares:
+  - Postgres SQL
+  - Redis (for Sidekiq)
+  - ImageMagick (for CarrierWave)
+
 {<img src="https://codeclimate.com/github/davydes/gym/badges/gpa.svg" />}[https://codeclimate.com/github/davydes/gym]
 {<img src="https://codeclimate.com/github/davydes/gym/badges/coverage.svg" />}[https://codeclimate.com/github/davydes/gym/coverage]
 {<img src="https://travis-ci.org/davydes/gym.svg" alt="Build Status" />}[https://travis-ci.org/davydes/gym]
