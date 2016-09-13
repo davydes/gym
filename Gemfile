@@ -22,7 +22,6 @@ gem 'carrierwave_backgrounder'
 gem 'active_model_serializers', '~> 0.10'
 gem 'mini_magick'
 gem 'figaro'
-gem 'unicorn-rails'
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
@@ -49,6 +48,7 @@ group :production, :staging do
   gem 'pg'
   gem 'rails_12factor'
   gem 'yui-compressor'
+  gem 'unicorn-rails'
 end
 
 group :development, :test do
