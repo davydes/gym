@@ -5,11 +5,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
 
-  devise_for :users,
-             :controllers => {
-               :omniauth_callbacks => 'users/omniauth_callbacks',
-               :registrations => 'users/registrations'
-             }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users
 
   namespace :references do
