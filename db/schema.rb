@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911085443) do
+ActiveRecord::Schema.define(version: 20160913215036) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(version: 20160911085443) do
     t.datetime "date_of_birth"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "name"
   end
 
+  add_index "profiles", ["name"], name: "index_profiles_on_name", unique: true
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "references_body_parts", force: :cascade do |t|

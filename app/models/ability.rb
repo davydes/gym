@@ -6,9 +6,11 @@ class Ability
     if user.admin?
       can :manage, :all
     else
+      can :manage, Profile do |profile|
+        user == profile.user
+      end
       can :read, :all
-      cannot :read, Picture
-      cannot :read, PictureLink
+      cannot :read, [Picture, PictureLink]
     end
   end
 end
