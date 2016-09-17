@@ -15,7 +15,7 @@ gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2'
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 gem 'fog'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave', branch: '0.11-stable'
 gem 'carrierwave_backgrounder'
@@ -54,10 +54,10 @@ end
 group :development, :test do
   gem 'spring'
   gem 'sqlite3'
+  gem 'pry-rails'
 end
 
 group :development do
-  gem 'pry-rails'
   gem 'letter_opener'
   gem 'better_errors'
   gem 'byebug'
