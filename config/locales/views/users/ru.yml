@@ -1,9 +1,5 @@
 ru:
   users:
-    home: "Моя страница"
-    profile: "Мой профиль"
-    members: "Участники"
-
     confirmations:
       new:
         title: 'Повторить отправку'

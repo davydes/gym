@@ -1,0 +1,11 @@
+%h1.h2.text-center= t '.title'
+
+#profile_view
+
+:coffeescript
+  $ ->
+    window.app = new App.Routers.Profile
+      profile: #{json_for @profile}
+      url: '#{my_profile_path}'
+      el: '#profile_view'
+    Backbone.history.start()

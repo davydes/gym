@@ -10,7 +10,7 @@ class Profile < ActiveRecord::Base
     format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
   validates :gender, inclusion: [:m, :f, 'm', 'f', nil]
   validates :city, :country, length: { maximum: 100 }
-  validate :at_least_18
+  validate :at_least_18, if: -> { date_of_birth.present? }
 
   before_validation { self.name.try(:downcase!) }
   before_validation :default_name, if: -> { new_record? && name.blank? }
@@ -38,8 +38,6 @@ class Profile < ActiveRecord::Base
   end
 
   def at_least_18
-    if self.date_of_birth
-      errors.add(:date_of_birth, I18n.t('users.error.too_young')) if self.date_of_birth >= 18.years.ago
-    end
+    errors.add(:date_of_birth, :too_young) if self.date_of_birth >= 18.years.ago
   end
 end

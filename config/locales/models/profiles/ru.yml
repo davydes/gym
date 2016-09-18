@@ -1,0 +1,21 @@
+ru:
+  activerecord:
+    models:
+      profile:
+        one: Профиль
+        few: Профиля
+        many: Профилей
+        other: Профили
+    attributes:
+      profile:
+        name: Имя
+        first_name: Фамилия
+        last_name: Имя
+        date_of_birth: Дата рождения 
+        gender: Пол
+        country: Страна
+        city: Город
+    errors:
+      models:
+        profile:
+          too_young: вы должны быть совершеннолетним

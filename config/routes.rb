@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :users
+
+  authenticate :user do
+    resources :profiles, only: [:index, :show]
+    get :profile, to: 'profiles#current', as: :my_profile
+  end
 
   namespace :references do
     concern :pictureable do

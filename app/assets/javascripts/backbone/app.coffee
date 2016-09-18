@@ -30,6 +30,7 @@
   Collections: {}
   Routers: {}
   Views:
+    Profiles: {}
     References:
       Exercises: {}
     Journals:

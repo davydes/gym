@@ -14,14 +14,12 @@
     = menu_link_to journal_items_path do
       %i.fa.fa-fw.fa-book
       = Journal.model_name.human
-    = menu_link_to users_path do
+    = menu_link_to profiles_path do
       %i.fa.fa-fw.fa-user
-      = t 'users.members'
-      - cache 'users_count', :expires_in => 5.minutes do
-        %span.badge.badge-info #{User.count}
-    = menu_link_to edit_user_registration_path do
+      = Profile.model_name.human(count: '')
+    = menu_link_to my_profile_path do
       %i.fa.fa-fw.fa-briefcase
-      = t 'users.profile'
+      = t 'profiles.current.title'
     = menu_link_to destroy_user_session_path, :method => :delete do
       %i.fa.fa-fw.fa-sign-out
       = t 'sessions.sign_out'
