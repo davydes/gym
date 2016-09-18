@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :identities, :dependent => :delete_all
   has_one  :journal, dependent: :destroy
   has_one  :profile, dependent: :destroy
-  accepts_nested_attributes_for :profile
 
   #methods
   
