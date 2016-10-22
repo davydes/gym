@@ -32,7 +32,7 @@ describe 'Layout', type: :feature do
         expect(page.evaluate_script('$(\'#sidebar\').visible()')).to eq false
       end
 
-      it '#sidebar should be visible' do
+      it '#sidebar should be visible', driver: :chrome do
         visit '/'
         page.find('.navbar-header').find('button.navbar-toggle').click
         page.execute_script File.read(File.join(Rails.root, %w(vendor assets javascripts jquery.visible.js)))

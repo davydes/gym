@@ -80,4 +80,6 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+  gem 'poltergeist'
 end
