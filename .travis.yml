@@ -1,6 +1,19 @@
 language: ruby
-rvm:
-  - 2.1.10
-before_script:
-  - export DISPLAY=:99.0
+rvm: 2.1.10
+sudo: required
+dist: xenial
+before_install:  
+  # chrome-browser
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+  - export CHROME_BIN=/usr/bin/google-chrome
+  # chromedriver
+  - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo chmod u+x chromedriver
+  - sudo mv chromedriver /usr/bin/
+  # xvbf
+  - export DISPLAY=:99.0 
   - sh -e /etc/init.d/xvfb start
