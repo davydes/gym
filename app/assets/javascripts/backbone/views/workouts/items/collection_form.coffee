@@ -13,6 +13,7 @@ class App.Views.Workouts.Items.CollectionForm extends App.CompositeView
   renderLayout: ->
     @$el.html @template
     @$('ul.items').sortable
+      distance: 25
       stop: (event, ui) ->
         ui.item.trigger('drop', ui.item.index())
 
