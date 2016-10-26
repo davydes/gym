@@ -131,4 +131,33 @@ RSpec.describe References::ExercisesController, type: :controller do
     end
   end
 
+  context 'JSON' do
+    let (:exercises) { create_list(:exercise, 5) }
+    before :each do
+      request.env["HTTP_ACCEPT"] = 'application/json'
+    end
+
+    describe 'GET #index' do
+      describe 'responds exercises as json with' do
+        it 'right count' do
+          count = References::Exercise.count+exercises.count
+          get :index
+          json = JSON.parse(response.body)
+          expect(json.length).to eq(count)
+        end
+
+        it 'extended format' do
+          get :index
+          json = JSON.parse(response.body)
+          expect(json.first.keys).to eq(%w(id name alias description equipments muscles body_parts))
+        end
+
+        it 'short format' do
+          get :index, {short:1}
+          json = JSON.parse(response.body)
+          expect(json.first.keys).to eq(%w(id name alias))
+        end
+      end
+    end
+  end
 end

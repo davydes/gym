@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     concern :pictureable do
       resources :pictures, only: [:index, :show, :create, :destroy]
     end
-
+    resources :equipments
     resources :muscles, concerns: :pictureable
     resources :exercises
     resources :body_parts

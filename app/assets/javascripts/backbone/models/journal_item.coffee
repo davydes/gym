@@ -3,7 +3,7 @@ class App.Models.JournalItem extends App.Model
     executed_at: moment().unix()
 
   initialize: ->
-    @on('change:workout_attributes', @parseWorkout)
+    @listenTo(@,'change:workout_attributes', @parseWorkout)
     @parseWorkout()
 
   parseWorkout: ->

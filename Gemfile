@@ -20,10 +20,8 @@ gem 'fog'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave', branch: '0.11-stable'
 gem 'carrierwave_backgrounder'
 gem 'active_model_serializers', '~> 0.10'
-gem 'redcarpet'
 gem 'mini_magick'
 gem 'figaro'
-gem 'unicorn-rails'
 
 # Interpreters
 gem 'therubyracer', platforms: :ruby
@@ -32,6 +30,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'less-rails'
 gem 'uglifier', '~> 3'
 gem 'sass-rails'
+gem 'redcarpet' # Markdown
 
 # Assests
 gem 'i18n-js', '>= 3.0.0.rc11'
@@ -49,6 +48,7 @@ group :production, :staging do
   gem 'pg'
   gem 'rails_12factor'
   gem 'yui-compressor'
+  gem 'unicorn-rails'
 end
 
 group :development, :test do
@@ -57,6 +57,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails'
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'byebug'
   gem 'binding_of_caller'
@@ -76,4 +78,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end

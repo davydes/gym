@@ -1,1 +1,2 @@
-= hb('name')
+%a{href: hb('url')}
+  = hb('name')

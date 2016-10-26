@@ -1,5 +1,6 @@
 class AnatomicController < ApplicationController
-  respond_to :html, :json
+  respond_to :html
+  respond_to :json, only: [:index]
   before_action :authenticate_user!, except:[:show, :index]
   load_resource except: [:create]
   authorize_resource

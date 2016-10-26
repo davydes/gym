@@ -9,19 +9,11 @@
     = References::Exercise.model_name.human(count: '')
     - cache 'exercises_count', :expires_in => 5.minutes do
       %span.badge.badge-info #{References::Exercise.count}
-  = menu_link_to references_body_parts_path do
-    %i.fa.fa-fw.fa-book
-    = References::BodyPart.model_name.human(count: '')
-    - cache 'body_parts_count', :expires_in => 5.minutes do
-      %span.badge.badge-info #{References::BodyPart.count}
 
   - if current_user
     = menu_link_to journal_items_path do
       %i.fa.fa-fw.fa-book
       = Journal.model_name.human
-    = menu_link_to user_path(current_user) do
-      %i.fa.fa-fw.fa-home
-      = t 'users.home'
     = menu_link_to users_path do
       %i.fa.fa-fw.fa-user
       = t 'users.members'

@@ -131,4 +131,33 @@ RSpec.describe References::BodyPartsController, type: :controller do
     end
   end
 
+  context 'JSON' do
+    let (:body_parts) { create_list(:body_part, 5) }
+    before :each do
+      request.env["HTTP_ACCEPT"] = 'application/json'
+    end
+
+    describe 'GET #index' do
+      describe 'responds body_parts as json with' do
+        it 'right count' do
+          count = References::BodyPart.count+body_parts.count
+          get :index
+          json = JSON.parse(response.body)
+          expect(json.length).to eq(count)
+        end
+
+        it 'extended format' do
+          get :index
+          json = JSON.parse(response.body)
+          expect(json.first.keys).to eq(%w(id name alias description muscles exercises))
+        end
+
+        it 'short format' do
+          get :index, {short:1}
+          json = JSON.parse(response.body)
+          expect(json.first.keys).to eq(%w(id name alias))
+        end
+      end
+    end
+  end
 end

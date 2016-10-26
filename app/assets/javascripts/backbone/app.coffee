@@ -2,15 +2,15 @@
 
 #= require_tree ./templates
 
-#= require ./mixins/base/mixin
+#= require      ./mixins/base/mixin
 #= require_tree ./mixins/base
 #= require_tree ./mixins
 
-#= require ./models/base/model
+#= require      ./models/base/model
 #= require_tree ./models/base
 #= require_tree ./models
 
-#= require ./collections/base/collection
+#= require      ./collections/base/collection
 #= require_tree ./collections/base
 #= require_tree ./collections
 
@@ -30,6 +30,8 @@
   Collections: {}
   Routers: {}
   Views:
+    References:
+      Exercises: {}
     Journals:
       Items: {}
     Workouts:

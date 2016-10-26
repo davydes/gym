@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706115531) do
+ActiveRecord::Schema.define(version: 20160708085201) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -87,6 +87,23 @@ ActiveRecord::Schema.define(version: 20160706115531) do
 
   add_index "references_body_parts_muscles", ["body_part_id"], name: "index_references_body_parts_muscles_on_body_part_id"
   add_index "references_body_parts_muscles", ["muscle_id"], name: "index_references_body_parts_muscles_on_muscle_id"
+
+  create_table "references_equipment", force: :cascade do |t|
+    t.string   "alias",       null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "references_equipment_joins", id: false, force: :cascade do |t|
+    t.integer "equipment_id"
+    t.integer "equipmentable_id"
+    t.string  "equipmentable_type"
+  end
+
+  add_index "references_equipment_joins", ["equipment_id"], name: "index_references_equipment_joins_on_equipment_id"
+  add_index "references_equipment_joins", ["equipmentable_id", "equipmentable_type", "equipment_id"], name: "pk_references_equipment_joins", unique: true
 
   create_table "references_exercises", force: :cascade do |t|
     t.string   "alias",       null: false

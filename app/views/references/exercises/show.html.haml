@@ -1,8 +1,4 @@
-%h2
-  = link_to References::Exercise.model_name.human(count: ''), references_exercises_path
-  \\
-  #{@exercise.name}
-
+%h3
   - if can? :manage, @exercise
     .dropdown.pull-right
       %a.btn.btn-sm.btn-primary.dropdown-toggle#dropdownMenu1{type: "button", data:{toggle:"dropdown"}, aria:{haspopup:"true", expanded:"false"}}
@@ -17,25 +13,29 @@
           = link_to '#', data: { toggle: "modal", target: "#confirm-delete"} do
             %i.fa.fa-trash-o
             = t '.actions.delete'
+  %div{style: 'margin-right: 50px;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'}
+    = link_to References::Exercise.model_name.human(count: ''), references_exercises_path
+    %i.fa.fa-chevron-right{style: 'font-size: 0.8em;'}
+    #{@exercise.name}
 
-%strong #{References::Exercise.human_attribute_name 'alias'}:
-= @exercise.alias.humanize
+.row
+  .col-lg-12
+    .right-floated-box
+      %ul.list-group
+        %li.list-group-item.text-center.active
+          %strong
+            = @exercise.alias.humanize
+        %li.list-group-item
+          %strong #{References::Exercise.human_attribute_name 'equipments'}:
+          = @exercise.equipments.map{ |m| m.name }.join(', ').html_safe
+        %li.list-group-item
+          %strong #{References::Exercise.human_attribute_name 'body_parts'}:
+          = @exercise.body_parts.map{ |b| link_to(b.name, b) }.join(', ').html_safe
+        %li.list-group-item
+          %strong #{References::Exercise.human_attribute_name 'muscles'}:
+          = @exercise.muscles.map{ |m| link_to(m.name, m) }.join(', ').html_safe
 
-%br
-
-%strong #{References::Exercise.human_attribute_name 'body_parts'}:
-= @exercise.body_parts.map{ |b| link_to(b.name, b) }.join(', ').html_safe
-
-%br
-
-%strong #{References::Exercise.human_attribute_name 'muscles'}:
-= @exercise.muscles.map{ |m| link_to(m.name, m) }.join(', ').html_safe
-
-%br
-
-%strong #{References::Exercise.human_attribute_name 'description'}:
-%br
-= @exercise.description
+    = markdown(@exercise.description)
 
 .modal.fade#confirm-delete{tabindex:"-1", role: "dialog", aria: {labelledby: "myModalLabel", hidden: "true"}}
   .modal-dialog

@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      references/equipment:
+        one: 'Снаряд'
+        few: 'Снаряда'
+        many: 'Снарядов'
+        other: 'Снаряды'
+    attributes:
+      references/equipment:
+        name: 'Название'
+        alias: 'Строковый ид.'
+        description: 'Описание'
