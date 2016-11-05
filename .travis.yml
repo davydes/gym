@@ -2,7 +2,7 @@ language: ruby
 rvm: 2.1.10
 sudo: required
 dist: xenial
-before_install:  
+before_install:
   # chrome-browser
   - sudo apt-get update
   - sudo apt-get install -y libappindicator1 fonts-liberation
@@ -15,5 +15,7 @@ before_install:
   - sudo chmod u+x chromedriver
   - sudo mv chromedriver /usr/bin/
   # xvbf
-  - export DISPLAY=:99.0 
+  - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+after_script:
+  - codeclimate-test-reporter
